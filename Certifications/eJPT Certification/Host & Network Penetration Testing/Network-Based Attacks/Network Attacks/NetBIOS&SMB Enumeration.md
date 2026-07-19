@@ -1,276 +1,341 @@
+# SMB (Server Message Block) & NetBIOS
 
-# أولًا الفكرة العامة 
+Windows networks rely on several protocols to share resources such as files, printers, folders, and user information. Two of the most important protocols are **SMB** and **NetBIOS**.
 
-في شبكات ويندوز:
-
-- الأجهزة تحتاج تشارك:
-    - ملفات
-    - طابعات
-    - فولدرات
-    - users
-
-وهنا يأتي:
-
-- SMB
-- NetBIOS
+Although they are closely related, they serve different purposes within a Windows network.
 
 ---
 
-# أولًا: ما هو SMB؟
+# What is SMB?
 
-SMB اختصار:
+**SMB (Server Message Block)** is a network protocol primarily used for sharing files, printers, and other resources between systems.
 
-```
-Server Message Block
-```
+It enables users to remotely access shared folders and files across the network.
 
-وهو:
+For example, when accessing a network share such as:
 
-> بروتوكول مشاركة الملفات والطابعات في ويندوز.
-
----
-
-# تخيله كذا 
-
-لما تفتح:
-
-```
+```text
 \\192.168.1.10\share
 ```
 
-أنت تستخدم SMB.
-
-
-# ماذا يسمح لك؟
-
-- قراءة ملفات
-- رفع ملفات
-- طباعة
-- Remote IPC
-- الوصول لـ shares
-
-
-# البورتات المهمة
-
-|البورت|الاستخدام|
-|---|---|
-|445|SMB الحديث|
-|139|SMB عبر NetBIOS|
+the communication is typically performed using the SMB protocol.
 
 ---
 
-# الآن ما هو NetBIOS؟ 👀
+# SMB Capabilities
 
-NetBIOS أقدم من SMB.
+SMB allows clients to:
 
-وهو ليس file sharing نفسه.
+- Read shared files.
+- Write or upload files.
+- Access shared folders.
+- Use shared printers.
+- Communicate through IPC (Inter-Process Communication).
+- Authenticate users to network resources.
 
-بل:
+---
 
-> نظام يساعد الأجهزة تتعرف على بعضها داخل الشبكة.
+# Important SMB Ports
 
+| Port | Purpose |
+|------|---------|
+| 445 | SMB over TCP (Modern Windows) |
+| 139 | SMB over NetBIOS (Legacy Systems) |
 
-# يعني وظيفته:
+---
 
-- أسماء الأجهزة
-- جلسات الاتصال
-- broadcasting
-- discovery
+# What is NetBIOS?
 
+**NetBIOS (Network Basic Input/Output System)** is an older networking technology used by Windows systems.
 
-# مثال 👀
+Unlike SMB, NetBIOS is **not responsible for file sharing**.
 
-بدل ما تعرف IP الجهاز:
+Instead, it provides services that allow devices to locate and communicate with one another on a local network.
 
-```
+Its primary responsibilities include:
+
+- Hostname resolution.
+- Network discovery.
+- Session establishment.
+- Broadcasting system information.
+
+For example, instead of connecting to:
+
+```text
 192.168.1.20
 ```
 
-تعرفه باسم:
+you can connect using the computer name:
 
-```
+```text
 WORKSTATION-PC
 ```
 
-هذا جزء من NetBIOS.
-
-
-# خدمات NetBIOS
-
-|الخدمة|البورت|
-|---|---|
-|Name Service|137|
-|Datagram|138|
-|Session|139|
-
-# العلاقة بين SMB و NetBIOS 
-
-قديمًا:
-
-```
-SMB كان يعمل فوق NetBIOS
-```
-
-يعني:
-
-- NetBIOS يساعد بالاتصال
-- SMB ينقل الملفات
-
-
-# الآن؟
-
-الأنظمة الحديثة تستخدم:
-
-```
-SMB مباشرة عبر 445
-```
-
-بدون الحاجة لـ NetBIOS غالبًا.
-
-لكن:
-
-- NetBIOS ما زال موجود للتوافق مع الأنظمة القديمة.
-
-# أدوات مشهورة
-
-|الأداة|الوظيفة|
-|---|---|
-|smbclient|التصفح|
-|smbmap|استعراض الصلاحيات|
-|enum4linux|enumeration شامل|
-|nmap smb scripts|فحص SMB|
-|crackmapexec/netexec|enumeration + auth|
+This name resolution is one of NetBIOS's functions.
 
 ---
-# Lab
 
-NMAP Scan
+# NetBIOS Services
+
+| Service | Port |
+|----------|------|
+| Name Service | 137 |
+| Datagram Service | 138 |
+| Session Service | 139 |
+
+---
+
+# Relationship Between SMB and NetBIOS
+
+Historically, SMB operated **on top of NetBIOS**.
+
+```
+NetBIOS
+      │
+      ▼
+SMB Protocol
+      │
+      ▼
+Shared Files & Resources
+```
+
+In this architecture:
+
+- NetBIOS handled device discovery and session management.
+- SMB handled file and printer sharing.
+
+Modern versions of Windows typically use SMB directly over **TCP port 445**, making NetBIOS optional.
+
+However, NetBIOS is still supported for compatibility with legacy environments.
+
+---
+
+# Common SMB Enumeration Tools
+
+| Tool | Purpose |
+|------|---------|
+| `smbclient` | Browse and interact with SMB shares |
+| `smbmap` | Enumerate SMB shares and permissions |
+| `enum4linux` | Comprehensive SMB and Windows enumeration |
+| `Nmap SMB NSE Scripts` | SMB service and vulnerability enumeration |
+| `NetExec (CrackMapExec)` | Authentication, enumeration, and post-exploitation |
+
+---
+
+# Lab Walkthrough
+
+## Nmap Port Scan
+
+The engagement began by performing an Nmap scan to identify the services exposed by the target.
 
 ![[Pasted image 20260522003114.png]]
 
-
 ![[Pasted image 20260522003133.png]]
 
-استخدمنا سكربتات nmap  عشان نعرف أي فرجن من smb  يدعم
+---
+
+## SMB Version Enumeration
+
+Nmap NSE scripts were executed to identify the SMB version and gather additional information about the service.
 
 ![[Pasted image 20260522003217.png]]
 
+---
 
-ثم شغلنا هذا السكربت
+## SMB Security Configuration
 
+The following SMB security enumeration script was executed.
 
 ![[Pasted image 20260522003408.png]]
 
-يفحص إعدادات الأمان الخاصة بـ SMB على الهدف.
+This script checks several SMB security settings, including:
 
-# يفحص أشياء مثل:
+- SMB Signing
+- Authentication mechanisms
+- Guest or Null Session access
 
-- هل SMB Signing مفعّل؟
-- هل المصادقة آمنة؟
-- هل Guest/Null Session مسموح؟
+The results indicated:
 
-```
+```text
 message_signing: disabled
 ```
 
-يعني:  
-⚠️ SMB Signing معطّل  
-وقد يكون الجهاز قابل لهجمات:
+This means SMB Signing is disabled.
+
+When SMB Signing is not enforced, the host may be vulnerable to attacks such as:
 
 - SMB Relay
 - NTLM Relay
 
-شفنا الشيرز ك anonymous
+---
+
+## Anonymous SMB Enumeration
+
+Anonymous access was tested to determine whether any SMB shares were accessible without authentication.
 
 ![[Pasted image 20260522003549.png]]
 
+---
 
-عرضنا اليوزرز الموجودة على smb باستخدام سكربتات nmap
+## Enumerating SMB Users
+
+Nmap SMB scripts were then used to enumerate valid user accounts from the SMB service.
 
 ![[Pasted image 20260522003643.png]]
 
-فعلنا اليوزرز بلست عشان نسوي بروت فورس
+The discovered usernames were saved into a wordlist for password brute-forcing.
 
 ![[Pasted image 20260522003727.png]]
 
-
-وحصلنا على creds
+The brute-force attack successfully recovered valid credentials.
 
 ![[Pasted image 20260522003746.png]]
 
-سجلنا عبر الميتا
+---
+
+## Meterpreter Login
+
+The recovered credentials were used to authenticate to the target through Metasploit.
 
 ![[Pasted image 20260522003818.png]]
 
-فعلنا ping  على التارجت الاخر وظهر انه عندنا في internal network
+---
+
+# Discovering an Internal Network
+
+After gaining access, a ping test was performed against another internal host.
 
 ![[Pasted image 20260522003942.png]]
 
-اضفنا الشبكة للميتا عشان نستطيع نأكسس عليها
-/20 لأنه لو فعلنا ifconfig  نستطيع ان نشوف subnetmask
+The successful response confirmed the existence of an internal network that was not directly reachable from the attacker's machine.
+
+---
+
+# Configuring Autoroute
+
+The internal subnet was added to Metasploit's routing table.
+
+The subnet mask identified from the target indicated that a **/20** network should be routed.
 
 ![[Pasted image 20260522004017.png]]
 
-الان نستطيع فقط نأكسس من الميتا
-عشان نأكسس من خارج المستا نحتاج نفعل بروكسي
-استخدمنا proxychains
+Once the route was added, only Metasploit modules could communicate with the internal network.
 
-قرأنا الملف حقه وقرأنا البورت عشان نضيفه للميتا
+To access it using external tools such as Nmap, a SOCKS proxy was required.
+
+---
+
+# Configuring SOCKS Proxy
+
+The proxy configuration file was reviewed to determine the listening port.
 
 ![[Pasted image 20260522004203.png]]
 
-استخدمنا هذا المديول عشان نفعل لبروكسي
+Metasploit's SOCKS proxy module was then loaded.
 
-```
+```text
 use auxiliary/server/socks_proxy
 ```
 
 ![[Pasted image 20260522004258.png]]
 
-فعلنا الفرجن والبورت نفس الموجود على البروكسي
+The listening port was configured to match the ProxyChains configuration.
 
 ![[Pasted image 20260522004348.png]]
 
-والان فعلنا nmap باستخدام البروكسي
+---
 
-وضروري نستخدم -sT  -Pn  مع البروكسي
+# Scanning Through ProxyChains
+
+Nmap was executed through the SOCKS proxy.
+
+When scanning through ProxyChains, the following options are recommended:
+
+```bash
+-sT -Pn
+```
 
 ![[Pasted image 20260522004458.png]]
 
-لاحظنا انه عندة smb  مفتوح
+The scan identified another host exposing an SMB service.
 
-انتقلنا للجلسة عشان نشوف ايش الشيرز المتاحه
+---
+
+# Enumerating SMB Shares
+
+The Meterpreter session was used to interact with the newly discovered internal machine.
+
+Available SMB shares were enumerated using:
+
+```cmd
+net view
+```
 
 ![[Pasted image 20260522004536.png]]
 
-سوينا عرض للشيرز الموجودة على التارجت
-باستخدام الأمر
-	net view
+Initially, no shares were returned.
 
 ![[Pasted image 20260522004622.png]]
 
-رفض يعطينا أي شيرز
+---
 
-سوينا ميجريت للعملية لعملية أخرى
+# Process Migration
+
+The Meterpreter session was migrated into a different process to obtain a more stable security context.
 
 ![[Pasted image 20260522004708.png]]
 
-سوينا مرة أخر فيو للشيرز وعرض لنا بعض الشيرز
+After migration, the SMB shares became accessible.
 
 ![[Pasted image 20260522004737.png]]
 
+> **Why did this work?**
+>
+> A Meterpreter session inherits the security token of the process it is running inside. Migrating into another process can provide a different security context, allowing access to additional network resources that were previously unavailable.
 
-الان ربطنا الشيرز ب الاي وحطينا هارددسك عشان نأكسس عليه كل ما نريد نأكسس على هوللاء الشيرز
-باستخدام
-	net use
+---
+
+# Mapping a Network Share
+
+The discovered SMB share was mapped as a local drive using:
+
+```cmd
+net use
+```
 
 ![[Pasted image 20260522004928.png]]
 
+Mapping the share allows it to be accessed like a local disk, making file browsing much easier.
 
-الان من الهاردسك التي استخدمناها استعرضنا المحتوى ولقينا بعض creds
+---
+
+# Enumerating Shared Files
+
+After browsing the mapped drive, several files containing credentials were discovered.
 
 ![[Pasted image 20260522005017.png]]
 
-وعشان نقرأها رجعنا لجلسة ال meterpreter
+To read their contents more easily, the investigation returned to the Meterpreter session.
 
 ![[Pasted image 20260522005053.png]]
+
+---
+
+# Summary
+
+During this lab, the following techniques were demonstrated:
+
+- Enumerating SMB services with Nmap.
+- Identifying insecure SMB configurations.
+- Discovering anonymous SMB shares.
+- Enumerating valid Windows users.
+- Performing SMB password brute-forcing.
+- Authenticating with the recovered credentials.
+- Discovering an internal network.
+- Configuring Metasploit Autoroute.
+- Creating a SOCKS proxy for pivoting.
+- Scanning internal hosts through ProxyChains.
+- Enumerating SMB shares.
+- Using Meterpreter process migration to obtain additional access.
+- Mapping remote SMB shares using `net use`.
+- Extracting sensitive files and credentials from internal network shares.
