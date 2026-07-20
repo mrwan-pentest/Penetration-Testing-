@@ -1,197 +1,278 @@
+# User Account Control (UAC)
 
-#  ما هو UAC؟ 
+## What is UAC?
 
-UAC اختصار:
+UAC stands for:
 
 ```
 User Account Control
 ```
 
-وهي نافذة ويندوز المشهورة:
+It is a Windows security feature responsible for controlling the execution of applications that require elevated privileges.
+
+The well-known Windows prompt appears as:
 
 ```
 Do you want to allow this app to make changes?
 ```
 
+---
 
-# لماذا UAC موجود؟ 
+# Why Does UAC Exist?
 
-حتى لو كنت:
-
-```
-Administrator
-```
-
-ويندوز لا يعطيك صلاحيات كاملة مباشرة.
-
-بل يشغلك بصلاحيات:
+Even if a user belongs to the:
 
 ```
-محدودة
+Administrators
 ```
 
-حتى توافق على نافذة الـ UAC.
+group, Windows does not automatically provide full administrative privileges.
 
+Instead, Windows runs the user with:
 
-# الفكرة المهمة جدًا
+```
+Limited privileges
+```
 
-في ويندوز يوجد فرق بين:
+until the user approves the UAC prompt.
+
+This prevents unauthorized applications from performing administrative actions without user approval.
+
+---
+
+# Important Concept: Administrator vs Elevated Administrator
+
+Windows separates administrator accounts into two different security contexts.
 
 ## Administrator
 
-عضو Administrators Group.
+A user who belongs to the:
 
+```
+Administrators Group
+```
+
+However, the user may still be running with restricted privileges because of UAC.
+
+---
 
 ## Elevated Administrator
 
-Admin مع:
+An Administrator account running with:
 
 ```
-صلاحيات مرتفعة فعلًا
+Fully elevated privileges
 ```
 
+This means the process has obtained a high integrity level and can perform administrative operations.
 
-# لذلك أحيانًا ترى هذا 
+---
 
-داخل Meterpreter:
+# Example Scenario
+
+Sometimes inside a Meterpreter session, running:
 
 ```
 getuid
 ```
 
-ويظهر:
+may show:
 
 ```
 WIN-XXX\Administrator
 ```
 
-لكن عندما تحاول:
+However, when attempting actions such as:
 
-- Disable Defender
-- Dump SAM
-- SYSTEM Actions
+- Disable Windows Defender
+- Dump SAM database
+- Perform SYSTEM-level actions
 
-تفشل.
+The actions may fail.
 
+---
 
-# لماذا؟ 
+# Why Does This Happen?
 
-لأن:
-
-```
-UAC ما زال يحمي النظام
-```
-
-
-# ما معنى Bypass UAC؟ 
-
-يعني:
+Because:
 
 ```
-تجاوز نافذة UAC والحصول على Elevated Session
+UAC is still protecting the system
 ```
 
-بدون أن يضغط المستخدم:
+The user is an Administrator, but the session is not elevated.
+
+---
+
+# What is UAC Bypass?
+
+UAC Bypass is the process of:
+
+```
+Bypassing the UAC security prompt and obtaining an Elevated Session
+```
+
+without requiring the user to manually click:
 
 ```
 Yes
 ```
 
+The goal is to execute code with elevated Administrator privileges.
 
 ---
-# الآن ما هي UACMe؟ 
 
-UACMe
+# What is UACMe?
 
+## Overview
 
-# هي عبارة عن ماذا؟ 
-
-مشروع يحتوي:
+UACMe is a project that contains:
 
 ```
-عشرات طرق تجاوز UAC
+Multiple methods for bypassing UAC
 ```
 
-باستخدام:
+It provides different techniques that abuse Windows trusted behaviors to achieve privilege elevation.
+
+---
+
+# UACMe Techniques
+
+UACMe includes techniques based on:
 
 - AutoElevate
 - DLL Hijacking
 - Mock Directories
 - COM Hijacking
 - Scheduled Tasks
-- وغيرها
-
-
-# لماذا يوجد كل هذه الطرق؟
-
-لأن:
-
-```
-مايكروسوفت كانت تصلح طريقةويكتشف الباحثون طريقة جديدة
-```
-
-# رابط المستودع 
-
-https://github.com/hfiref0x/UACME
-
-![[Pasted image 20260519015121.png]]
-
-
-لو اردنا ان تعرف كل طريقة لأي نظام تستخدم من هنا
-
-![[Pasted image 20260519015200.png]]
-
-
-لو أردنا تنزيل الأداه من هنا
-
-![[Pasted image 20260519015232.png]]
-
+- Other Windows elevation mechanisms
 
 ---
 
-# PrivEsc with UCAMe
+# Why Are There Multiple UAC Bypass Methods?
 
-اولا نتحقق اننا ضمن جروب الادمنستراتور
+Microsoft continuously patches discovered bypass techniques.
+
+However, security researchers may discover new methods.
+
+Therefore:
+
+```
+Microsoft fixes one technique, and researchers discover another.
+```
+
+---
+
+# UACMe Repository
+
+The official repository:
+
+[https://github.com/hfiref0x/UACME](https://github.com/hfiref0x/UACME)
+
+![[Pasted image 20260519015121.png]]
+
+---
+
+# Selecting a UAC Bypass Method
+
+UACMe provides information about which methods work against specific Windows versions.
+
+You can check the available techniques from the documentation.
+
+![[Pasted image 20260519015200.png]]
+
+---
+
+# Downloading UACMe
+
+The tool can be downloaded from the official repository.
+
+![[Pasted image 20260519015232.png]]
+
+---
+
+# Privilege Escalation with UACMe
+
+## Step 1: Verify Administrator Group Membership
+
+First, we verify that the current user belongs to the Administrators group.
 
 ![[Pasted image 20260519020307.png]]
 
-انشأنا ملف  Temp  عشان ننقل الى داخله الأداه والبايلود
+---
 
-أو
+## Step 2: Create a Temporary Directory
+
+We create a temporary directory to store the UACMe tool and the payload.
+
+Example:
 
 ```
-cd C:\\Users\\admin\\AppData\\Local\\Temp
+cd C:\Users\admin\AppData\Local\Temp
 ```
 
 ![[Pasted image 20260519020410.png]]
 
-نقلنا الأداه 
+---
+
+## Step 3: Upload UACMe Tool
+
+We upload the UACMe executable to the target system.
 
 ![[Pasted image 20260519020436.png]]
 
-ثم نقلنا البايلود
+---
+
+## Step 4: Upload the Payload
+
+After uploading the tool, we transfer the payload that will be executed after the UAC bypass.
 
 ![[Pasted image 20260519020459.png]]
 
+---
 
-ايضا شغلنا  Lesner عشان نحصل على الجلسة
+## Step 5: Start the Listener
+
+Before executing the bypass technique, we start a Listener to receive the incoming session.
 
 ![[Pasted image 20260519020602.png]]
 
+---
 
-شغلنا الأداه 
-23 معناه الطريقة التي سوف نستخدمها وكل طريقة تستهدف انماظ محددة
+## Step 6: Execute UACMe
+
+We execute the UACMe tool.
+
+The number:
+
+```
+23
+```
+
+represents the specific UAC bypass method that will be used.
+
+Each method targets specific Windows versions and configurations.
 
 ![[Pasted image 20260519020659.png]]
 
+---
 
-وحصلنا على meterpreter
+## Step 7: Obtain Elevated Session
+
+After successful execution, we obtain a Meterpreter session with elevated privileges.
 
 ---
 
-في مديولات على الميتا ولكن الأفضل هذه الأداة
-لو نريد نبجث عن موديلات نكتب
+# UAC Bypass Using Metasploit
 
+Metasploit also contains modules for performing UAC bypass.
+
+To search for available modules, use:
+
+```
 search bypassuac
+```
 
-ونجرب الموديلات المتاحه
+This displays available UAC bypass modules.
+
+However, UACMe is often preferred because it provides a large collection of techniques and supports multiple Windows versions.

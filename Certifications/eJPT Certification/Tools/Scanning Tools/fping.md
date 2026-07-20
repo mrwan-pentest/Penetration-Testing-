@@ -1,25 +1,27 @@
+# fping Tool
 
----
-#  أداة fping 
-
-هي أداة:
+`fping` is a:
 
 ```
-سريعة لفحص عدة Hosts بالـ ping
+Fast tool for checking multiple hosts using ping
 ```
 
-أفضل من ping العادي عندما:
+It is an alternative to the normal `ping` command when you need to:
 
-- تريد فحص شبكة كاملة
-- بسرعة
+- Scan an entire network
+- Check many hosts quickly
 
 ---
 
-## فحص شبكة كاملة 
+# Scanning an Entire Network
+
+Example:
 
 ```
 fping -a -g 192.168.1.0/24
 ```
+
+Another example:
 
 ```
 fping -a -g 10.10.10.0/24 2>/dev/null
@@ -27,9 +29,95 @@ fping -a -g 10.10.10.0/24 2>/dev/null
 
 ---
 
-# شرح الأوبشنات
+# Option Explanation
 
-|Option|الوظيفة|
+|Option|Function|
 |---|---|
-|-a|عرض الأجهزة الحية فقط|
-|-g|توليد Range من الشبكة|
+|`-a`|Display only live hosts|
+|`-g`|Generate a range of IP addresses from the network|
+
+---
+
+# How it works
+
+Instead of manually running:
+
+```
+ping 192.168.1.1
+ping 192.168.1.2
+ping 192.168.1.3
+```
+
+`fping` automatically generates all IP addresses in the range and checks them.
+
+Example:
+
+```
+fping -a -g 192.168.1.0/24
+```
+
+It scans:
+
+```
+192.168.1.1
+192.168.1.2
+192.168.1.3
+...
+192.168.1.254
+```
+
+and displays only hosts that respond.
+
+---
+
+# Why is `fping` useful in penetration testing?
+
+During the:
+
+```
+Host Discovery Phase
+```
+
+it helps you quickly identify:
+
+- Active machines
+- Live hosts
+- Potential targets
+
+before moving to:
+
+- Port Scanning
+- Service Enumeration
+- Vulnerability Assessment
+
+---
+
+# Difference between ping and fping
+
+|ping|fping|
+|---|---|
+|Checks one host at a time|Checks multiple hosts simultaneously|
+|Slower for large networks|Faster for network discovery|
+|Manual IP input|Supports IP ranges|
+
+---
+
+# Example workflow
+
+First discover live hosts:
+
+```
+fping -a -g 192.168.1.0/24
+```
+
+Then scan discovered targets:
+
+```
+nmap -sS target
+```
+
+So `fping` is mainly used for:
+
+```
+Fast Host Discovery
+```

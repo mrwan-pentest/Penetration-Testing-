@@ -1,55 +1,54 @@
+# Unattended Windows Setup
 
+# What is Unattended Windows Setup?
 
-ميزة لتثبيت ويندوز تلقائيًا.
+It is:
 
-# لماذا هذا يحدث؟ 
+> A feature used to install Windows automatically.
 
-لأن الشركات أحيانًا تريد:
+# Why does this happen?
 
-```
-تنصيب ويندوز تلقائيًا على عدد كبير من الأجهزة
-```
-
-بدل:
-
-- تثبيت يدوي
-- كتابة الإعدادات كل مرة
-
-
-# هنا يأتي Unattended Windows Setup 
-
-يعني:
+Because companies sometimes need:
 
 ```
-تثبيت ويندوز بشكل آلي
+To install Windows automatically on a large number of devices
 ```
 
+Instead of:
 
-# كيف؟ 
+- Manual installation.
+- Entering the settings every time.
 
-يضعون ملف إعدادات يحتوي:
+# Here comes Unattended Windows Setup
 
-- اسم الجهاز
-- اللغة
-- المستخدم
-- أحيانًا كلمة مرور Administrator
+It means:
 
-ثم ويندوز يقرأ الملف ويثبت نفسه تلقائيًا.
+```
+Automated Windows Installation
+```
 
+# How does it work?
 
-## المشكلة
+They create a configuration file that contains:
 
-ملفات الإعدادات قد تبقى بعد التثبيت.
+- Computer name.
+- Language.
+- User account.
+- Sometimes the Administrator password.
 
+Then Windows reads the file and installs itself automatically.
 
-## تحتوي أحيانًا
+## The Problem
 
-- Username
-- Password
-- Admin Credentials
+The configuration files may remain after the installation.
 
+## They may contain:
 
-## أشهر الملفات
+- Username.
+- Password.
+- Admin Credentials.
+
+## Common Files
 
 ```
 C:\Windows\Panther\Unattend.xml
@@ -59,36 +58,54 @@ C:\Windows\Panther\Unattend.xml
 C:\Windows\Panther\Autounattend.xml
 ```
 
-
-## الباسورد قد يكون
+## The password may be:
 
 ```
 Base64 encoded
 ```
 
-وليس تشفيرًا حقيقيًا.
-
+and it is not real encryption.
 
 ---
+
 # Lab
 
-بعد أن حصلنا على جلسة metertpreter
-نبحث عن unattend.xml
+After obtaining a:
+
+```
+Meterpreter Session
+```
+
+we search for:
+
+```
+unattend.xml
+```
 
 ![[Pasted image 20260519161909.png]]
 
-وجدناها دخلنا على المسار ونقلناها الى المشين الخاصه بنا
+We found it, accessed the path, and transferred it to our machine.
 
 ![[Pasted image 20260519161942.png]]
 
-قرأنا الملف ولكن الباسورد base64 
+We read the file and noticed that the password was:
+
+```
+Base64
+```
+
+encoded.
 
 ![[Pasted image 20260519162014.png]]
 
-فكينا الباسورد
+We decoded the password:
 
 ![[Pasted image 20260519162034.png]]
 
-دخلنا عبر psexec
+Then we logged in using:
+
+```
+psexec
+```
 
 ![[Pasted image 20260519162052.png]]

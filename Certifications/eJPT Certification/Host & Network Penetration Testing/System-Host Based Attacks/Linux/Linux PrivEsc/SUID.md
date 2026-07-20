@@ -1,118 +1,143 @@
-# أولًا: ما هو SUID؟
+# SUID
 
-في لينكس يوجد صلاحيات عادية:
+## What is SUID?
 
-|الصلاحية|المعنى|
+Linux provides standard file permissions:
+
+|Permission|Description|
 |---|---|
-|r|قراءة|
-|w|كتابة|
-|x|تنفيذ|
+|`r`|Read|
+|`w`|Write|
+|`x`|Execute|
 
-لكن يوجد صلاحيات خاصة 👀
+In addition to these standard permissions, Linux also provides special permissions.
 
-منها:
+One of them is:
 
 # SUID
 
+---
 
-# ماذا يفعل SUID؟
+## What Does SUID Do?
 
-بشكل بسيط جدًا:
+Simply put:
 
-> يجعل البرنامج يعمل بصلاحيات مالك الملف  
-> وليس بصلاحيات المستخدم الذي شغله.
+> SUID allows a program to run with the permissions of the file owner rather than the user who executes it.
 
+---
 
-# مثال طبيعي بدون SUID
+## Example Without SUID
 
-أنا مستخدم عادي:
+Suppose you are a regular user:
 
 ```
 student
 ```
 
-وشغلت برنامج.
+When you execute a program:
 
 ↓
 
-البرنامج يعمل بصلاحياتي أنا فقط.
+The program runs only with **your own privileges**.
 
+---
 
-# مع SUID 
+## Example With SUID
 
-لو البرنامج مملوك لـ:
+Suppose a program is owned by:
 
 ```
 root
 ```
 
-وعليه SUID…
+and the SUID permission is enabled.
 
 ↓
 
-أي شخص يشغله
+Any user who executes the program
 
 ↓
 
-البرنامج يعمل كأنه root 
+The program runs with **root privileges** instead of the user's privileges.
 
+---
 
-# لماذا لينكس يوفر هذا أصلًا؟
+## Why Does Linux Provide SUID?
 
-لأن بعض البرامج تحتاج صلاحيات root لتنفيذ وظائف معينة.
+Some programs require root privileges to perform specific tasks.
 
-مثل:
+A common example is the `passwd` command.
 
-## passwd
-
-لما تغير الباسورد:
+When a regular user changes their password:
 
 ```
 passwd
 ```
 
-أنت مستخدم عادي…
-
-لكن البرنامج يحتاج تعديل:
+The program must modify:
 
 ```
 /etc/shadow
 ```
 
-وهذا ملف root فقط.
+Since `/etc/shadow` is only writable by root, the `passwd` binary is configured with the SUID permission so it can perform the required operation securely.
 
-# كيف نبحث عن SUID binaries؟
+---
 
-دائمًا بالبداية نفعل:
+# Finding SUID Binaries
+
+During Linux Privilege Escalation, one of the first enumeration steps is searching for SUID binaries.
+
+Common commands include:
 
 ```
 find / -perm -4000 2>/dev/null
-find / user root -perm /4000 2>/dev/null
-find / user root -perm -u=s 2>/dev/null
-find /type -perm /4000 2>/dev/null
+```
+
+```
+find / -user root -perm /4000 2>/dev/null
+```
+
+```
+find / -user root -perm -u=s 2>/dev/null
+```
+
+```
+find / -type f -perm /4000 2>/dev/null
 ```
 
 ---
+
 # Lab
 
-عرضنا الملفين ظهر عندنا ملفين باينري
+After searching for SUID binaries, we discovered two executable files.
 
-الأول ما نقدر  نأكسس عليه
-الثاني المهم عليه SUID  بصلاحية الروت
+One of them could not be accessed directly, while the second binary was owned by **root** and had the **SUID** permission enabled.
 
 ![[Pasted image 20260521014249.png]]
 
-الان عبر أمر strings  قرأنا النصوص بداخل هذا الباينري
+---
+
+Next, we used the `strings` command to inspect readable strings embedded inside the SUID binary.
 
 ![[Pasted image 20260521014428.png]]
 
-وجدنا انه ينفذ الباينري الموجود الذي لم نستطع ان نأكسس عليه
+---
+
+The output revealed that the binary attempts to execute another executable that we were unable to access directly.
 
 ![[Pasted image 20260521014513.png]]
 
-الان حذفنا هذا الباينري وعدلنا عليه عشان يفتح شل لما ننفذ الملف welcom لأنه يتنفذ بداخل هذا الباينري
+---
+
+We then removed the original executable and replaced it with our own binary that spawns a shell.
+
+Since the `welcome` binary executes this program internally while running with **root** privileges through SUID, our malicious binary was executed as **root**.
 
 ![[Pasted image 20260521014628.png]]
 
-امر ال cp  يجعل هذا الملف ينفذ greetings
-وحصلنا على الروت بعد ان شغلنا welcome !
+---
+
+Finally, we used the `cp` command to replace the original executable with our modified version.
+
+When the `welcome` binary was executed, it launched our replacement binary, resulting in a **root shell** and successful Privilege Escalation.

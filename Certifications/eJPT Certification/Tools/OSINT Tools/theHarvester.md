@@ -1,40 +1,58 @@
+# theHarvester
 
+## What is theHarvester?
 
+`theHarvester` is an OSINT (Open Source Intelligence) tool used during the reconnaissance phase to collect publicly available information about a target domain.
 
-هي أداة تستخدم في **جمع المعلومات (OSINT)** عن أي دومين قبل الاختراق.
+In simple terms:
 
-يعني:
+> It gathers publicly exposed information about a target from the Internet.
 
-> تجمع لك كل شيء “علني” عن الهدف من الإنترنت.
+It is commonly used in:
 
----
-
-# 🎯 ماذا تعمل theHarvester؟
-
-تبحث وتجمع:
-
-- 📧 Emails (إيميلات الموظفين)
-- 🌐 Subdomains (نطاقات فرعية)
-- 🖥️ Hosts / IPs
-- 👤 أحيانًا أسماء أشخاص أو روابط مرتبطة بالموقع
+- Information Gathering
+- Passive Reconnaissance
+- Attack Surface Discovery
 
 ---
 
-# 🧠 لماذا مهمة ؟
+# What Does theHarvester Collect?
 
-لأنها تدخل في مرحلة:
+`theHarvester` can collect information such as:
 
-> Information Gathering (Passive Recon)
-
-وتساعدك:
-
-- تعرف موظفين الشركة
-- تكتشف خدمات مخفية
-- تبني خريطة أولية للهدف بدون هجوم مباشر
+- Email addresses
+- Subdomains
+- Hosts
+- IP addresses
+- Names of employees (depending on the data source)
+- Publicly available information related to the target
 
 ---
 
-# ⚙️ طريقة الاستخدام الأساسية
+# Why Is theHarvester Important?
+
+During penetration testing, information gathering is an important first step.
+
+theHarvester helps testers:
+
+- Identify possible company employees.
+- Discover hidden subdomains.
+- Find exposed services.
+- Build an initial map of the target infrastructure.
+
+This process is performed without directly attacking the target.
+
+---
+
+# Basic Usage
+
+The general syntax is:
+
+```
+theHarvester -d DOMAIN -b SOURCE
+```
+
+Example:
 
 ```
 theHarvester -d example.com -b google
@@ -42,62 +60,116 @@ theHarvester -d example.com -b google
 
 ---
 
-# 🔍 شرح الأوامر
+# Command Explanation
 
-|الجزء|المعنى|
+|Option|Description|
 |---|---|
-|`-d`|الدومين الهدف|
-|`example.com`|الموقع|
-|`-b`|مصدر البحث|
-|`google`|يستخدم Google كمصدر بيانات|
+|`-d`|Specifies the target domain|
+|`example.com`|The target website|
+|`-b`|Specifies the data source|
+|`google`|Uses Google as the information source|
+
+Meaning:
+
+```
+Collect information about this domain using Google
+```
 
 ---
 
-# 📦 مثال عملي
+# Practical Example
+
+Command:
 
 ```
 theHarvester -d ine.com -b all
 ```
 
-📌 هذا يعني:
+## Purpose
 
-> اجمع كل المعلومات الممكنة عن ine.com من جميع المصادر
+Collects available information about:
+
+```
+ine.com
+```
+
+from all supported sources.
+
+The results may include:
+
+- Emails
+- Subdomains
+- Hosts
+- Other publicly available information
 
 ---
 
-# 🌐 أهم مصادر البيانات (`-b`)
+# Data Sources (`-b`)
 
-تقدر تستخدم مصادر مختلفة:
+The `-b` option defines where theHarvester collects information from.
 
-- google → بحث عام
-- bing → محرك بحث
-- linkedin → موظفين
-- yahoo → نتائج إضافية
-- all → كل المصادر
+Common sources include:
+
+|Source|Description|
+|---|---|
+|`google`|Google search results|
+|`bing`|Bing search engine|
+|`linkedin`|Public LinkedIn information|
+|`yahoo`|Yahoo search results|
+|`all`|Uses all available sources|
 
 ---
 
-# 🧩 مثال قوي (مفيد في الاختبار)
+# Employee Information Gathering
+
+Example:
 
 ```
 theHarvester -d target.com -b linkedin
 ```
 
-📌 ممكن يعطيك:
+This may reveal:
 
-- أسماء موظفين
-- إيميلات
-- أدوارهم في الشركة
+- Employee names
+- Email addresses
+- Job roles
 
+This information can be useful during:
+
+- Social Engineering assessments
+- Phishing simulations
+- Organization mapping
 
 ---
 
-# ⚡ ماذا يميزها عن أدوات أخرى؟
+# Comparison With Similar Tools
 
-|الأداة|الوظيفة|
+|Tool|Main Purpose|
 |---|---|
-|Sublist3r|Subdomains فقط|
-|DNSrecon|DNS analysis|
-|theHarvester|كل شيء (emails + subdomains + more)|
+|Sublist3r|Subdomain discovery|
+|DNSrecon|DNS analysis and enumeration|
+|theHarvester|Emails, subdomains, hosts, and public information gathering|
+
+---
 
 ![[Pasted image 20260510165847.png]]
+
+---
+
+# Summary
+
+`theHarvester` is a passive reconnaissance tool used to collect publicly available information about a target domain.
+
+Main capabilities:
+
+- Email discovery
+- Subdomain discovery
+- Host identification
+- Employee information gathering
+- OSINT-based reconnaissance
+
+Typical workflow:
+
+```
+Target Domain → OSINT Collection → Asset Discovery → Further Enumeration
+```

@@ -1,265 +1,339 @@
+# WMAP
 
+## What is WMAP?
 
-WMAP عبارة عن:
-
-```
-Web Vulnerability Scanner داخل Metasploit
-```
-
-وظيفته:
-
-- فحص مواقع الويب
-- البحث عن ثغرات
-- استخدام Modules الخاصة بالويب تلقائيًا
-
-# فكرته 
-
-بدل ما تشغل:
-
-- كل module يدويًا
-
-WMAP يقوم:
+WMAP is:
 
 ```
-بتجميع وتشغيل Web Modules تلقائيًا
+Web Vulnerability Scanner inside Metasploit
 ```
 
-# ماذا يفحص؟ 
+It is a web application scanning framework integrated into Metasploit.
 
-قد يفحص:
+WMAP is used to:
 
-- SQLi
-- File Disclosure
-- PUT Methods
-- WebDAV
-- Directory Listing
-- Headers
-- Vulnerabilities
+- Scan web applications.
+- Identify potential vulnerabilities.
+- Run web-related Metasploit Modules automatically.
 
 ---
 
-# تشغيل WMAP 
+# WMAP Concept
 
-داخل Metasploit:
+Instead of manually running every web scanning Module individually, WMAP helps automate the process.
+
+It can:
+
+```
+Collect and execute suitable Web Modules automatically
+```
+
+This makes web application assessment easier during penetration testing.
+
+---
+
+# What Does WMAP Scan?
+
+WMAP can perform checks for:
+
+- SQL Injection
+- File Disclosure
+- HTTP PUT Methods
+- WebDAV vulnerabilities
+- Directory Listing
+- HTTP Headers
+- Common web vulnerabilities
+
+---
+
+# Loading WMAP
+
+Inside Metasploit:
 
 ```
 load wmap
 ```
 
-# عرض أوامر WMAP
+## Purpose
+
+Loads the WMAP extension into the Metasploit Framework.
+
+---
+
+# Display WMAP Commands
+
+To display all available WMAP commands:
 
 ```
 wmap_commands
 ```
 
-# إضافة الهدف
+## Purpose
+
+Shows the available commands for managing:
+
+- Sites
+- Targets
+- Modules
+- Scans
+- Results
+
+---
+
+# Adding a Target Website
+
+To add a website to WMAP:
 
 ```
 wmap_sites -a http://TARGET
 ```
 
-# عرض المواقع المضافة
+Example:
+
+```
+wmap_sites -a http://192.168.1.10
+```
+
+## Purpose
+
+Adds the target website to the WMAP database.
+
+---
+
+# Listing Added Sites
+
+To display all stored websites:
 
 ```
 wmap_sites -l
 ```
 
-# تحديد الهدف
+## Purpose
+
+Shows all websites currently added to WMAP.
+
+---
+
+# Selecting a Target
+
+To define the target that will be scanned:
 
 ```
 wmap_targets -t http://TARGET
 ```
 
-# تشغيل الفحص 
-
-## فحص سريع
+Example:
 
 ```
-wmap_run -t
-```
-
-
-## فحص كامل
-
-```
-wmap_run -e
-```
-
-
-
-# مشاهدة النتائج
-
-```
-services
-```
-
-أو:
-
-```
-vulns
-```
-
-
-# مثال عملي 
-
-```
-msfconsole
-load wmap
-wmap_sites -a http://192.168.1.10
 wmap_targets -t http://192.168.1.10
-wmap_run -e
 ```
+
+## Purpose
+
+Selects the website that WMAP will scan.
 
 ---
-Lab
 
-```
-load wmap
-```
-## الوظيفة:
+# Listing Current Targets
 
-تحميل إضافة WMAP داخل Metasploit.
-
-# إضافة موقع
-
-```
-wmap_sites -a 192.157.89.3
-```
-
-## الوظيفة:
-
-```
-إضافة الموقع إلى قاعدة بيانات WMAP
-```
-
-# تحديد الهدف الحالي
-
-```
-wmap_targets -t http://192.157.89.3
-```
-
-## الوظيفة:
-
-```
-اختيار الموقع الذي سيتم فحصه
-```
-
-
-# عرض المواقع المضافة
-
-```
-wmap_sites -l
-```
-
-## الوظيفة:
-
-عرض جميع المواقع المحفوظة داخل WMAP.
-
-
-# عرض الأهداف الحالية
+To display selected targets:
 
 ```
 wmap_targets -l
 ```
 
-## الوظيفة:
+## Purpose
 
-عرض:
+Shows:
 
 ```
-الـ Targets المحددة للفحص
+Current targets configured for scanning
 ```
 
-# فحص Test Modules
+---
+
+# Running WMAP Scans
+
+## Quick Test Scan
+
+Command:
 
 ```
 wmap_run -t
 ```
 
-## الوظيفة:
+## Purpose
 
-تشغيل:
+Runs test Modules designed for quick checks.
 
-```
-Modules الخاصة بالاختبار السريع
-```
+It usually performs:
 
-غالبًا:
+- Basic Enumeration
+- Information gathering
+- Lightweight checks
 
-- Enumeration
-- معلومات بسيطة
-- فحص خفيف
+---
 
-# الفحص الكامل
+# Full Scan
+
+Command:
 
 ```
 wmap_run -e
 ```
 
-## الوظيفة:
+## Purpose
 
-تشغيل:
+Runs all applicable WMAP Modules against the target.
 
-```
-كل Modules المناسبة
-```
+The scan may include checks for:
 
-لفحص:
-
-- ثغرات
-- ملفات
+- Vulnerabilities
+- Files
 - WebDAV
-- Headers
+- HTTP Headers
 - Directories
-- SQLi checks
-- وغيرها
+- SQL Injection checks
+- Other web security issues
 
+---
 
-# عرض أوامر WMAP
+# Viewing Results
 
-```
-wmap_commands
-```
+WMAP results can be viewed using Metasploit commands.
 
-يعرض كل أوامر WMAP.
-
-# حذف موقع
+## View Services
 
 ```
-wmap_sites -d ID
+services
 ```
 
-
-# حذف Target
+## View Discovered Vulnerabilities
 
 ```
-wmap_targets -d ID
+vulns
 ```
 
+---
 
-# عرض Modules المستخدمة
+# Practical Example
+
+Start Metasploit:
+
+```
+msfconsole
+```
+
+Load WMAP:
+
+```
+load wmap
+```
+
+Add the target:
+
+```
+wmap_sites -a http://192.168.1.10
+```
+
+Select the target:
+
+```
+wmap_targets -t http://192.168.1.10
+```
+
+Run the full scan:
+
+```
+wmap_run -e
+```
+
+---
+
+# Managing WMAP Modules
+
+## Display Available Modules
+
+Command:
 
 ```
 wmap_modules -l
 ```
 
+## Purpose
 
-# عرض معلومات Module
+Lists all Modules available for WMAP scanning.
+
+---
+
+# Display Module Information
+
+Command:
 
 ```
 wmap_modules -i MODULE_NAME
 ```
 
+## Purpose
 
-# تشغيل Module معين فقط
+Displays information about a specific WMAP Module.
+
+---
+
+# Running a Specific Module
+
+Instead of running the entire scan, you can execute a single Module:
 
 ```
 wmap_run -m MODULE_NAME
 ```
 
-
-# مثال 
+Example:
 
 ```
 wmap_run -m auxiliary/scanner/http/http_header
+```
+
+This runs only the specified HTTP Header scanning Module.
+
+---
+
+# Deleting Sites
+
+To remove a website from WMAP:
+
+```
+wmap_sites -d ID
+```
+
+The `ID` refers to the identifier assigned to the stored site.
+
+---
+
+# Deleting Targets
+
+To remove a target:
+
+```
+wmap_targets -d ID
+```
+
+---
+
+# Summary
+
+WMAP is a Metasploit extension designed for automated web application scanning.
+
+Main features:
+
+- Web vulnerability scanning.
+- Automated execution of web-related Modules.
+- Target management.
+- Web enumeration.
+- Vulnerability discovery.
+
+Common workflow:
+
+```
+Load WMAP → Add Site → Select Target → Run Scan → Review Results
 ```

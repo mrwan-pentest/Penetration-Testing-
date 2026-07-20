@@ -1,220 +1,296 @@
+# Pretexting
 
+## What Is Pretexting?
 
-# الـ Pretexting هو:
+**Pretexting** is a Social Engineering technique in which an attacker creates a false identity or fabricated scenario to convince a victim to trust them and voluntarily disclose sensitive information or perform specific actions.
 
-> اختلاق قصة أو سيناريو مزيف لجعل الضحية تثق بك وتعطيك معلومات أو صلاحيات.
+Unlike directly requesting confidential information, the attacker builds a believable story that makes the request appear legitimate.
 
-الفكرة ليست أن تقول:
-
-> "أعطني كلمة المرور."
-
-بل أن تصنع قصة منطقية تجعل الضحية تعطيك المعلومات بنفسها.
+The objective is to manipulate the victim into willingly providing information or access.
 
 ---
 
-# الفرق بين Phishing و Pretexting
+# Pretexting vs. Phishing
 
 ## Phishing
 
-رسالة مزيفة تحتوي رابطًا أو ملفًا.
+Phishing typically relies on fraudulent emails, messages, or websites that encourage victims to click malicious links or open infected attachments.
 
-مثال:
+Example:
 
-> اضغط هنا لتحديث حسابك.
+> Click here to update your account.
 
+The attack primarily depends on malicious content delivered through electronic communication.
 
+---
 
 ## Pretexting
 
-المهاجم يلعب دور شخصية معينة.
+Pretexting revolves around a carefully crafted story rather than simply sending a malicious link.
 
-مثال:
+The attacker impersonates a trusted individual or authority figure.
 
-> مرحبًا، أنا من قسم الدعم الفني وأحتاج التحقق من حسابك قبل ترقية النظام.
+Example:
 
-هنا يوجد **سيناريو كامل** وليس مجرد رابط.
+> Hello, I'm from the IT Support team. We need to verify your account before upgrading the system.
 
----
-
-# الفكرة الأساسية
-
-المهاجم يريد أن يضع الضحية في موقف مألوف.
-
-مثال:
-
-- موظف IT
-- موظف بنك
-- مدير
-- شركة شحن
-- قسم الموارد البشرية
-
-عندما يبدو الموقف مألوفًا تقل الشكوك.
+Instead of relying on a malicious link, the attacker creates an entire scenario to persuade the victim to cooperate.
 
 ---
 
-# خصائص الـ Pretexting
+# The Core Concept
 
-## 1. False Pretense
+The attacker attempts to place the victim in a familiar and believable situation.
 
-إنشاء قصة مزيفة.
+Common impersonated roles include:
 
-مثال:
+- IT Support staff.
+- Bank representatives.
+- Company managers.
+- Shipping companies.
+- Human Resources personnel.
 
-> أنا من قسم الـ IT.
-
-بينما هو ليس كذلك.
-
----
-
-## 2. Establishing Trust
-
-بناء الثقة.
-
-المهاجم يحاول أن يبدو:
-
-- محترفًا
-- واثقًا
-- مطلعًا على تفاصيل الشركة
-
-حتى يقتنع الضحية.
+The more familiar and realistic the scenario appears, the less likely the victim is to question its legitimacy.
 
 ---
 
-## 3. Manipulating Emotions
+# Characteristics of Pretexting
 
-استغلال المشاعر.
+## False Pretense
 
-مثل:
+The attacker creates a fabricated identity or story.
 
-### الخوف
+Example:
 
-> تم اختراق حسابك.
+> I work in the IT department.
 
+Even though the attacker has no affiliation with the organization.
 
-### الاستعجال
+---
 
-> يجب حل المشكلة خلال 10 دقائق.
+## Establishing Trust
 
+Before requesting sensitive information, the attacker focuses on building credibility.
 
-### الفضول
+They often appear:
 
-> لدينا عرض عمل لك.
+- Professional.
+- Confident.
+- Knowledgeable about the organization.
 
-### التعاطف
+This increases the victim's confidence in the attacker's legitimacy.
 
-> أحتاج مساعدتك في مشكلة عاجلة.
+---
 
+## Manipulating Emotions
 
-## 4. Information Gathering
+Pretexting frequently relies on emotional manipulation.
 
-بعد بناء الثقة يبدأ الهدف الحقيقي.
+Common psychological triggers include:
 
-مثل الحصول على:
+### Fear
+
+Example:
+
+> Your account has been compromised.
+
+---
+
+### Urgency
+
+Example:
+
+> This issue must be resolved within the next 10 minutes.
+
+---
+
+### Curiosity
+
+Example:
+
+> We have an exciting job opportunity for you.
+
+---
+
+### Sympathy
+
+Example:
+
+> I need your assistance with an urgent issue.
+
+Emotional pressure often causes victims to make decisions without verifying the request.
+
+---
+
+## Information Gathering
+
+Once trust has been established, the attacker begins collecting sensitive information.
+
+Common targets include:
 
 ```
-Username 
+Username
 Password
-Email
+Email Address
 VPN Access
 Employee ID
 ```
 
 ---
 
-## 5. Maintaining Consistency
+## Maintaining Consistency
 
-المهاجم يحافظ على القصة.
+Throughout the interaction, the attacker must maintain a consistent and believable story.
 
-إذا سألته الضحية أسئلة إضافية يجب أن تكون إجاباته متوافقة مع السيناريو الذي اخترعه.
+If the victim asks additional questions, the responses must align with the fabricated scenario to avoid raising suspicion.
 
 ---
 
-# أمثلة عملية
+# Practical Examples
 
-## مثال 1: الدعم الفني المزيف
+## Example 1 - Fake IT Support
 
-المهاجم يتصل:
+An attacker contacts an employee claiming to be from the IT department.
 
-> أنا من الدعم الفني.
+Example:
 
-ثم يقول:
+> We have detected malware on your workstation.
 
-> لاحظنا وجود برمجية خبيثة على جهازك.
-
-ثم يطلب:
+The attacker then requests:
 
 ```
 Remote Access
 ```
 
-أو تثبيت برنامج.
+or asks the victim to install a specific application.
 
-الضحية تعتقد أنه يساعدها.
-
----
-
-## مثال 2: وظيفة مزيفة
-
-المهاجم يدعي أنه موظف توظيف.
-
-ويقول:
-
-> لدينا فرصة عمل ممتازة.
-
-ثم يطلب:
-
-```
-الهويةالعنوانالمعلومات البنكية
-```
-
-بحجة إكمال التوظيف.
+The victim believes the attacker is providing technical assistance.
 
 ---
 
-# كيف تتم عملية Pretexting عادة؟
+## Example 2 - Fake Recruitment Opportunity
+
+An attacker pretends to be a recruiter.
+
+Example:
+
+> We have an excellent job opportunity that matches your experience.
+
+The attacker then requests personal information such as:
+
+```
+National ID
+Home Address
+Banking Information
+```
+
+under the pretense of completing the hiring process.
+
+---
+
+# Typical Pretexting Attack Workflow
+
+A successful Pretexting attack generally follows these stages:
 
 ```
 1. Reconnaissance
+        ↓
+2. Create a Believable Story
+        ↓
+3. Establish Trust
+        ↓
+4. Request Information or an Action
+        ↓
+5. Exploit the Collected Information
 ```
-
-جمع معلومات عن الشركة والموظفين.
-
-↓
-
-```
-2. Create Story
-```
-
-إنشاء قصة مقنعة.
-
-↓
-
-```
-3. Build Trust
-```
-
-كسب ثقة الضحية.
-
-↓
-
-```
-4. Request Information
-```
-
-طلب المعلومات أو تنفيذ إجراء معين.
-
-↓
-
-```
-5. Exploit
-```
-
-استغلال ما حصل عليه.
 
 ---
 
+# Phase 1 - Reconnaissance
 
-● A library of pretexts to use on offensive phishing engagements:
+The attacker gathers information about the target organization and its employees.
+
+Typical sources include:
+
+- Social media.
+- Company websites.
+- Public directories.
+- Data breaches.
+- Professional networking platforms.
+
+This information helps create a realistic pretext.
+
+---
+
+# Phase 2 - Create a Believable Story
+
+Using the collected information, the attacker develops a convincing scenario.
+
+The story should appear legitimate and match the victim's role, responsibilities, or current activities.
+
+---
+
+# Phase 3 - Establish Trust
+
+The attacker builds rapport with the victim by appearing credible and professional.
+
+This stage is critical because trust significantly increases the likelihood of compliance.
+
+---
+
+# Phase 4 - Request Information or an Action
+
+Once sufficient trust has been established, the attacker requests:
+
+- Sensitive information.
+- Account credentials.
+- Remote access.
+- File downloads.
+- Execution of specific commands.
+
+The request is presented as a normal part of the fabricated scenario.
+
+---
+
+# Phase 5 - Exploitation
+
+After obtaining the desired information or access, the attacker proceeds with the next stage of the attack.
+
+Possible objectives include:
+
+- Unauthorized system access.
+- Credential theft.
+- Data exfiltration.
+- Malware deployment.
+- Lateral movement within the organization.
+
+---
+
+# Pretext Library
+
+A publicly available collection of phishing and pretext scenarios can be useful for understanding how realistic Social Engineering campaigns are designed and for building authorized security awareness exercises.
+
+Repository:
+
+```
 https://github.com/L4bF0x/PhishingPretexts/tree/master
+```
 
-يحتوي على مجموعة كبيرة من **السيناريوهات الجاهزة** (Pretexts) لاستخدامها في حملات التصيد الاحتيالي.
+The repository contains a large collection of ready-made **Pretext** scenarios that can be adapted for authorized phishing simulations and security awareness assessments.
+
+---
+
+# Summary
+
+Pretexting is a Social Engineering technique that relies on carefully crafted stories rather than technical exploits.
+
+A successful Pretexting attack typically involves:
+
+- Gathering information about the target.
+- Creating a believable identity.
+- Establishing trust.
+- Exploiting human emotions.
+- Requesting sensitive information or actions.
+- Using the collected information to achieve the attacker's objectives.
+
+Because it exploits human behavior instead of software vulnerabilities, Pretexting remains one of the most effective Social Engineering techniques used in modern cyber attacks.

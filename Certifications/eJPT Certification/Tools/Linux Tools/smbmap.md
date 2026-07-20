@@ -1,117 +1,194 @@
+# smbmap
 
+## What is smbmap?
 
-أداة `smbmap` من أهم أدوات الـ SMB Enumeration ف
+`smbmap` is one of the most commonly used tools for:
 
-هي أداة خفيفة وسريعة جدًا تساعدك:
+```
+SMB Enumeration
+```
 
-- تعرف الـ shares
-- تعرف الصلاحيات
-- هل تقدر تكتب؟
-- هل تقدر تقرأ؟
-- أحيانًا تنفيذ أوامر
+It is a lightweight and fast tool that helps penetration testers identify:
 
-# أولًا: وش فكرة smbmap؟
+- Available SMB Shares
+- Share permissions
+- Read access
+- Write access
+- Possible file operations
 
-بدل ما تدخل يدوي بـ:
+It can also support some remote actions depending on the available permissions.
+
+---
+
+# What is the Idea Behind smbmap?
+
+Instead of manually connecting to SMB Shares using:
 
 ```
 smbclient
 ```
 
-الأداة تسوي:
+`smbmap` performs SMB Enumeration automatically and presents the results in an organized way.
 
-- Enumeration كامل
-- بشكل مرتب وسريع
+It allows you to quickly identify:
+
+- Accessible shares.
+- Available permissions.
+- Potential attack opportunities.
 
 ---
 
-# أبسط استخدام
+# Basic Usage
+
+To perform a basic SMB scan:
 
 ```
 smbmap -H TARGET
 ```
 
-مثال:
+Example:
 
 ```
 smbmap -H 10.10.10.5
 ```
 
-# ماذا يفعل؟
+---
 
-يحاول:
+# What Does It Do?
 
-- قراءة الـ shares
-- غالبًا كـ anonymous
+The command attempts to enumerate SMB Shares and discover available resources.
 
+By default, it may attempt access using:
+
+```
+Anonymous Authentication
+```
+
+if the SMB server allows it.
 
 ---
 
-# أهم شيء 
+# Understanding smbmap Output
 
-الأداة توضح لك:
+`smbmap` displays the permissions available for each share.
 
-| الصلاحية    | معناها          |
-| ----------- | --------------- |
-| READ ONLY   | تقدر تقرأ فقط   |
-| READ, WRITE | تقدر ترفع ملفات |
-| NO ACCESS   | ممنوع           |
+|Permission|Meaning|
+|---|---|
+|`READ ONLY`|The user can only read files|
+|`READ, WRITE`|The user can read and upload/modify files|
+|`NO ACCESS`|The user cannot access the share|
 
 ---
 
-# الدخول بحساب
+# Authentication with Username and Password
 
-إذا عندك username/password:
+If valid credentials are available, they can be provided using:
 
 ```
 smbmap -H TARGET -u admin -p password123
 ```
 
+Options:
+
+- `-H` → Target IP address or hostname.
+- `-u` → Username.
+- `-p` → Password.
+
 ---
 
 # Pass-the-Hash
 
-تدعم PTH 
+`smbmap` supports authentication using NTLM Hashes.
+
+Example:
 
 ```
 smbmap -H TARGET -u administrator -p HASH
 ```
 
-أحيانًا تستخدم:
+Some versions may use:
 
 ```
 --hashes
 ```
 
-حسب النسخة.
+for specifying hashes.
+
+Pass-the-Hash allows authentication using an NTLM Hash instead of the actual password.
 
 ---
 
-# عرض الملفات داخل Share
+# Listing Files Inside a Share
+
+To recursively list files inside a specific SMB Share:
 
 ```
 smbmap -H TARGET -r public
 ```
 
-معنى:
+Option:
 
-- recursively list
+```
+-r
+```
 
+means:
+
+```
+Recursive listing
+```
+
+It displays files and directories inside the selected share.
 
 ---
 
-# تحميل ملف
+# Downloading Files
+
+To download a file from an SMB Share:
 
 ```
 smbmap -H TARGET --download "public/passwords.txt"
 ```
 
+This retrieves the specified file from the SMB Share.
+
 ---
 
-# رفع ملف 
+# Uploading Files
 
-إذا عندك write permission:
+If the current user has write permissions, files can be uploaded:
 
 ```
 smbmap -H TARGET --upload shell.exe "public/shell.exe"
 ```
+
+This uploads:
+
+```
+shell.exe
+```
+
+to:
+
+```
+public/shell.exe
+```
+
+inside the SMB Share.
+
+---
+
+# Summary
+
+`smbmap` is a fast SMB Enumeration tool used during Windows and Active Directory assessments.
+
+Common uses:
+
+- Discovering SMB Shares.
+- Identifying permissions.
+- Finding readable and writable locations.
+- Downloading files.
+- Uploading files when write access is available.
+- Supporting credential-based and Pass-the-Hash authentication.
+
+It is commonly used in the enumeration phase to identify possible SMB attack paths.

@@ -1,57 +1,82 @@
+# Access Token
 
-# ما هو Access Token ؟
+## What is Access Token?
 
-في ويندوز، عندما يسجل المستخدم الدخول،  
-النظام ينشئ له شيء اسمه:
+In Windows, when a user successfully logs into the system, Windows creates an object called:
 
 ```
 Access Token
 ```
 
-وهذا التوكن يعتبر:
- “بطاقة الهوية والصلاحيات” الخاصة بالمستخدم داخل النظام.
+The Access Token represents the user's identity and permissions inside the operating system.
 
-# ماذا يحتوي الـ Token؟
+It works as a security object that tells Windows:
 
-يحتوي معلومات مثل:
+- Who the user is.
+- What permissions the user has.
+- Which groups the user belongs to.
+- What actions the user is allowed to perform.
 
-- اسم المستخدم
-- الـ SID
-- المجموعات (Administrators وغيرها)
-- الصلاحيات Privileges
-- مستوى الصلاحية
+---
 
-# ما هو Token Impersonation؟
+# What Does an Access Token Contain?
 
-معناه:
+An Access Token contains information such as:
 
-> انتحال أو استخدام Token لمستخدم آخر.
+- Username
+- Security Identifier (SID)
+- User groups:
+    - Administrators
+    - Users
+    - Other security groups
+- Privileges
+- Permission level
 
-يعني بدل أن تعمل بصلاحياتك،  
-تستخدم Token خاص بمستخدم أقوى.
+---
 
+# What is Token Impersonation?
 
-# أشهر نوعين
+Token Impersonation is the process of using another user's Access Token to perform actions with that user's privileges.
 
-## 1) Impersonation Token
+Instead of running commands with your current user permissions, you use the Access Token of another user who has higher privileges.
 
-يسمح لك “بالتصرف” كمستخدم آخر مؤقتًا.
+For example:
 
-## 2) Primary Token
+A low-privileged user may obtain an Administrator Token and execute commands with Administrator privileges.
 
-يستخدم لتشغيل Process كامل كمستخدم آخر.
+---
 
+# Types of Tokens
 
-# أشهر أدوات Token Impersonation
+## 1. Impersonation Token
 
-## داخل Metasploit
+An Impersonation Token allows a process or thread to temporarily act as another user.
+
+It is commonly used to perform actions on behalf of another user.
+
+---
+
+## 2. Primary Token
+
+A Primary Token is used to run a complete process under another user's security context.
+
+---
+
+# Common Token Impersonation Tools
+
+## Inside Metasploit
 
 ```
 incognito
 ```
 
+The Incognito extension allows attackers to list available Tokens and impersonate users with higher privileges.
 
-## خارج Metasploit
+---
+
+## Outside Metasploit
+
+Common Token Impersonation tools include:
 
 - JuicyPotato
 - RoguePotato
@@ -59,65 +84,95 @@ incognito
 - GodPotato
 
 ---
-# PrivEsc with Metasploit
 
-## Method 1 auto 
-### using incognito
+# Privilege Escalation with Metasploit
 
-اولا نفعل load  لل incognito
+## Method 1: Using Incognito
+
+### Loading the Incognito Extension
+
+After obtaining a Meterpreter session, we first load the Incognito extension.
 
 ![[Pasted image 20260519132904.png]]
 
-نعرض اليوزرز الذي نستطيح ان ننتحل التوكن الخاص بهم
+---
+
+### Listing Available Tokens
+
+We enumerate the available Tokens that can be impersonated.
 
 ![[Pasted image 20260519132938.png]]
 
-الان ننتحل التوكن الخاص بهذا الأدمن
+---
+
+### Impersonating an Administrator Token
+
+After identifying a privileged Token, we impersonate the Administrator Token.
 
 ![[Pasted image 20260519133022.png]]
 
-وكذه حصلنا عليه
+---
+
+### Verify the Privileges
+
+After successful Token impersonation, we gain access using the privileges of the impersonated user.
 
 ![[Pasted image 20260519133038.png]]
 
+---
+
+# Privilege Escalation with PrintSpoofer
+
+## Method 2: Manual Token Impersonation
+
+PrintSpoofer is a tool that abuses Windows privilege mechanisms to obtain elevated privileges by impersonating privileged Tokens.
 
 ---
-# PrivEsc with PrintSpoofer
-## Method 2 manual
 
-# أولا
-## ارفع الأداة
+# Step 1: Upload the Tool
 
-مثلاً:
+First, upload the PrintSpoofer executable to the target machine.
+
+Example:
 
 ```
 PrintSpoofer.exe
 ```
 
+---
 
-# ثم نفذ:
+# Step 2: Execute PrintSpoofer
+
+Run the following command:
 
 ```
 PrintSpoofer.exe -i -c cmd
 ```
 
+This creates an interactive command shell with elevated privileges.
 
-# ماذا تعني الخيارات؟
+---
+
+# PrintSpoofer Options
 
 ## -i
 
+```
 Interactive
+```
 
-يعني افتح shell تفاعلي.
+Creates an interactive shell session.
 
 ---
 
 ## -c
 
-الأمر الذي تريد تشغيله.
+Specifies the command that should be executed.
 
-مثلاً:
+Example:
 
 ```
 PrintSpoofer.exe -i -c powershell.exe
 ```
+
+This launches an interactive PowerShell session using elevated privileges.

@@ -1,125 +1,365 @@
+# Social Engineering
 
-# تعريف الهندسة الاجتماعية (Social Engineering)
+## What Is Social Engineering?
 
-### هي أسلوب يستخدم لالتلاعب بالأفراد أو الموظفين داخل منظمة ما.
+**Social Engineering** is a technique that relies on manipulating individuals or employees within an organization to gain unauthorized access to:
 
-### الهدف هو الحصول على وصول غير مصرح به إلى معلومات حساسة أو أنظمة أو مرافق.
+- Sensitive information.
+- Systems.
+- Physical facilities.
 
-### تستغل علم النفس البشري، الثقة، ونقاط الضعف البشرية.
+Instead of exploiting technical vulnerabilities, Social Engineering exploits:
 
-### الهدف الأساسي هو تضليل الأفراد ليقوموا بأفعال تضر بالأمن، مثل الكشف عن معلومات أو تنفيذ إجراءات تبدو غير ضارة.
+- Human psychology.
+- Trust.
+- Human weaknesses.
+- Social behaviors.
 
+The main objective is to trick individuals into performing actions that negatively affect security, such as:
 
-# 2. المبدأ الأساسي للهندسة الاجتماعية
-## تعتمد على وضع الأشخاص أو الموظفين في مواقف تجعلهم يعتمدون على غرائزهم الأساسية وأكثر أشكال التفاعل الاجتماعي شيوعًا، مثل:
-
-الرغبة في تقديم المساعدة.
-
-الثقة في الآخرين.
-
-الرغبة في نيل القبول والاستحسان.
-
-الخوف من الوقوع في مشكلة.
-
-تجنب المواجهة أو الجدال.
-
-# 3. لماذا هي فعالة جدًا؟
-
-بدلاً من قضاء ساعات طويلة في محاولة اختراق الأنظمة تقنيًا (مثل هجمات تخمين كلمات المرور)، يستطيع المهاجم استغلال الهندسة الاجتماعية في دقائق.
-
-المهاجم لا يحتاج بالضرورة إلى التنقل حول المحيط الأمني للمنظمة، بل يمكنه إقناع موظف داخلي بالقيام بالمهمة نيابة عنه.
-
-النتيجة: الحصول على معلومات أو تسهيل تنفيذ برمجيات خبيثة داخل شبكة الشركة بسرعة وسهولة.
-
-# 4. الهندسة الاجتماعية ووسائل التواصل الاجتماعي
-انتشار منصات التواصل الاجتماعي (فيسبوك، تويتر، لينكد إن) زاد بشكل هائل من فعالية وقدرة المهاجمين على تنفيذ هجمات الهندسة الاجتماعية.
-
-سهولة الاتصال بأي موظف في العالم من أي مكان.
-
-الموظفون غالبًا يكشفون عن غير قصد (أو بقصد) الكثير من المعلومات الخاصة (عناوين البريد الإلكتروني، أرقام الهواتف، العناوين، اهتماماتهم الشخصية) والتي يمكن استغلالها في الهجمات.
-
-
-# 6. أهميتها في اختبار الاختراق الحديث
-غالبًا ما يتم التغاضي عن الهندسة الاجتماعية كأسلوب هجوم من قبل مختبرين الاختراق، لكن هذا بدأ يتغير مؤخرًا.
-
-المهارة الأساسية: تحويل الهندسة الاجتماعية إلى أسلوب هجوم قابل للتطبيق في اختبارات الاختراق (Contextualizing and operationalizing).
-
-# أنواع هجمات الهندسة الاجتماعية
-
-# التصيد (Phishing)
-
-### رسائل بريد إلكتروني أو مواقع ويب خادعة مصممة لخداع الضحايا للكشف عن معلومات سرية مثل كلمات المرور أو البيانات المالية.
-
-ا
-# لتصيد المُوجّه (Spear Phishing)
-### هجوم تصيد مخصص لأفراد أو مجموعات محددة داخل المؤسسة، يستخدم معلومات شخصية لزيادة المصداقية.
-
-
-# التصيد الصوتي (Vishing)	
-
-### هجمات تصيد تتم عبر المكالمات الهاتفية أو الرسائل الصوتية، حيث ينتحل المهاجم صفة كيانات شرعية (مثل الدعم الفني أو البنك).
-
-# التصيد عبر الرسائل النصية (Smishing)	
-
-### هجمات تصيد عبر رسائل SMS أو النصوص القصيرة، تخدع الضحايا للنقر على روابط خبيثة أو تقديم معلومات حساسة.
-
-
-# التبرير (Pretexting)	
-
-### إنشاء سيناريو أو ذريعة كاذبة لكسب ثقة الهدف واستخراج معلومات حساسة. قد يشمل انتحال شخصيات ذات سلطة (مدير، زميل، مزود خدمة).
-
-# الإغراء (Baiting)
-### إغراء الضحايا للقيام بإجراء معين (مثل النقر على رابط ضار أو فتح ملف خبيث) مقابل حوافز أو مكافآت مغرية (مثل برامج مجانية، جوائز، فرص عمل).
-
-
-# التعقب (Tailgating)
-
-### الدخول الفعلي إلى مناطق مقيدة باتباع شخص مصرح له بالدخول دون مصادقة صحيحة. يستغل الأعراف الاجتماعية والمجاملة.
+- Revealing confidential information.
+- Opening malicious files.
+- Executing unauthorized actions.
+- Providing access to protected resources.
 
 ---
 
+# The Fundamental Principle of Social Engineering
 
-# هجوم التصيد (Phishing) 
-1. مراحل الهجوم
-التخطيط وجمع المعلومات (Planning & Reconnaissance) : يبحث المهاجم عن أهداف محتملة، ويجمع معلومات عن الموظفين، ويفهم قنوات الاتصال والبروتوكولات داخل المؤسسة.
+Social Engineering relies on placing people in situations where they respond based on common human instincts and social behaviors.
 
-صياغة الرسالة (Message Crafting) : إنشاء رسائل بريد إلكتروني أو رسائل خادعة تشبه الاتصالات الشرعية من مصادر موثوقة (زملاء، قسم تقنية المعلومات، بنوك). غالبًا ما تستخدم لغة ملحة أو مخيفة لخلق شعور بالإلحاح أو الخوف.
+Common behaviors exploited by attackers include:
 
-التسليم (Delivery) : إرسال رسائل التصيد إلى الأفراد المستهدفين، باستخدام تقنيات لتجاوز مرشحات البريد العشوائي والضوابط الأمنية.
+- The desire to help others.
+- Trusting people.
+- The desire for acceptance and approval.
+- Fear of getting into trouble.
+- Avoiding confrontation or arguments.
 
-الخداع والتلاعب (Deception & Manipulation) : تحتوي الرسائل على روابط خبيثة أو مرفقات أو طلبات معلومات حساسة. يتم خداع الضحية للتفاعل معها تحت مبررات كاذبة.
+Attackers take advantage of these natural behaviors to manipulate victims into making unsafe decisions.
 
-الاستغلال (Exploitation) : بمجرد تفاعل الضحية، يستغل المهاجم ثغرات في أنظمة الهدف أو التطبيقات للحصول على وصول غير مصرح به، أو تثبيت برمجيات خبيثة، أو سرقة معلومات حساسة.
+---
 
-# التصيد المُوجّه (Spear Phishing)
+# Why Is Social Engineering Highly Effective?
 
-هو شكل موجّه ومخصص من هجوم التصيد.
+Instead of spending hours attempting to technically compromise systems through methods such as password guessing attacks, attackers can sometimes achieve their goals within minutes by exploiting human behavior.
 
-يستهدف أفرادًا أو مجموعات محددة داخل المؤسسة.
+The attacker does not always need to bypass the organization's technical security controls.
 
-على عكس التصيد العادي الذي يُرسل لجمهور عريض، فإن هجمات التصيد الموجّه شخصية جدًا ومصممة خصيصًا لاستغلال خصائص واهتمامات وعلاقات الهدف الفريدة.
+Instead, they may convince an internal employee to perform the action on their behalf.
 
-## مراحله
-اختيار الهدف والبحث (Target Selection & Research) :
+The result can be:
 
-اختيار الأهداف بعناية بناءً على معايير محددة (المسمى الوظيفي، القسم، العلاقات الهرمية).
+- Obtaining sensitive information.
+- Delivering malicious software.
+- Gaining access to internal systems.
+- Compromising the organization's network.
 
-القيام باستطلاع مكثف لجمع معلومات عن الهدف: الاسم، المسمى، المسؤوليات، علاقات العمل، الاهتمامات الشخصية.
+---
 
-مصادر البحث: الملفات الشخصية على وسائل التواصل الاجتماعي، أدلة الشركات، البيانات المسربة.
+# Social Engineering and Social Media
 
-تخصيص الرسالة (Message Tailoring) :
+The widespread use of social media platforms has significantly increased the effectiveness of Social Engineering attacks.
 
-صياغة رسائل مقنعة وشخصية جدًا تبدو شرعية وموثوقة.
+Platforms such as:
 
-قد يشير محتوى الرسائل إلى أحداث أو مشاريع أو أنشطة حديثة ذات صلة بدور الهدف أو اهتماماته لزيادة المصداقية.
+- Facebook.
+- Twitter.
+- LinkedIn.
 
-قد ينتحل المهاجم صفة أفراد موثوقين (زملاء، مشرفين، شركاء خارجيين) لزيادة احتمالية فتح الهدف للرسالة واتخاذ الإجراء المطلوب.
+allow attackers to:
 
-التسليم (Delivery) :
+- Easily contact employees.
+- Collect personal information.
+- Build convincing attack scenarios.
 
-يتم تسليم رسائل التصيد الموجّه عبر البريد الإلكتروني، وسائل التواصل الاجتماعي، منصات المراسلة الفورية، أو قنوات اتصال أخرى.
+Employees often unintentionally expose information such as:
 
-يستخدم المهاجمون تكتيكات لتجاوز مرشحات البريد الإلكتروني الأمنية وآليات مكافحة التصيد، مثل استخدام حسابات بريد إلكتروني مخترقة أو مزيفة، أو استغلال ثغرات يوم الصفر، أو الاستفادة من خدمات الطرف الثالث الموثوقة.
+- Email addresses.
+- Phone numbers.
+- Locations.
+- Personal interests.
+- Job responsibilities.
 
-ت
+This information can later be used to create more convincing attacks.
+
+---
+
+# Importance in Modern Penetration Testing
+
+Social Engineering was historically overlooked by many penetration testers as an attack method.
+
+However, it has become increasingly important in modern security assessments.
+
+The key skill is:
+
+```
+Contextualizing and operationalizing Social Engineering
+```
+
+This means transforming human-based attacks into realistic and controlled penetration testing scenarios.
+
+---
+
+# Types of Social Engineering Attacks
+
+## Phishing
+
+Phishing is a social engineering attack that uses fraudulent emails or websites designed to trick victims into revealing sensitive information.
+
+Examples of targeted information:
+
+- Passwords.
+- Financial information.
+- Authentication credentials.
+
+---
+
+# Spear Phishing
+
+Spear Phishing is a targeted and customized phishing attack against specific individuals or groups.
+
+Unlike traditional phishing, which targets large numbers of users, Spear Phishing is highly personalized.
+
+Attackers use information about the target to increase credibility.
+
+Examples of collected information:
+
+- Job position.
+- Company role.
+- Personal interests.
+- Professional relationships.
+
+---
+
+# Vishing
+
+Vishing (Voice Phishing) is a phishing attack performed through:
+
+- Phone calls.
+- Voice messages.
+
+The attacker usually impersonates a trusted entity such as:
+
+- Technical support.
+- Bank employees.
+- Company representatives.
+
+The goal is to convince the victim to reveal sensitive information or perform an action.
+
+---
+
+# Smishing
+
+Smishing is phishing performed through SMS or text messages.
+
+The attacker may attempt to:
+
+- Trick victims into clicking malicious links.
+- Request sensitive information.
+- Redirect victims to fake websites.
+
+---
+
+# Pretexting
+
+Pretexting involves creating a fake scenario or identity to gain the victim's trust and obtain sensitive information.
+
+The attacker may impersonate:
+
+- Managers.
+- Employees.
+- Service providers.
+- Authority figures.
+
+The success of this attack depends on creating a believable story.
+
+---
+
+# Baiting
+
+Baiting uses attractive offers or incentives to convince victims to perform an unsafe action.
+
+Examples:
+
+- Free software.
+- Rewards.
+- Job opportunities.
+- Fake downloads.
+
+The goal is to make the victim interact with malicious content.
+
+---
+
+# Tailgating
+
+Tailgating is a physical Social Engineering technique where an attacker gains access to restricted areas by following an authorized person.
+
+The attacker takes advantage of:
+
+- Social courtesy.
+- Trust.
+- Human behavior.
+
+Example:
+
+An attacker follows an employee through a secure door without using valid authentication.
+
+---
+
+# Phishing Attack Lifecycle
+
+A phishing attack usually follows several stages.
+
+---
+
+# 1. Planning and Reconnaissance
+
+The attacker collects information about potential targets.
+
+Activities include:
+
+- Identifying employees.
+- Gathering organizational information.
+- Understanding communication methods.
+- Learning internal procedures.
+
+---
+
+# 2. Message Crafting
+
+The attacker creates a fraudulent message that appears to come from a trusted source.
+
+Examples:
+
+- Coworkers.
+- IT department.
+- Banks.
+- Service providers.
+
+Attackers often use:
+
+- Urgent language.
+- Fear-based messages.
+- Requests requiring immediate action.
+
+---
+
+# 3. Delivery
+
+The phishing message is delivered to the target.
+
+Attackers may attempt to bypass:
+
+- Email filters.
+- Security controls.
+- Anti-phishing mechanisms.
+
+---
+
+# 4. Deception and Manipulation
+
+The message contains elements designed to influence the victim.
+
+Examples:
+
+- Malicious links.
+- Attachments.
+- Requests for credentials.
+- Fake login pages.
+
+The victim is convinced to interact with the content.
+
+---
+
+# 5. Exploitation
+
+After the victim interacts with the phishing content, the attacker may:
+
+- Gain unauthorized access.
+- Install malware.
+- Steal sensitive information.
+- Compromise accounts.
+
+---
+
+# Spear Phishing
+
+## What Is Spear Phishing?
+
+Spear Phishing is a highly targeted form of phishing.
+
+It focuses on:
+
+- Specific individuals.
+- Specific departments.
+- Specific organizations.
+
+Unlike traditional phishing campaigns, Spear Phishing messages are carefully designed based on detailed information about the target.
+
+---
+
+# Spear Phishing Stages
+
+## 1. Target Selection and Research
+
+The attacker carefully selects targets based on:
+
+- Job position.
+- Department.
+- Organizational relationships.
+
+The attacker performs reconnaissance to collect:
+
+- Full name.
+- Job title.
+- Responsibilities.
+- Work relationships.
+- Personal interests.
+
+Common information sources:
+
+- Social media profiles.
+- Company directories.
+- Data leaks.
+
+---
+
+# 2. Message Tailoring
+
+The attacker creates a highly personalized message that appears legitimate.
+
+The message may reference:
+
+- Recent projects.
+- Company events.
+- Internal activities.
+- Job responsibilities.
+
+The attacker may impersonate:
+
+- Coworkers.
+- Managers.
+- External partners.
+
+The goal is to increase trust and the likelihood of victim interaction.
+
+---
+
+# 3. Delivery
+
+Spear Phishing messages can be delivered through:
+
+- Email.
+- Social media platforms.
+- Instant messaging applications.
+- Other communication channels.
+
+Attackers may use techniques such as:
+
+- Compromised email accounts.
+- Fake accounts.
+- Trusted third-party services.
+- Advanced evasion techniques.
+
+The objective is to bypass security controls and successfully reach the target.

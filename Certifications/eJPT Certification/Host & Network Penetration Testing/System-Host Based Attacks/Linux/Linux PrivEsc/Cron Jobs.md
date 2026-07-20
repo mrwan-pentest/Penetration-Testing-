@@ -1,88 +1,81 @@
-في لينكس يوجد خدمة اسمها:
+# Cron Jobs
 
-```
-Cron
-```
+## What is Cron?
 
-وظيفتها:
+Cron is a job scheduling service available on Linux and Unix systems that automatically executes commands or scripts at specified times.
 
-تشغيل أوامر أو سكربتات تلقائيًا بوقت محدد.
+It can be configured to run tasks:
 
-مثلًا:
+- Every minute.
+- Every hour.
+- Daily.
+- Weekly.
+- Monthly.
+- At system startup.
 
-- كل دقيقة
-- كل ساعة
-- يوميًا
-- عند إعادة التشغيل
+Cron is commonly used for administrative tasks such as backups, log rotation, and system maintenance.
 
----
+## What is a Cron Job?
 
-# ما هو الـ Cron Job؟
+A **Cron Job** is a scheduled task managed by the Cron service.
 
-هو المهمة المجدولة نفسها.
+For example:
 
-مثال:
-
-```
+```text
 * * * * * /home/user/backup.sh
 ```
 
-معناه:
+This entry instructs Cron to execute the following script every minute:
 
-كل دقيقة شغل السكربت:
-
-```
-backup.sh
+```text
+/home/user/backup.sh
 ```
 
----
+## Where Are Cron Jobs Stored?
 
-# أين تُخزن؟
+Cron jobs can be stored in several locations, including:
 
-في ملف:
-
-```
-crontab
-```
-
-أو داخل:
-
-```
+```text
 /etc/crontab
 ```
 
----
+Individual user cron jobs can also be viewed using:
 
-# لماذا تهمنا بالاختراق؟
-
-لأن بعض الـ Cron Jobs تعمل كمستخدم:
-
-```
-root
+```bash
+crontab -l
 ```
 
-إذا قدرت تعدل السكربت الذي يشغله الـ Cron:
+System-wide scheduled tasks are commonly located under:
 
-💀 سيشتغل كـ root  
-وبكذا تحصل Privilege Escalation.
-
-# كيف نكتشف الـ Cron Jobs؟
-
-أول شيء نفحص:
-
+```text
+/etc/cron*
 ```
+
+## Why Are Cron Jobs Important in Penetration Testing?
+
+Cron jobs frequently execute with elevated privileges, including the **root** user.
+
+If an attacker can modify a script executed by a privileged Cron job, arbitrary commands may be executed as **root**, leading to Privilege Escalation.
+
+This makes writable Cron scripts a common privilege escalation vector on Linux systems.
+
+## Enumerating Cron Jobs
+
+A typical enumeration process includes checking the system-wide cron configuration:
+
+```bash
 cat /etc/crontab
 ```
 
-ثم:
+Listing Cron-related directories:
 
-```
+```bash
 ls -la /etc/cron*
 ```
 
-وأيضًا:
+Viewing the current user's scheduled tasks:
 
-```
+```bash
 crontab -l
 ```
 
@@ -90,84 +83,94 @@ crontab -l
 
 # Lab
 
-اولا عرضنا الملفات وشفنا انه في ملف بداخل حقنا الهوم
+## Step 1: Inspect the Home Directory
+
+We began by inspecting the files in our home directory.
+
+During enumeration, we discovered a file that unexpectedly appeared in our home directory even though we did not have permission to create or modify it.
 
 ![[Pasted image 20260521010637.png]]
 
-هنا نتسائل كيف انتقل هذا الملف الى هنا مع انه ما عليا أي أكسس عليه !!..
-هنا أول شيء يخطر في بالنا انه ربما في Cron jobs
+This suggested that an automated process might be copying the file.
 
-بحثنا عن أي ملف له صله فيه
-وظهر انه في نسخة منه في ملف ال tmp
+## Step 2: Search for Related Files
+
+We searched for other copies of the same file and discovered another version located in the `/tmp` directory.
 
 ![[Pasted image 20260521010811.png]]
 
-هذا معناه ان في عملية بين tmp  والملف الخاص بنا
-ربما في سكربت يشغل هذه العملية
+This indicated that an automated process was likely copying files between `/tmp` and our home directory.
 
+A Cron job became the primary suspect.
 
-هنا بحثنا عن أي سكربت له علاقة بهذه العملية
+## Step 3: Locate the Responsible Script
+
+To identify the script responsible for this behavior, we searched the system for references to the file path.
 
 ![[Pasted image 20260521011052.png]]
 
+The search command used several useful options:
 
-## 1️⃣ `-n`
+### `-n`
 
-يعرض رقم السطر.
+Displays the matching line number.
 
-## 2️⃣ `-r`
+### `-r`
 
-Recursive
+Performs a recursive search through all subdirectories.
 
-يعني:
+### `-i`
 
-> ابحث داخل المجلدات الفرعية أيضًا.
+Performs a case-insensitive search.
 
-بدونه يبحث فقط بالمجلد الحالي.
+In our case, we searched under:
 
-## 3️⃣ `-i`
-
-Ignore case
-معنى هذا الأمر
-ابحث داخل كل الملفات تحت `/usr`  
-عن النص `/tmp/message`  
-واعرض رقم السطر.
-
-بحثنا داخل:
-
-```
+```text
 /usr
 ```
 
-لأن أغلب السكربتات والبرامج الموجودة بالنظام تكون هناك.
+because many system scripts and applications are commonly stored there.
 
-وجدنا السكربت الذي يقوم بهذه العملية ينسخ من حقنا المجلد الى tmp
+Eventually, we located the script responsible for copying the file.
 
 ![[Pasted image 20260521011523.png]]
 
-تحققنا من صلاحياتنا عليه ولنا كل الصلاحيات
+## Step 4: Verify File Permissions
+
+Next, we checked the permissions of the identified script.
+
+We discovered that we had write permission, allowing us to modify its contents.
 
 ![[Pasted image 20260521011550.png]]
 
-حاولنا نعدل عليه لكن لا يوجد معانا أي محرر
+## Step 5: Modify the Script
 
-![[Pasted image 20260521011613.png]]
+Since no text editor was available on the target system, we used `printf` to overwrite the script with a malicious payload.
 
-استخدمنا printf
-وفعلنا هذا الأمر
-
-```
+```bash
 printf '#! /bin/bash\necho "student ALL=NOPASSWD:ALL" >> /etc/sudoers' > /usr/local/share/copy.sh
 ```
 
-![[Pasted image 20260521011652.png]]
+### Purpose
 
-يعني افتح لي bin bash  وخلي اليوزر يتنف من أي جهاز بدون باسور وينفذ أي أمر وأرسل هذا الأمر على ملف sudoers  وارسل لي كل هذا الأمر على السكربت الذي يتنفذ كل مدة محددة عشان يعطينا الصلاحية اننه نشغل أمر باستخدام الروت
+This payload replaces the original script with one that appends the following entry to the `/etc/sudoers` file:
 
-بعد دقية تنفذ ال cron  الخاص بنا وهذا يعني انه نستطيع ننفذ أي أمر ك روت
+```text
+student ALL=NOPASSWD:ALL
+```
+
+Once executed by the Cron job as **root**, the `student` user is granted permission to execute any command with `sudo` without being prompted for a password.
+
+## Step 6: Wait for the Cron Job
+
+Since the Cron job executed once every minute, we simply waited for the scheduler to run our modified script.
 
 ![[Pasted image 20260521011915.png]]
 
-وتحولنا الى الروت !!
+## Step 7: Obtain Root Privileges
+
+After the Cron job completed, the `student` user had unrestricted `sudo` privileges.
+
+This allowed us to execute commands as **root** and successfully complete the privilege escalation process.
 
 ![[Pasted image 20260521011931.png]]

@@ -1,22 +1,16 @@
+# Subdomain Enumeration with Sublist3r
 
+## What is Subdomain Enumeration?
 
-# 🧠 Subdomain Enumeration with Sublist3r
+Subdomain Enumeration is the process of discovering subdomains associated with a target domain.
 
----
-
-# 📌 أولًا: ما معنى Subdomain Enumeration؟
-
-يعني:
-
-> البحث عن النطاقات الفرعية (Subdomains) الخاصة بالموقع
-
-مثال:
+For example, a website may have the main domain:
 
 ```
 example.com
 ```
 
-قد يكون لديه:
+But it may also contain multiple subdomains:
 
 ```
 mail.example.com
@@ -25,55 +19,68 @@ dev.example.com
 test.example.com
 ```
 
-هذه كلها Subdomains.
+Each subdomain may host different services or applications.
 
 ---
 
-# 📌 ما هي Sublist3r ؟
+# What is Sublist3r?
 
-أداة OSINT تُستخدم لاكتشاف الـ Subdomains الخاصة بأي دومين.
+`Sublist3r` is an OSINT-based reconnaissance tool used to discover subdomains of a target domain.
+
+It is commonly used during:
+
+- Reconnaissance
+- Information Gathering
+- Attack Surface Discovery
 
 ---
 
-# 🎯 لماذا هذا مهم في الاختراق؟
+# Why Is Subdomain Enumeration Important?
 
-لأن أحيانًا:
+During penetration testing, the main website may be properly secured, while a hidden subdomain may contain security weaknesses.
 
-- الموقع الرئيسي آمن
-- لكن subdomain فرعي يكون ضعيف 
-
-مثال:
+Example:
 
 ```
 dev.example.com
 ```
 
-قد يحتوي:
+A development environment may expose:
 
-- لوحة تحكم
-- نسخة تجريبية
-- إعدادات ضعيفة
+- Administrative panels
+- Testing applications
+- Weak configurations
+- Unprotected services
 
----
-
-# ⚙️ كيف تعمل الأداة؟
-
-تبحث في:
-
-- محركات البحث
-- شهادات SSL
-- قواعد بيانات عامة
-- مواقع أرشفة DNS
-
-يعني:
-
-> تجمع معلومات من الإنترنت بشكل Passive غالبًا
+Therefore, discovering subdomains helps expand the attack surface.
 
 ---
 
-# ⚙️ طريقة الاستخدام
+# How Does Sublist3r Work?
 
-## فحص دومين:
+Sublist3r gathers subdomain information from multiple public sources, including:
+
+- Search engines
+- SSL certificate records
+- Public databases
+- DNS information sources
+- Internet archives
+
+The process is mostly:
+
+```
+Passive Reconnaissance
+```
+
+Meaning it collects publicly available information without directly attacking the target.
+
+---
+
+# Basic Usage
+
+## Scanning a Domain
+
+Command:
 
 ```
 sublist3r -d example.com
@@ -81,19 +88,25 @@ sublist3r -d example.com
 
 ---
 
-# 🔍 شرح الأمر
+# Command Explanation
 
-|الجزء|المعنى|
+|Part|Description|
 |---|---|
-|`sublist3r`|تشغيل الأداة|
-|`-d`|تحديد الدومين|
-|`example.com`|الهدف|
+|`sublist3r`|Runs the Sublist3r tool|
+|`-d`|Specifies the target domain|
+|`example.com`|The target domain|
+
+Meaning:
+
+```
+Discover subdomains related to this domain
+```
 
 ---
 
-# 📦 ماذا تعطيك النتائج؟
+# Example Output
 
-مثلًا:
+The results may include discovered subdomains:
 
 ```
 admin.example.com
@@ -102,37 +115,83 @@ dev.example.com
 api.example.com
 ```
 
+These subdomains can then be analyzed for:
+
+- Open ports
+- Running services
+- Vulnerabilities
+- Misconfigurations
+
 ---
 
-# ⚡ خيارات مهمة
+# Important Options
 
-## حفظ النتائج في ملف
+## Saving Results to a File
+
+Command:
 
 ```
 sublist3r -d example.com -o results.txt
 ```
 
-### `-o`
+Option:
 
-تعني:
+```
+-o
+```
 
-> Output file
+Means:
+
+```
+Output file
+```
+
+It saves discovered subdomains into the specified file.
 
 ---
 
-## تحديد عدد الـ Threads
+# Controlling Threads
+
+Command:
 
 ```
 sublist3r -d example.com -t 50
 ```
 
-### `-t`
+Option:
 
-تعني:
+```
+-t
+```
 
-> عدد العمليات المتزامنة (Threads)
+Means:
 
-كلما زادت:
+```
+Number of threads
+```
 
-- السرعة تزيد
-- لكن قد يضغط أكثر على الشبكة
+Increasing the number of threads can improve scanning speed.
+
+However:
+
+- Higher values consume more resources.
+- Excessive requests may create unnecessary network traffic.
+
+---
+
+# Summary
+
+`Sublist3r` is a reconnaissance tool used to discover subdomains related to a target domain.
+
+Main purposes:
+
+- Identify hidden subdomains.
+- Expand the attack surface.
+- Collect publicly available information.
+- Support further enumeration phases.
+
+Typical workflow:
+
+```
+Domain → Subdomain Enumeration → Service Discovery → Vulnerability Assessment
+```

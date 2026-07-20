@@ -1,286 +1,453 @@
+# Nmap Host Discovery Techniques
 
-اكتشاف الأجهزة الحية بالشبكة
+Before performing port scanning, a penetration tester usually needs to determine which hosts are alive on the network.
 
+Nmap provides several Host Discovery techniques to identify active devices without performing a full port scan.
 
+These techniques help answer:
+
+- Which systems are online?
+- Which IP addresses are in use?
+- Which hosts should be scanned further?
+
+---
+
+# `-sn` — Host Discovery Only
+
+## Purpose
+
+The option:
+
+```
 -sn
+```
+
+means:
+
 ```
 Host Discovery Only
 ```
 
-يعني:
+It performs:
 
 ```
-اكتشاف الأجهزة الحية فقط
+Host Discovery
 ```
 
-بدون:
+without performing:
 
 - Port Scan
 - Service Detection
+- Version Detection
+
 ---
 
+## Example
 
+```
+nmap -sn 192.168.1.0/24
+```
+
+---
+
+## What Does It Do?
+
+Nmap checks which devices are alive within the specified network range.
+
+Example output:
+
+```
+Host is up
+192.168.1.5
+192.168.1.20
+192.168.1.50
+```
+
+---
+
+# `-PS` — TCP SYN Ping
+
+## Purpose
+
+The option:
+
+```
 -PS
+```
+
+means:
 
 ```
 TCP SYN Ping
 ```
 
+---
 
+## How It Works
 
-# ماذا يفعل؟
-
-بدل ICMP Ping،  
-Nmap يرسل:
+Instead of using ICMP Ping, Nmap sends:
 
 ```
 SYN Packet
 ```
 
-مثل بداية TCP Handshake.
+which is similar to the first step of the TCP three-way handshake.
 
+Normal TCP connection:
 
-بعض الأجهزة:
+```
+Client → SYN
+Server → SYN/ACK
+Client → ACK
+```
 
-- تمنع ICMP
-- لكن تسمح TCP
+---
 
-# مثال
+## Why Use It?
+
+Some hosts or Firewalls:
+
+- Block ICMP traffic
+- Allow TCP traffic
+
+Therefore, TCP SYN Ping can discover hosts that do not respond to normal Ping requests.
+
+---
+
+## Example
 
 ```
 nmap -PS 192.168.1.0/24
 ```
 
-# تحديد Port معين
+---
+
+## Specifying Ports
+
+You can specify target ports:
 
 ```
 nmap -PS80,443 192.168.1.0/24
 ```
 
-
-
-# ماذا يعني؟
-
-يرسل SYN إلى:
+This sends SYN packets to:
 
 - Port 80
 - Port 443
 
-
-# مفيد جدًا
-
-لأن:
-
-```
-TCP Ping يتجاوز أحيانًا الـ Firewalls
-```
 ---
 
---send-ip
+## Common Usage
+
+Useful when:
 
 ```
-يجبر Nmap على استخدام IP Packets مباشرة
+TCP traffic is allowed but ICMP is filtered.
 ```
 
-بدل:
+---
+
+# `--send-ip` — Force Raw IP Packets
+
+## Purpose
+
+This option forces Nmap to use:
+
+```
+Raw IP Packets
+```
+
+instead of:
 
 ```
 Ethernet Frames
 ```
 
+---
 
+## Normal Behavior
 
-# الوضع الطبيعي
-
-داخل LAN،  
-Nmap غالبًا يستخدم:
+Inside a local network (LAN), Nmap usually uses:
 
 ```
 ARP / Ethernet
 ```
 
+for host discovery.
 
+---
 
-# مع --send-ip
+## With `--send-ip`
 
-يستخدم:
+Nmap uses:
 
 ```
-Raw IP
+IP Layer
 ```
 
-# مثال
+directly.
+
+---
+
+## Example
 
 ```
 nmap --send-ip -sn 192.168.1.0/24
 ```
+
 ---
 
-# `-PA` 
+## Why Use It?
 
-هذا الخيار يعني:
+Useful when testing networks where you want to avoid normal Ethernet-based discovery methods.
+
+---
+
+# `-PA` — TCP ACK Ping
+
+## Purpose
+
+The option:
+
+```
+-PA
+```
+
+means:
 
 ```
 TCP ACK Ping
 ```
 
+---
 
-# ماذا يفعل؟
+## How It Works
 
-بدل إرسال:
+Unlike:
 
 ```
-SYN
+-PS
 ```
 
-مثل `-PS`
+which sends:
 
-فهو يرسل:
+```
+SYN Packet
+```
+
+ACK Ping sends:
 
 ```
 ACK Packet
 ```
 
+---
 
-# ما هي ACK؟
+## What is ACK?
 
-ACK اختصار:
+ACK stands for:
 
 ```
 Acknowledgment
 ```
 
-ومعناها:
+It means:
 
 ```
-تأكيد الاستلام
+Confirmation of received data
 ```
 
+---
 
+## Why Send ACK Without an Existing Connection?
 
-# لكن لماذا نرسل ACK والجهاز لم يفتح اتصال أصلًا؟ 
-هذه هي الفكرة الذكية.
+This is the interesting part.
 
-إذا الجهاز حي،  
-فسيرد غالبًا بـ:
+When a host receives an unexpected ACK packet, it usually responds with:
 
 ```
 RST
 ```
 
-وهذا يخبر Nmap أن:
+This response tells Nmap:
 
 ```
-الجهاز موجود ويعمل
+The host exists and is reachable.
 ```
 
+---
 
-# مثال
+## Example
 
 ```
 nmap -PA 192.168.1.0/24
 ```
 
-# تحديد Port معين
+---
+
+## Specifying Ports
 
 ```
 nmap -PA80,443 192.168.1.0/24
 ```
 
+---
 
-# لماذا نستخدم ACK Ping؟
+## Why Use ACK Ping?
 
-لأن بعض الـ Firewalls:
+Because some Firewalls may:
 
-- تمنع ICMP
-- تمنع SYN
-- لكن تسمح ACK
+- Block ICMP
+- Block SYN packets
+- Allow ACK traffic
 
 ---
-# `-PE`
 
+# `-PE` — ICMP Echo Ping
 
-يعني:
+## Purpose
+
+The option:
+
+```
+-PE
+```
+
+means:
 
 ```
 ICMP Echo Ping
 ```
 
+---
 
-# ماذا يفعل؟
+## How It Works
 
-Nmap يرسل:
+Nmap sends:
 
 ```
 ICMP Echo Request
 ```
 
-مثل أمر:
+which is the same mechanism used by the normal:
 
 ```
 ping
 ```
 
+command.
 
-# إذا رد الجهاز بـ:
+---
+
+## Response
+
+If the host responds with:
 
 ```
 ICMP Echo Reply
 ```
 
-فهذا يعني:
+Nmap determines:
 
 ```
 Host is Up
 ```
 
+---
 
-# مثال
+## Example
 
 ```
 nmap -PE 192.168.1.0/24
 ```
 
+---
 
-# لماذا يستخدم؟
+## Why Use It?
 
-لاكتشاف:
-
-```
-الأجهزة الحية
-```
-
-
-# مهم جدًا
-
-بعض الأجهزة أو الـ Firewalls:
+Used for discovering:
 
 ```
-تمنع ICMP
+Live Hosts
 ```
 
 ---
-# `-Pn`
 
-يخبر Nmap:
+## Limitation
+
+Many:
+
+- Firewalls
+- Servers
+- Network devices
+
+block ICMP traffic, which can prevent detection.
+
+---
+
+# `-Pn` — Disable Host Discovery
+
+## Purpose
+
+The option:
 
 ```
-لا تعمل Ping Discovery
+-Pn
 ```
 
-يعني اعتبر الهدف:
+tells Nmap:
+
+```
+Do not perform Ping Discovery
+```
+
+---
+
+## How It Works
+
+Nmap assumes the target is:
 
 ```
 Alive
 ```
 
-حتى لو ما يرد على ICMP.
+even if it does not respond to Ping.
 
-مفيد إذا:
+---
 
-- الجدار الناري يمنع Ping
-- الهدف لا يرد على ICMP
+## Example
 
 ```
-nmap -Pn target
+nmap -Pn 192.168.1.10
 ```
+
+---
+
+## When To Use It?
+
+Useful when:
+
+- Firewalls block Ping
+- The host does not respond to ICMP
+- You already know the target exists
+
+---
+
+# Summary
+
+|Option|Purpose|
+|---|---|
+|`-sn`|Host Discovery only without Port Scan|
+|`-PS`|TCP SYN Ping|
+|`-PA`|TCP ACK Ping|
+|`-PE`|ICMP Echo Ping|
+|`-Pn`|Skip Host Discovery and assume host is alive|
+|`--send-ip`|Force Nmap to use Raw IP packets|
+
+These options are commonly used during the:
+
+```
+Reconnaissance and Enumeration
+```
+
+phase of a penetration test to identify active systems before deeper scanning.

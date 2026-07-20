@@ -1,193 +1,314 @@
+# `-sS`
 
-# `-sS` 
-
-يعني:
+Means:
 
 ```
 TCP SYN Scan
 ```
 
-ويُعرف أيضًا باسم:
+Also known as:
 
 ```
 Half-Open Scan
 ```
 
+---
 
-# كيف يعمل؟
+# How does it work?
 
-Nmap يرسل:
+Nmap sends:
 
 ```
-SYN
+SYN Packet
 ```
 
-إذا المنفذ مفتوح:  
-يرد الهدف بـ:
+If the port is open, the target replies with:
 
 ```
 SYN-ACK
 ```
 
-ثم Nmap:
+Then Nmap:
 
 ```
-لا يكمل الاتصال
+Does not complete the connection
 ```
 
-ويرسل:
+Instead, it sends:
 
 ```
 RST
 ```
 
-- سريع
-- مشهور جدًا
-- أقل إزعاجًا في الـ Logs أحيانًا
+to terminate the connection.
 
-# مثال
+---
+
+# Advantages
+
+- Fast
+- One of the most commonly used Nmap scans
+- Does not complete the TCP handshake, so it may create fewer logs compared to a full connection scan
+
+---
+
+# Example
 
 ```
 nmap -sS 192.168.1.10
 ```
 
+---
 
-# يحتاج Root
+# Requirement
 
+Requires:
+
+```
+Root privileges
+```
+
+because Nmap needs to create and send raw packets.
 
 ---
+
 # `-sT`
 
-يعني:
+Means:
 
 ```
 TCP Connect Scan
 ```
 
+---
 
-يكمل:
+# How does it work?
+
+It completes the full:
 
 ```
-TCP 3-Way Handshake كامل
+TCP 3-Way Handshake
 ```
 
-يعني:
+which is:
 
 ```
 SYN → SYN-ACK → ACK
 ```
 
-# ثم يغلق الاتصال.
+After establishing the connection, Nmap closes it.
 
-# مثال
+---
+
+# Example
 
 ```
 nmap -sT 192.168.1.10
 ```
 
-# متى يستخدم؟
+---
 
-عندما:
+# When is it used?
+
+When:
 
 ```
-لا تملك صلاحيات Root
+You do not have Root privileges
 ```
 
-أوضح لل logs
+Because it uses the operating system's normal TCP connection functions.
 
+---
+
+# Difference from `-sS`
+
+`-sS`:
+
+- Does not complete the handshake
+- Faster
+- Requires Root
+
+`-sT`:
+
+- Completes the handshake
+- Easier to detect in logs
+- Works without Root
+
+---
 
 # `-sU`
 
-UDP Scan.
+Means:
 
-يفحص:
+```
+UDP Scan
+```
+
+Used to scan:
 
 ```
 UDP Ports
 ```
 
-مثل:
+Examples:
 
-- DNS → 53
-- SNMP → 161
+- DNS → Port 53
+- SNMP → Port 161
+
+Example:
 
 ```
 nmap -sU target
 ```
 
+---
+
+# Why is UDP scanning different?
+
+Because UDP does not have a handshake like TCP.
+
+Nmap sends UDP packets and analyzes the response:
+
+- No response → may be open or filtered
+- ICMP Port Unreachable → closed
+
+---
+
 # `-v`
 
-Verbose Mode.
+Means:
 
-يعطي تفاصيل أكثر أثناء الفحص.
+```
+Verbose Mode
+```
+
+It displays more details during the scan.
+
+Example:
 
 ```
 nmap -v target
 ```
 
+Useful for seeing:
 
-## `-F`
+- Scan progress
+- Discovered ports
+- Additional information
 
-فحص سريع:  
-يفحص أشهر 100 بورت فقط بدل 1000.
+---
 
+# `-F`
+
+Means:
+
+```
+Fast Scan
+```
+
+It scans only the most common ports.
+
+By default:
+
+```
+Top 100 ports
+```
+
+instead of scanning thousands of ports.
+
+Example:
+
+```
+nmap -F target
+```
+
+---
 
 # `-p-`
 
-يفحص:
+Means:
 
 ```
-جميع البورتات
+Scan All Ports
 ```
 
-من:
+It scans:
 
 ```
 1-65535
 ```
 
-بدل أشهر 1000 بورت.
+instead of only the common ports.
+
+Example:
 
 ```
 nmap -p- target
 ```
----
-# `-sL` 
 
-يعني:
+Useful because sometimes services run on unusual ports.
+
+---
+
+# `-sL`
+
+Means:
 
 ```
 List Scan
 ```
 
-# ماذا يفعل؟
+---
+
+# What does it do?
 
 Nmap:
 
 ```
-يعرض الأهداف فقط
+Only lists the targets
 ```
 
-بدون:
+without performing:
 
-- Port Scan
-- Ping
-- إرسال Packets حقيقية للفحص
+- Port scanning
+- Host discovery
+- Sending real scan packets
 
+---
 
-# مثال
+# Example
 
 ```
 nmap -sL 192.168.1.0/24
 ```
 
+---
 
-Nmap يقوم:
+# What does Nmap do?
 
-- بحساب كل الـ IPs داخل الشبكة
-- وعرضها لك فقط
-# الناتج مثلًا
+It:
+
+- Calculates all IP addresses inside the range
+- Displays them only
+
+---
+
+# Example output:
 
 ```
-Nmap scan report for 192.168.1.1Nmap scan report for 192.168.1.2Nmap scan report for 192.168.1.3
+Nmap scan report for 192.168.1.1
+Nmap scan report for 192.168.1.2
+Nmap scan report for 192.168.1.3
 ```
+
+---
+
+# When is `-sL` useful?
+
+Useful for:
+
+- Checking the IP range before scanning
+- Confirming target list
+- Passive reconnaissance
+
+It is considered the quietest Nmap scan because it does not actively probe the targets.

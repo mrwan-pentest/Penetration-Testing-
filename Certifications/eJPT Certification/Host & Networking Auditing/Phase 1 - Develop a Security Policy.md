@@ -1,31 +1,35 @@
+# Building a Security Policy
+
+## Overview
+
+Organizations usually follow a structured security process that begins with creating security policies.
+
+The complete security journey is:
 
 ```
-كيف تبدأ الشركة ببناء Security Policy
+Creating Security Policies → Security Audit → Penetration Testing
 ```
 
-ثم بعد ذلك:
+This process explains how a company:
 
-- تعمل Audit
-- ثم Pentest
-
-يعني يشرح الرحلة كاملة من:
-
-```
-وضع القوانين الأمنية → فحصها → اختبارها
-```
+- Defines security rules.
+- Evaluates whether these rules are implemented correctly.
+- Tests the effectiveness of security controls against real attacks.
 
 ---
 
-# أولًا: ما هي Security Policy؟ 
+# What is a Security Policy?
 
-هي:
+A Security Policy is:
 
 ```
-مجموعة قوانين وإعدادات أمنية
+A set of security rules, requirements, and procedures that define how an organization protects its systems and data
 ```
 
-تحدد:
+It establishes:
 
-- كيف يجب تأمين الأنظمة
-- ما المسموح وما الممنوع
-- كيف تُدار السيرفرات
+- How systems should be secured.
+- What actions are allowed and prohibited.
+- How servers and infrastructure should be managed.
+
+Security policies provide a foundation for implementing and maintaining an organization's security strategy.

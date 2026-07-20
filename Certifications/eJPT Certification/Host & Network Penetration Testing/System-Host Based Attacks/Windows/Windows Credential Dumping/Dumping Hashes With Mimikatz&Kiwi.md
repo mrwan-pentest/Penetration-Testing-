@@ -1,191 +1,272 @@
+# Mimikatz
 
-# أولًا: ما هو Mimikatz؟
+## What is Mimikatz?
 
+Mimikatz is a very popular post-exploitation tool used after gaining access to a Windows system.
 
-هو أداة مشهورة جدًا في اختبار الاختراق تُستخدم بعد ما تدخل الجهاز.
+Its main purpose is:
 
-وظيفتها الأساسية:
+> Extracting authentication information from Windows systems.
 
-- استخراج كلمات المرور
-- استخراج الـ Hashes
-- استخراج Kerberos Tickets
-- تنفيذ Pass-the-Hash
-- تنفيذ Token impersonation أحيانًا
-- الوصول لبيانات الاعتماد المخزنة بالذاكرة
+It can be used to:
 
-يعني باختصار:
+- Extract passwords
+- Extract password hashes
+- Extract Kerberos tickets
+- Perform Pass-the-Hash attacks
+- Perform Token Impersonation
+- Access credentials stored in memory
 
-> الأداة تبحث داخل ذاكرة ويندوز عن معلومات تسجيل الدخول.
+In simple terms:
 
-# طيب كيف يجد الباسوردات؟
+> Mimikatz searches Windows memory and system databases for authentication data.
 
-هنا يدخل موضوع:
+---
 
-# ما هو LSASS ؟
+# How Does Mimikatz Find Passwords?
 
+To understand this, we need to understand:
+
+# What is LSASS?
+
+LSASS stands for:
+
+```
 Local Security Authority Subsystem Service
+```
 
-عملية في ويندوز اسمها:
+It is a Windows process:
 
 ```
 lsass.exe
 ```
 
-هذه مسؤولة عن:
+Responsible for:
 
-- تسجيل الدخول
-- التوثيق Authentication
-- تخزين Credentials مؤقتًا
-- NTLM
-- Kerberos
+- User authentication
+- Login verification
+- Managing security policies
+- Handling NTLM authentication
+- Handling Kerberos authentication
+- Storing credentials temporarily in memory
 
-ولأن ويندوز يحتاج يتحقق من المستخدمين بسرعة،  
-فأحيانًا يحتفظ بالمعلومات في الذاكرة RAM.
+Because Windows needs to authenticate users quickly, some credentials may exist temporarily in RAM.
 
-وهنا يأتي Mimikatz 👀
+This is where Mimikatz comes in 👀
 
-يحاول قراءة ذاكرة `lsass.exe`  
-واستخراج:
+It attempts to read the memory of:
+
+```
+lsass.exe
+```
+
+and extract:
 
 - Passwords
 - NTLM hashes
 - Kerberos tickets
 
+---
 
-# ما هو SAM؟
+# What is SAM?
 
-SAM = Security Account Manager
+SAM stands for:
 
-هو ملف/قاعدة بيانات داخل ويندوز يخزن:
+```
+Security Account Manager
+```
 
-- أسماء المستخدمين
-- Password Hashes
+It is a Windows database that stores:
 
-وليس الباسورد الحقيقي غالبًا.
+- User accounts
+- Password hashes
 
-المسار عادة:
+The location is:
 
 ```
 C:\Windows\System32\config\SAM
 ```
 
-لكن لا يمكن قراءته بسهولة لأن النظام يستخدمه.
-
-
-# الفرق بين LSASS و SAM
-
-|الشيء|وظيفته|
-|---|---|
-|SAM|يخزن الـ password hashes|
-|LSASS|يحتفظ بالـ credentials في الذاكرة أثناء التشغيل|
-
+However, it cannot normally be accessed while Windows is running because the system locks it.
 
 ---
 
-# Kiwi ما هو؟
+# Difference Between LSASS and SAM
 
+| Component | Function |
+|---|---|
+| SAM | Stores local user password hashes |
+| LSASS | Stores authentication credentials in memory during system operation |
 
-Kiwi هو نسخة/امتداد داخل Meterpreter.
+---
 
-يعني بدل ما:
+# Kiwi
 
-- ترفع mimikatz.exe
+## What is Kiwi?
 
-تستطيع داخل meterpreter فقط:
+Kiwi is a Meterpreter extension based on Mimikatz.
+
+Instead of uploading and running:
 
 ```
+mimikatz.exe
+```
+
+you can load it directly inside Meterpreter:
+
+```text
 load kiwi
 ```
 
-وخلاص يصبح عندك أوامر mimikatz جاهزة.
+After loading Kiwi, Mimikatz functionality becomes available through Meterpreter commands.
 
 ---
 
-# Dumpin Hashes with Kiwi
+# Dumping Hashes Using Kiwi
+
 ## Method 1
 
-عشان نحمل ال kiwi  للجلسة
+## Step 1: Load Kiwi
+
+Load the Kiwi extension into the current Meterpreter session.
+
+```text
+load kiwi
+```
 
 ![[Pasted image 20260520132134.png]]
 
-عشان نستخرج كل الهاشس
+---
+
+## Step 2: Dump All Hashes
+
+To extract available password hashes:
+
+```text
+lsa_dump_sam
+```
+
+or:
+
+```text
+hashdump
+```
 
 ![[Pasted image 20260520132156.png]]
 
-عشن نستخرج الهاشس الموجودة في sam
+---
+
+## Step 3: Extract SAM Hashes
+
+To extract hashes stored inside the SAM database:
+
+```text
+lsa_dump_sam
+```
 
 ![[Pasted image 20260520132223.png]]
 
-عشان نستخرج ال syskey
+---
 
-# أولًا وش هو SysKey؟
+# Extracting SysKey
 
-الـ SysKey اختصار:
+## What is SysKey?
 
-- System Key
-
-وهو مفتاح تشفير قديم في ويندوز.
-
-
-# فكرته ببساطة
-
-ويندوز يخزن:
-
-- كلمات المرور (hashes)  
-    داخل:
-- SAM database
-
-لكن ما يخزنها مباشرة.
-
-بل:
-
-- يشفرها أولًا باستخدام SysKey.
-
-يعني:
+SysKey means:
 
 ```
-Password Hash --> encrypted بواسطة SysKey --> ينحفظ داخل SAM
+System Key
 ```
+
+It is an old Windows security mechanism used to protect password hashes.
+
+---
+
+# How Does SysKey Work?
+
+Windows does not store password hashes directly.
+
+Instead:
+
+```
+Password Hash
+        |
+        ↓
+Encrypted using SysKey
+        |
+        ↓
+Stored inside SAM
+```
+
+---
+
+# Relationship Between SAM, SysKey, and LSASS
 
 ## 1) SAM
 
-قاعدة بيانات فيها:
+Contains:
 
-- password hashes
+```
+Password Hashes
+```
 
 ---
 
 ## 2) SysKey
 
-المفتاح الذي يحمي هذه الـ hashes.
+The encryption key that protects those hashes.
 
 ---
 
 ## 3) LSASS
 
-العملية التي:
+The process responsible for:
 
-- تدير authentication
-- وتحفظ credentials في الذاكرة
+- Authentication
+- Managing credentials in memory
 
+---
 
-# لماذا يسحبون SysKey؟
+# Why Extract SysKey?
 
-لأن بعض أدوات استخراج الهاش تحتاج:
+Some credential extraction tools require:
 
-- SAM
+- SAM hive
 - SYSTEM hive
 
-حتى تفك التشفير.
+to decrypt and recover password hashes.
 
-مثل:
+Examples:
 
 ```
-samdump2secretsdump.py
+samdump2
+secretsdump.py
 ```
 
 ![[Pasted image 20260520132622.png]]
 
-عشان نحاول استخراج clear text passwords
+---
+
+# Extracting Clear Text Passwords
+
+After obtaining the required credential information, Mimikatz/Kiwi can attempt to retrieve clear-text passwords from memory.
+
+Example:
+
+```text
+creds_all
+```
 
 ![[Pasted image 20260520132759.png]]
+
+---
+
+# Key Takeaways
+
+- Mimikatz is a post-exploitation credential extraction tool.
+- It targets two main areas:
+  - **LSASS memory** → live credentials
+  - **SAM database** → local password hashes
+- Kiwi provides Mimikatz functionality inside Meterpreter.
+- SysKey protects SAM hashes by encrypting them.
+- Extracting credentials usually requires elevated privileges such as Administrator or SYSTEM.

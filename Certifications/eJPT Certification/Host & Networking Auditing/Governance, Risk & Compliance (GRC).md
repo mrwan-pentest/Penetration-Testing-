@@ -1,62 +1,60 @@
+# Governance, Risk, and Compliance (GRC)
 
+## Overview
 
-هذا الموضوع يتكلم عن شيء مهم جدًا بالشركات اسمه:
-
-```
-GRC
-```
-
-واختصار:
-
-- Governance
-- Risk
-- Compliance
-
-وهو يعتبر:
+GRC stands for:
 
 ```
-إطار لإدارة الأمن داخل الشركة
+Governance
+Risk
+Compliance
 ```
 
-يعني كيف الشركة:
+GRC is an important concept in cybersecurity and represents:
 
-- تدير الأمن
-- تتعامل مع المخاطر
-- تلتزم بالقوانين والمعايير
+```
+An approach for managing security within an organization
+```
+
+It defines how an organization:
+
+- Manages security.
+- Handles risks.
+- Follows laws, regulations, and security standards.
+
+GRC helps organizations build a structured security program instead of handling security issues randomly.
 
 ---
 
-# أول شيء: Governance 
+# 1. Governance
 
-معناها:
+Governance means:
 
 ```
-الحوكمة أو إدارة الأمن
+Security management and organizational control
 ```
 
-يعني:  
-كيف الشركة تنظم الأمن داخليًا.
+It focuses on how an organization manages security internally.
+
+Governance defines:
+
+- Security policies.
+- Responsibilities.
+- Access permissions.
+- Security procedures.
+- Rules and requirements.
 
 ---
 
-# يشمل أشياء مثل:
+## Examples of Governance
 
-- إنشاء سياسات أمنية
-- تحديد الصلاحيات
-- من المسؤول عن ماذا
-- وضع قواعد وإجراءات
+An organization may define policies such as:
 
----
+- Multi-Factor Authentication (MFA) must be enabled.
+- Passwords must meet specific complexity requirements.
+- Only authorized users can access servers.
 
-# مثال 
-
-الشركة تقول:
-
-- يجب استخدام MFA(Multi-Factor Auth)
-- كلمات المرور لازم قوية
-- لا أحد يدخل السيرفر إلا بتصريح
-
-هذه تعتبر:
+These policies and security decisions are part of:
 
 ```
 Governance
@@ -64,63 +62,67 @@ Governance
 
 ---
 
-# ثاني شيء: Risk 
+# 2. Risk
 
-معناه:
+Risk refers to:
 
 ```
-إدارة المخاطر
+The process of identifying, analyzing, and managing security risks
 ```
 
-يعني:  
-الشركة تحاول تعرف:
+Organizations evaluate:
 
-- ما هي التهديدات؟
-- ما هي الثغرات؟
-- ما تأثيرها؟
+- What threats exist?
+- What vulnerabilities are present?
+- What impact could they cause?
+
+After identifying risks, organizations work on reducing their impact.
 
 ---
 
-# ثم تحاول تقلل الخطر 
+## Risk Mitigation
 
-مثلاً:  
-وجدوا:
+Risk Mitigation means:
 
 ```
-RDP مفتوح للإنترنت
+Reducing the likelihood or impact of a security risk
 ```
 
-فيقولون:
+Example:
 
-- هذا خطر
-- قد يؤدي لاختراق
+An organization discovers:
 
-ثم يطبقوا:
+```
+RDP is exposed to the Internet
+```
+
+The security team identifies this as a risk because it may allow attackers to compromise systems.
+
+They apply security controls such as:
 
 - VPN
-- Firewall
-- MFA
+- Firewall restrictions
+- Multi-Factor Authentication (MFA)
 
-وهذا يسمى:
+This process is called:
 
 ```
 Risk Mitigation
 ```
 
-أي:  
-تقليل الخطر.
-
 ---
 
-# ثالث شيء: Compliance 
+# 3. Compliance
 
-معناه:
+Compliance means:
 
 ```
-الالتزام بالقوانين والمعايير
+Following security laws, regulations, and industry standards
 ```
 
-مثل:
+Organizations must meet specific security requirements depending on their industry.
+
+Examples:
 
 - PCI DSS
 - GDPR
@@ -128,111 +130,123 @@ Risk Mitigation
 
 ---
 
-# يعني الشركة لازم:
+## Compliance Requirements
 
-- تطبق شروط معينة
-- تحمي البيانات
-- تتبع قوانين الأمن
+Organizations must:
 
----
-
-# مثال 
-
-شركة بطاقات دفع لازم:
-
-```
-تلتزم بـ PCI DSS
-```
-
-إذا لم تلتزم:
-
-- قد تُغرّم
-- أو تُمنع من العمل
+- Implement required security controls.
+- Protect sensitive data.
+- Follow security regulations.
 
 ---
 
-# الآن لماذا GRC مهم للـ Pentester؟ 
+## Example
 
-لأن الـ Pentester ليس فقط:
+A company that processes payment card information must comply with:
 
 ```
-يبحث عن ثغرات
+PCI DSS
 ```
 
-بل يجب يفهم:
+Failure to comply may result in:
 
-- سياسات الشركة
-- المخاطر
-- القوانين
-- الأولويات
+- Financial penalties.
+- Legal consequences.
+- Loss of ability to provide services.
 
 ---
 
-# مثال 
-وجدت:
+# Why is GRC Important for Pentesters?
+
+A Penetration Tester does not only:
+
+```
+Find vulnerabilities
+```
+
+A professional Pentester must also understand:
+
+- Organization security policies.
+- Business risks.
+- Compliance requirements.
+- Security priorities.
+
+This helps the tester evaluate the real impact of vulnerabilities.
+
+---
+
+# Example
+
+A Pentester discovers:
 
 ```
 SQL Injection
 ```
 
-إذا الشركة تتعامل مع:
+The severity depends on the organization's environment.
 
-- بطاقات بنكية
-- بيانات حساسة
+If the company handles:
 
-فالخطورة تصبح:
+- Payment card information.
+- Sensitive customer data.
+
+The impact becomes:
 
 ```
-أعلى بكثير
+Much higher
 ```
 
-بسبب:
+because of:
 
-- Compliance
-- Risk
+- Compliance risks.
+- Data exposure risks.
 
 ---
 
-# أيضًا يساعد بالتقارير 
+# GRC and Security Reports
 
-بدل أن تقول فقط:
+GRC knowledge helps create stronger penetration testing reports.
 
-```
-يوجد SQL Injection
-```
-
-تقول:
+Instead of writing only:
 
 ```
-الثغرة قد تسبب مخالفة PCI DSS وتسريب بيانات العملاء
+SQL Injection vulnerability exists
 ```
 
-وهذا احترافي أكثر.
+A professional report can explain:
+
+```
+The vulnerability may result in a PCI DSS compliance violation and potential exposure of customer data.
+```
+
+This provides business context and demonstrates the real impact of the finding.
 
 ---
 
-# الخلاصة 
+# Summary
 
 ## Governance
 
-كيف الشركة تدير الأمن والسياسات.
+Defines how an organization manages security, policies, and responsibilities.
 
 ---
 
 ## Risk
 
-كيف تكتشف وتقلل المخاطر.
+Identifies security threats and vulnerabilities and works to reduce their impact.
 
 ---
 
 ## Compliance
 
-كيف تلتزم بالقوانين والمعايير.
+Ensures that the organization follows required laws, regulations, and security standards.
 
 ---
 
-# وGRC كامل يساعد الشركة على:
+# GRC Overall Purpose
+
+GRC helps organizations:
 
 ```
-إدارة الأمن بشكل منظم واحترافي
+Manage cybersecurity in a structured and professional way
 ```

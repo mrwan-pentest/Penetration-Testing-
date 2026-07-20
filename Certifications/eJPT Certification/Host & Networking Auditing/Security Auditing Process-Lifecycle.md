@@ -1,97 +1,131 @@
-## 1) Planning & Preparation
+# Security Audit Process
 
-تحديد:
+## 1. Planning and Preparation
 
-- أهداف التدقيق
-- نطاق الفحص
-- الأنظمة المستهدفة
-- فريق العمل والجدول الزمني
+The first phase focuses on defining the foundation of the Security Audit.
 
-مع جمع:
+During this phase, the organization identifies:
 
-- السياسات
-- الشبكات
-- التقارير السابقة
+- Audit objectives
+- Assessment scope
+- Target systems
+- Audit team members
+- Project timeline
 
----
+The audit team also collects important information such as:
 
-## 2) Information Gathering
+- Security policies
+- Network documentation
+- Previous audit reports
 
-جمع المعلومات عن:
-
-- السياسات الأمنية
-- إعدادات الأنظمة
-- الشبكة
-- وسائل الحماية
-
-مع إجراء مقابلات وفهم طريقة العمل.
+This phase ensures that the audit has clear goals and proper preparation before starting the assessment.
 
 ---
 
-## 3) Risk Assessment
+# 2. Information Gathering
 
-تحليل:
+This phase focuses on collecting information about the organization's security environment.
 
-- الأصول المهمة
-- التهديدات
-- الثغرات
+The audit team gathers details about:
 
-ثم تحديد:
+- Security policies
+- System configurations
+- Network infrastructure
+- Security controls and protection mechanisms
 
-- مستوى الخطورة
-- التأثير المتوقع
+This phase may also include:
+
+- Interviews with employees and security teams.
+- Understanding how systems and processes operate.
+
+The goal is to build a clear understanding of the current security posture.
 
 ---
 
-## 4) Audit Execution
+# 3. Risk Assessment
 
-تنفيذ الفحص الأمني مثل:
+During this phase, the organization analyzes potential security risks.
+
+The assessment focuses on:
+
+- Critical assets
+- Possible threats
+- Existing vulnerabilities
+
+After identifying risks, the organization determines:
+
+- Risk severity
+- Expected impact
+
+This helps prioritize security issues based on their importance.
+
+---
+
+# 4. Audit Execution
+
+In this phase, the actual security assessment is performed.
+
+Activities may include:
 
 - Vulnerability Scanning
 - Penetration Testing
 - Configuration Review
 
-مع التحقق من:
+The audit team also verifies:
 
-- Compliance
-- فعالية وسائل الحماية
-
----
-
-## 5) Analysis & Evaluation
-
-تحليل النتائج واكتشاف:
-
-- نقاط الضعف
-- المشاكل الأمنية
-- الإعدادات الخاطئة
-
-ثم ترتيب المشاكل حسب الخطورة.
+- Compliance with security standards.
+- Effectiveness of implemented security controls.
 
 ---
 
-## 6) Reporting
+# 5. Analysis and Evaluation
 
-كتابة تقرير يحتوي:
+After collecting results, the audit team analyzes the findings.
 
-- الثغرات
-- مستوى الخطورة
-- الأدلة
-- التوصيات الأمنية
+This includes identifying:
 
-ثم تقديمه للإدارة أو العميل.
+- Security weaknesses
+- Vulnerabilities
+- Misconfigurations
+
+The identified issues are then categorized and prioritized based on their severity and potential impact.
 
 ---
 
-## 7) Remediation
+# 6. Reporting
 
-إصلاح المشاكل الأمنية عبر:
+The final results are documented in a Security Audit Report.
 
-- تحديث الأنظمة
-- تعديل الإعدادات
-- تقوية الحماية
+The report usually includes:
 
-ثم:
+- Identified vulnerabilities
+- Risk severity levels
+- Evidence and findings
+- Security recommendations
 
-- إعادة الفحص
-- المتابعة المستمرة
+The report is then presented to:
+
+- Management
+- Security teams
+- The client
+
+to help them understand the current security posture.
+
+---
+
+# 7. Remediation
+
+The final phase focuses on fixing identified security issues.
+
+Remediation activities may include:
+
+- Updating systems and software.
+- Modifying insecure configurations.
+- Strengthening security controls.
+
+After remediation, organizations should perform:
+
+- Reassessment
+- Continuous monitoring
+
+to ensure that security improvements remain effective over time.

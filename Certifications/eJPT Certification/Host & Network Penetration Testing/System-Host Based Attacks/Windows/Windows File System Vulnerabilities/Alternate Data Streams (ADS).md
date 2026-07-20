@@ -1,78 +1,91 @@
+# Alternate Data Streams (ADS)
 
+## What is ADS?
 
+Alternate Data Streams (ADS) is a feature in the NTFS file system that allows a single file to contain additional hidden data streams.
 
+This means a file is not limited to storing only one piece of content.
 
+---
 
-هي ميزة في نظام ملفات NTFS تسمح للملف الواحد أن يحتوي على “Streams” إضافية مخفية.
+# The Concept
 
-يعني الملف ليس مجرد محتوى واحد فقط.
-
-# الفكرة 
-
-عندك ملف عادي:
+Normally, you have a regular file:
 
 ```
 note.txt
 ```
 
-عادة يحتوي:
+Containing:
 
 ```
 hello
 ```
 
-لكن في NTFS يمكن إضافة محتوى مخفي داخله:
+However, in NTFS, additional hidden content can be attached to the same file:
 
 ```
 note.txt:hidden
 ```
 
-بدون أن يظهر في:
+This hidden stream does not appear when using:
 
 ```
 dir
 ```
 
+---
 
-# لماذا هذا مهم أمنيًا؟
+# Why Is ADS Important from a Security Perspective?
 
-لأن المهاجم يستطيع:
+Attackers can use ADS to:
 
-- إخفاء Payload
-- إخفاء سكربت
-- إخفاء بيانات
-- عمل Persistence
+- Hide Payloads
+- Hide scripts
+- Hide data
+- Establish Persistence
 
-داخل ملف يبدو طبيعي.
+inside files that appear normal.
 
-# هل ADS تعتبر ملفًا جديدًا؟
+---
 
-❌ لا
+# Is ADS a New File?
 
-هي Stream مرتبط بملف موجود.
+No.
 
-# أين تعمل؟
+ADS is not a separate file.
 
-✅ فقط على:
+It is a hidden stream attached to an existing file.
+
+---
+
+# Where Does ADS Work?
+
+ADS works only on:
 
 ```
 NTFS
 ```
 
+---
 
-# هل تعمل على FAT32؟
+# Does ADS Work on FAT32?
 
-❌ لا.
+No.
 
-# كيف أعرف أن جهازي NTFS؟
+ADS is not supported by the FAT32 file system.
 
-نفذ:
+---
+
+# Checking the File System Type
+
+To determine whether a drive uses NTFS, run:
 
 ```
 fsutil fsinfo volumeinfo C:
 ```
 
-سترى:
+The output will show:
 
 ```
 File System Name : NTFS
@@ -80,89 +93,107 @@ File System Name : NTFS
 
 ---
 
-# عمليًا — إنشاء ADS
+# Creating an ADS
 
-## 1) أنشئ ملف عادي
+## Step 1: Create a Normal File
+
+Create a regular file:
 
 ```
 echo hello > file.txt
 ```
 
+---
 
-# 2) أضف Stream مخفي
+## Step 2: Create a Hidden Stream
+
+Create an additional hidden stream:
 
 ```
 notepad file.txt:hidden.txt
 ```
 
-سيقول:
+Windows will ask:
 
 ```
 Do you want to create?
 ```
 
-اضغط Yes.
+Select **Yes**.
 
+---
 
-# 3) اكتب أي شيء
+## Step 3: Add Hidden Content
 
-مثلاً:
+Write any content.
+
+Example:
 
 ```
 this is hidden
 ```
 
-ثم احفظ.
+Then save the file.
 
+---
 
-# ماذا حدث الآن؟
+# What Happened?
 
-أصبح لدينا:
+Now we have:
 
 ```
 file.txt
 ```
 
-لكن داخله stream مخفي.
+but it contains a hidden stream.
 
+---
 
-# لو تفحص عادي
+# Normal File Listing
+
+If we check the directory normally:
 
 ```
 dir
 ```
 
-لن ترى شيئًا.
+The hidden stream will not appear.
 
-سيظهر فقط:
+The output will only show:
 
 ```
 file.txt
 ```
 
+---
 
-# كيف نقرأ الـ ADS؟
+# Reading ADS Content
+
+To read the hidden stream:
 
 ```
 notepad file.txt:hidden.txt
 ```
 
-أو:
+or:
 
 ```
 more < file.txt:hidden.txt
 ```
 
+---
 
-# كيف نكشف الـ ADS؟
+# Detecting ADS
 
-## باستخدام dir /r
+## Using dir /r
+
+To display Alternate Data Streams:
 
 ```
 dir /r
 ```
 
-سيظهر:
+The output will show:
 
 ```
 file.txt:hidden.txt:$DATA
@@ -170,38 +201,47 @@ file.txt:hidden.txt:$DATA
 
 ---
 
-# ماذا يعني $DATA؟
+# What is $DATA?
 
-هذا هو الـ stream الأساسي لنظام NTFS.
+`$DATA` represents the main data stream type used by the NTFS file system.
 
 ---
 
-# عمليًا — إخفاء ملف داخل ADS
+# Hiding a File Inside ADS
 
-## أنشئ payload تجريبي
+## Step 1: Create a Test Payload
 
-مثلاً:
+Example:
 
 ```
 calc.exe
 ```
 
+---
 
-# انسخه داخل stream
+## Step 2: Copy the File into an ADS
+
+Store the payload inside a hidden stream:
 
 ```
 type calc.exe > file.txt:calc.exe
 ```
 
+---
 
-# الآن payload مخفي داخل file.txt
+# Result
 
+The payload is now hidden inside:
 
+```
+file.txt
+```
 
+---
 
-# كيف نشغل payload من ADS؟
+# Executing a Payload from ADS
 
-قديماً:
+Older Windows systems allowed execution using:
 
 ```
 start .\file.txt:calc.exe
@@ -209,15 +249,15 @@ start .\file.txt:calc.exe
 
 ---
 
-# لكن في الأنظمة الحديثة
+# Modern Windows Behavior
 
-ويندوز أصبح يمنع كثيرًا من هذه الأساليب مباشرة.
+In modern Windows versions, many direct ADS execution techniques are blocked.
 
-لذلك غالبًا تُستخدم ADS اليوم:
+Therefore, ADS is now commonly used for:
 
-- للإخفاء
-- persistence
-- bypass بسيط
-- forensic tricks
+- Hiding files
+- Persistence techniques
+- Basic bypass techniques
+- Forensic evasion techniques
 
-أكثر من التنفيذ المباشر.
+rather than direct payload execution.

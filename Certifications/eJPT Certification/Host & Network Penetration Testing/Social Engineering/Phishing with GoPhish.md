@@ -1,233 +1,186 @@
+# GoPhish
 
-# ما هو GoPhish؟
+## What Is GoPhish?
 
-GoPhish عبارة عن:
+GoPhish is an open-source **phishing simulation framework** designed to help organizations assess and improve their security awareness programs.
 
-> إطار عمل (Framework) مفتوح المصدر لمحاكاة حملات Phishing.
-
----
-
-# لماذا تستخدمه الشركات؟
-
-مثال:
-
-شركة تريد معرفة:
-
-- كم موظف سيفتح الرسالة؟
-- كم موظف سيضغط الرابط؟
-- كم موظف سيبلغ فريق الأمن؟
-- هل التدريب الأمني فعال أم لا؟
-
-فيتم إرسال حملة تجريبية للموظفين ومراقبة النتائج.
+Unlike malicious phishing tools, GoPhish is intended for authorized security testing and employee awareness training. It enables organizations to safely simulate phishing campaigns, measure user responses, and identify areas where additional security training may be needed.
 
 ---
 
-# ماذا يفعل GoPhish؟
+# Why Do Organizations Use GoPhish?
 
-يمكنه إدارة دورة حملة التصيد بالكامل:
+Organizations use GoPhish to evaluate how employees respond to phishing attacks.
 
-```
-إنشاء الحملة↓إرسال الرسائل↓تتبع التفاعل↓إصدار التقارير
-```
+Typical objectives include determining:
 
----
+- How many employees open phishing emails.
+- How many users click phishing links.
+- How many users submit their credentials.
+- How many employees report the phishing email to the security team.
+- Whether security awareness training is effective.
 
-# الميزة الأولى: Campaign Creation
-
-إنشاء حملة تصيد.
-
-مثال:
-
-حملة لقسم:
-
-```
-HR
-```
-
-وحملة أخرى لقسم:
-
-```
-Finance
-```
-
-كل حملة لها:
-
-- رسالة مختلفة
-- أهداف مختلفة
-- صفحة مختلفة
+The collected metrics help organizations improve their security awareness programs and reduce the likelihood of successful phishing attacks.
 
 ---
 
-# الميزة الثانية: Email Template Editor
+# Core Features
 
-محرر رسائل جاهز.
+## Campaign Creation
 
-يمكنك تصميم رسالة تشبه:
+GoPhish allows administrators to create multiple phishing campaigns for different groups within an organization.
+
+For example:
+
+- HR Department.
+- Finance Department.
+- IT Department.
+
+Each campaign can have its own:
+
+- Email template.
+- Landing page.
+- Target group.
+- Tracking configuration.
+
+---
+
+## Email Template Editor
+
+GoPhish includes a built-in editor for creating realistic phishing emails.
+
+Templates can be designed to resemble legitimate communications from:
 
 - Microsoft
 - Google
 - Office 365
-- بنك
-- شركة داخلية
+- Banks
+- Internal corporate departments
 
-بشكل احترافي.
-
----
-
-# الميزة الثالثة: Target Management
-
-إدارة الأهداف.
-
-مثال:
-
-لديك:
-
-```
-100 موظف
-```
-
-يمكن تقسيمهم إلى:
-
-```
-ITHRFinanceManagement
-```
-
-ثم إرسال حملات مختلفة لكل قسم.
+This allows organizations to create realistic phishing simulations while maintaining full control over the campaign.
 
 ---
 
-# الميزة الرابعة: Landing Pages
+## Target Management
 
-هذه من أهم المزايا.
+Target management enables administrators to organize recipients into groups.
 
-Landing Page = الصفحة التي يصل إليها المستخدم بعد الضغط على الرابط.
-
-مثال:
-
-الموظف يتلقى:
+For example, an organization with 100 employees may create groups such as:
 
 ```
-Click here to update your password
+IT
+HR
+Finance
+Management
 ```
 
-بعد الضغط ينتقل إلى صفحة تشبه:
-
-```
-Office 365 Login
-```
-
-أو:
-
-```
-Company Portal
-```
-
-في اختبار الوعي الأمني يتم قياس ما إذا كان المستخدم حاول إدخال بياناته أم لا.
+Different phishing campaigns can then be delivered to each department based on the organization's testing objectives.
 
 ---
 
-# الميزة الخامسة: Tracking & Reporting
+## Landing Pages
 
-GoPhish يسجل كل شيء.
+Landing Pages are among the most important components of a phishing simulation.
 
-مثلاً:
+A Landing Page is the webpage displayed after a user clicks the phishing link.
 
-|الحدث|النتيجة|
+Example:
+
+The employee receives an email containing:
+
+```
+Click here to update your password.
+```
+
+After clicking the link, the user is redirected to a page that closely resembles a legitimate login portal, such as:
+
+- Microsoft Office 365
+- Google Workspace
+- Company Portal
+
+During authorized security awareness testing, organizations evaluate whether users attempt to enter their credentials. The goal is to measure employee awareness rather than collect real credentials.
+
+---
+
+## Tracking and Reporting
+
+GoPhish records every stage of the phishing campaign.
+
+Typical tracked events include:
+
+|Event|Status|
 |---|---|
-|استلم البريد|نعم|
-|فتح البريد|نعم|
-|ضغط الرابط|نعم|
-|أرسل بيانات|نعم|
+|Email Delivered|Yes|
+|Email Opened|Yes|
+|Link Clicked|Yes|
+|Credentials Submitted|Yes|
 
-وبعدها يولد تقريرًا كاملاً.
-
----
-
-# الميزة السادسة: Scheduling
-
-تشغيل الحملة في وقت محدد.
-
-مثال:
-
-```
-الاثنين 9 صباحاً
-```
-
-أو:
-
-```
-كل شهر
-```
-
-بدون تدخل يدوي.
+After the campaign is complete, GoPhish automatically generates detailed reports that summarize user interactions and campaign statistics.
 
 ---
 
-# كيف تسير حملة التصيد باستخدام GoPhish؟
+## Scheduling
 
-بشكل مبسط:
+Campaigns can be scheduled to execute automatically.
 
-```
-1. إنشاء Email Template
-```
-
-↓
+Examples include:
 
 ```
-2. إنشاء Landing Page
+Monday at 9:00 AM
 ```
 
-↓
+or
 
 ```
-3. إضافة الموظفين
+The first day of every month
 ```
 
-↓
-
-```
-4. إنشاء Campaign
-```
-
-↓
-
-```
-5. إرسال الرسائل
-```
-
-↓
-
-```
-6. متابعة النتائج
-```
-
-↓
-
-```
-7. إنشاء تقرير
-```
-
+This allows recurring phishing awareness campaigns without manual intervention.
 
 ---
 
-### مصادر ومراجع إضافية
+# GoPhish Phishing Campaign Workflow
 
-- **الموقع الرسمي**: [https://getgophish.com/](https://getgophish.com/)
-    
-- **مستودع GitHub**: [https://github.com/gophish/gophish](https://github.com/gophish/gophish)
-    
-- **دليل التثبيت**: [https://docs.getgophish.com/user-guide/installation](https://docs.getgophish.com/user-guide/installation)
+A typical phishing awareness campaign follows these steps:
+
+```
+Create an Email Template
+        ↓
+Create a Landing Page
+        ↓
+Import Target Users
+        ↓
+Create a Campaign
+        ↓
+Launch the Campaign
+        ↓
+Monitor User Activity
+        ↓
+Generate Reports
+```
+
 ---
+
+# Lab
+
+
+Begin by logging into the GoPhish administrative dashboard.
 
 ![[Pasted image 20260609021116.png]]
 
+---
 
+
+Review the main interface, which provides access to campaign management, templates, users, landing pages, and reports.
 
 ![[Pasted image 20260609021125.png]]
 
-
 ![[Pasted image 20260609021142.png]]
 
+---
+
+
+Navigate to the Email Templates section and create a phishing email template that will be used during the campaign.
 
 ![[Pasted image 20260609021218.png]]
 
@@ -235,18 +188,20 @@ GoPhish يسجل كل شيء.
 
 ![[Pasted image 20260609021238.png]]
 
-
 ![[Pasted image 20260609021252.png]]
-
-
 
 ![[Pasted image 20260609021308.png]]
 
-
 ![[Pasted image 20260609021321.png]]
 
-![[Pasted image 20260609021330.png]]
+---
 
+
+Create the Landing Page that users will be redirected to after clicking the phishing link.
+
+The page should closely resemble the legitimate service being simulated for the awareness exercise.
+
+![[Pasted image 20260609021330.png]]
 
 ![[Pasted image 20260609021339.png]]
 
@@ -258,6 +213,14 @@ GoPhish يسجل كل شيء.
 
 ![[Pasted image 20260609021434.png]]
 
+---
+
+
+
+Create the sending profile that defines how phishing emails will be delivered.
+
+This includes configuring the email server and sender information used during the simulation.
+
 ![[Pasted image 20260609021444.png]]
 
 ![[Pasted image 20260609021456.png]]
@@ -266,9 +229,19 @@ GoPhish يسجل كل شيء.
 
 ![[Pasted image 20260609021516.png]]
 
+---
+
+
+Add the users who will participate in the phishing simulation.
+
+Targets may be imported individually or organized into groups based on departments or business units.
+
 ![[Pasted image 20260609021527.png]]
 
 ![[Pasted image 20260609021544.png]]
+
+---
+
 
 ![[Pasted image 20260609021747.png]]
 
@@ -282,15 +255,25 @@ GoPhish يسجل كل شيء.
 
 ![[Pasted image 20260609021846.png]]
 
+---
+
+
+After verifying the configuration, launch the phishing campaign.
+
+GoPhish begins delivering phishing emails to the selected recipients.
+
 ![[Pasted image 20260609021854.png]]
 
 ![[Pasted image 20260609021906.png]]
 
+---
+
 
 ![[Pasted image 20260609021917.png]]
 
-
 ![[Pasted image 20260609021928.png]]
+
+---
 
 
 ![[Pasted image 20260609021951.png]]
@@ -298,3 +281,47 @@ GoPhish يسجل كل شيء.
 ![[Pasted image 20260609022002.png]]
 
 ![[Pasted image 20260609022012.png]]
+
+---
+
+# Additional Resources
+
+## Official Website
+
+```
+https://getgophish.com/
+```
+
+---
+
+## GitHub Repository
+
+```
+https://github.com/gophish/gophish
+```
+
+---
+
+## Installation Guide
+
+```
+https://docs.getgophish.com/user-guide/installation
+```
+
+---
+
+# Summary
+
+GoPhish is a powerful open-source framework for conducting authorized phishing simulations and security awareness assessments.
+
+Its primary capabilities include:
+
+- Creating phishing campaigns.
+- Designing realistic email templates.
+- Building custom landing pages.
+- Managing target users.
+- Scheduling campaigns.
+- Tracking user interactions.
+- Generating comprehensive campaign reports.
+
+By simulating real-world phishing attacks in a controlled environment, organizations can measure employee awareness and strengthen their overall security posture.

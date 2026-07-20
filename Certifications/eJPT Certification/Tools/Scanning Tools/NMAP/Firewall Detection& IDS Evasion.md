@@ -1,258 +1,416 @@
+# Nmap Firewall Evasion Options
 
-# -sA
-استخدامه:
+Nmap provides several options that can be used to test how security devices handle scanning traffic, including:
+
+- Firewalls
+- IDS (Intrusion Detection Systems)
+- IPS (Intrusion Prevention Systems)
+
+These options help penetration testers understand:
+
+- How network traffic is analyzed
+- Whether filtering exists
+- How scans appear in logs
+- Whether security controls have weak configurations
+
+---
+
+# `-sA` — ACK Scan
+
+## Purpose
+
+Used for:
+
+```
 Firewall Detection
+```
 
-Nmap يرسل Packet تحتوي:
+---
+
+## How It Works
+
+In normal TCP communication, the:
 
 ```
 ACK Flag
 ```
 
+is sent after a connection has already been established.
 
-في TCP الطبيعي،  
-ACK يأتي:
-
-```
-بعد وجود اتصال مسبق
-```
-
-لكن هنا:
+Example:
 
 ```
-Nmap يرسل ACK بدون اتصال حقيقي
+Client  → SYN
+Server  → SYN/ACK
+Client  → ACK
 ```
 
-# لماذا؟
+However, with ACK Scan:
 
-حتى يرى:
+Nmap sends:
 
-- كيف يرد الـ Firewall
-- وهل يوجد Filtering
+```
+ACK Packet
+```
+
+without establishing a real connection first.
 
 ---
-# `-f` 
 
-يعني:
+## Why Use It?
+
+The goal is to observe how the target responds and determine:
+
+- Whether a Firewall exists
+- Whether filtering is being applied
+- How the Firewall handles unexpected packets
+
+---
+
+## Example
+
+```
+nmap -sA 192.168.1.10
+```
+
+---
+
+# `-f` — Fragment Packets
+
+## Purpose
+
+The option:
+
+```
+-f
+```
+
+means:
 
 ```
 Fragment Packets
 ```
 
-أي:
-
-```
-تجزئة الـ Packets
-```
-
-# الفكرة الأساسية 
-
-بدل إرسال Packet واحدة كبيرة،  
-يقوم Nmap بتقسيمها إلى:
-
-```
-Packets صغيرة
-```
-
-حتى يحاول:
-
-```
-تجاوز بعض الـ Firewalls أو IDS/IPS
-```
----
-# `--mtu` 
-
-هذا الخيار يستخدم لـ:
-
-```
-تحديد حجم الـ Packet Fragments يدويًا
-```
-
-اختصار:
-
-```
-Maximum Transmission Unit
-```
-
-# معناه
-```
-أكبر حجم Packet يمكن إرسالها
-```
-
-عبر الشبكة بدون تجزئة.
-
-# علاقة `--mtu` بـ `-f`
-
-كلاهما يستخدم:
+It performs:
 
 ```
 Packet Fragmentation
 ```
 
-لكن الفرق:
+---
 
-|الخيار|الوظيفة|
-|---|---|
-|`-f`|Fragmentation تلقائي|
-|`--mtu`|تحدد الحجم بنفسك|
+## Basic Idea
 
-
-# مثال
+Instead of sending one complete packet:
 
 ```
-nmap  -sS--mtu 16 192.168.1.10
+Large Packet
 ```
 
-
-# ماذا يعني 16؟
-
-يعني:
+Nmap splits it into smaller pieces:
 
 ```
-قسم الـ Packets إلى أجزاء حجمها 16 bytes
+Small Fragments
 ```
 
+---
 
-استخدامه
+## Why Use It?
 
-لأغراض:
+Some older security systems may have difficulty inspecting fragmented packets.
+
+It can be used when testing:
 
 - Firewall Evasion
 - IDS/IPS Evasion
 
+---
 
-القيمة يجب أن تكون:
+## Example
 
 ```
-مضاعفات 8
+nmap -f 192.168.1.10
 ```
 
 ---
---data-length
+
+# `--mtu` — Maximum Transmission Unit
+
+## Purpose
+
+Used to manually specify the size of packet fragments.
+
+---
+
+## What Does MTU Mean?
+
+MTU stands for:
 
 ```
-إضافة بيانات عشوائية إلى الـ Packets
+Maximum Transmission Unit
 ```
 
-بدل أن تكون الـ Packet:
+It means:
 
 ```
-صغيرة وثابتة
+The largest packet size that can be transmitted over a network without fragmentation.
 ```
 
-يقوم Nmap بإضافة:
+---
+
+## Relationship Between `-f` and `--mtu`
+
+Both options use:
+
+```
+Packet Fragmentation
+```
+
+However:
+
+|Option|Function|
+|---|---|
+|`-f`|Performs automatic fragmentation|
+|`--mtu`|Allows manual fragment size control|
+
+---
+
+## Example
+
+```
+nmap -sS --mtu 16 192.168.1.10
+```
+
+---
+
+## What Does 16 Mean?
+
+It means:
+
+```
+Split packets into fragments of 16 bytes.
+```
+
+---
+
+## Note
+
+The MTU value must be:
+
+```
+A multiple of 8
+```
+
+Examples:
+
+```
+8
+16
+24
+32
+```
+
+---
+
+## Common Uses
+
+- Firewall Evasion
+- IDS/IPS Evasion
+
+---
+
+# `--data-length` — Adding Random Data
+
+## Purpose
+
+This option adds:
 
 ```
 Random Data
 ```
-# لماذا؟
 
-حتى:
+to packets.
 
-- يجعل الـ Traffic يبدو طبيعي أكثر
-- يصعّب اكتشاف الـ Scan أحيانًا
-- يساعد في Evasion
-# مثال
+---
+
+## Concept
+
+Instead of sending packets that are:
+
+```
+Small and predictable
+```
+
+Nmap adds additional data:
+
+```
+Packet + Random Data
+```
+
+---
+
+## Why Use It?
+
+It can help with:
+
+- Changing the appearance of scan traffic
+- Making packets less predictable
+- Testing detection systems
+
+---
+
+## Example
 
 ```
 nmap --data-length 50 192.168.1.10
 ```
-أضف 50 bytes عشوائية لكل Packet
+
+Meaning:
+
+Add:
+
+```
+50 Bytes
+```
+
+of random data to each packet.
 
 ---
 
-# `-D`
+# `-D` — Decoy Scan
 
-يعني:
+## Purpose
+
+The option:
+
+```
+-D
+```
+
+means:
 
 ```
 Decoy Scan
 ```
 
+---
 
-يجعل الهدف يظن أن:
+## How It Works
 
-```
-الفحص يأتي من عدة أجهزة
-```
+It makes the target believe that the scan is coming from multiple systems instead of only the real attacker.
 
-وليس منك فقط.
+Nmap sends packets from:
 
-Nmap يرسل:
+- The real attacker IP
+- Fake IP addresses (Decoys)
 
-- Packets من IPك الحقيقي
-- ومعها IPs وهمية (Decoys)
+---
 
-
-# مثال
+## Example
 
 ```
 nmap -D 1.1.1.1,8.8.8.8 192.168.1.10
 ```
 
-#  يستخدم
+---
 
-لأغراض:
+## Uses
 
-- إرباك الـ Logs
-- صعوبة معرفة المهاجم الحقيقي
-- Evasion
+- Testing logging systems
+- Evaluating detection capabilities
+- Making source identification more difficult
 
 ---
-# `-g` 
 
-يعني:
+# `-g` — Source Port Manipulation
 
-```
-Source Port Manipulation
-```
+## Purpose
 
-أو:
+The option:
 
 ```
-تحديد الـ Source Port يدويًا
+-g
 ```
 
-
-عادةً Nmap يختار:
-
-```
-Source Port عشوائي
-```
-
-لكن مع `-g`:
+allows manually setting the:
 
 ```
-أنت تحدده بنفسك
+Source Port
 ```
 
-# مثال
+---
+
+## Default Behavior
+
+Normally, Nmap chooses:
+
+```
+A random source port
+```
+
+With `-g`:
+
+```
+You specify the source port manually.
+```
+
+---
+
+## Example
 
 ```
 nmap -g 53 192.168.1.10
 ```
 
+---
 
-# ماذا يعني؟
+## Meaning
 
-اجعل:
+This sets:
 
 ```
 Source Port = 53
 ```
 
-
-# لماذا يستخدم؟
-
-بعض الـ Firewalls تثق بمنافذ معينة مثل:
-
-- 53 → DNS
-- 20/21 → FTP
-- 80 → HTTP
-
-فيحاول Nmap:
+The traffic will appear as if it is coming from:
 
 ```
-التظاهر أن الترافيك قادم من خدمة موثوقة
+DNS Service
 ```
 
+---
+
+## Why Use It?
+
+Some poorly configured Firewalls trust traffic based on source ports.
+
+Examples:
+
+|Port|Service|
+|---|---|
+|53|DNS|
+|80|HTTP|
+|20/21|FTP|
+
+The goal is to test whether Firewall rules incorrectly trust specific source ports.
+
+---
+
+# Summary
+
+|Option|Purpose|
+|---|---|
+|`-sA`|ACK Scan for Firewall Detection|
+|`-f`|Packet Fragmentation|
+|`--mtu`|Manual Fragment Size Control|
+|`--data-length`|Add Random Data to Packets|
+|`-D`|Decoy Scan|
+|`-g`|Source Port Manipulation|
+
+These options are commonly used during:
+
+```
+Network Enumeration
+```
+
+to analyze security controls and understand how network defenses respond to scanning activity.

@@ -1,24 +1,139 @@
-## 1) Security Policies
+# Security Terminology
+
+## 1. Security Policies
+
+Security Policies are:
 
 ```
-سياسات أمنية تحدد قواعد وإجراءات الحماية داخل الشركة
+Rules and procedures that define how security should be managed inside an organization
 ```
 
-مثل:
+They establish requirements for protecting company resources and reducing security risks.
 
-- سياسة كلمات المرور
-- صلاحيات المستخدمين
-- استخدام الأجهزة
+Examples:
+
+- Password policies
+- User permissions
+- Device usage policies
+
+Security policies help organizations define acceptable behavior and security responsibilities.
 
 ---
 
-# 2) Compliance
+# 2. Compliance
+
+Compliance means:
 
 ```
-الالتزام بالمعايير والقوانين الأمنية
+Following security standards, regulations, and legal requirements
 ```
 
-مثل:
+Organizations must comply with specific security requirements depending on their industry and location.
+
+Examples:
+
+- ISO 27001
+- PCI-DSS
+- GDPR
+
+Compliance ensures that organizations follow recognized security practices and regulatory requirements.
+
+---
+
+# 3. Vulnerability
+
+A Vulnerability is:
+
+```
+A weakness or security flaw that can be exploited
+```
+
+Attackers can use vulnerabilities to compromise systems, applications, or data.
+
+Examples:
+
+- SMBv1 vulnerabilities
+- SQL Injection
+- Weak passwords
+
+---
+
+# 4. Security Control
+
+A Security Control is:
+
+```
+A security measure implemented to protect assets and reduce risks
+```
+
+Controls help prevent, detect, or respond to security threats.
+
+Examples:
+
+- Firewall
+- Antivirus
+- Multi-Factor Authentication (MFA)
+- Access Control
+
+---
+
+# 5. Risk Assessment
+
+Risk Assessment is:
+
+```
+The process of identifying and analyzing security risks
+```
+
+It focuses on answering questions such as:
+
+- What are the possible threats?
+- What impact could they have?
+- How likely are they to occur?
+
+After analyzing risks, organizations determine:
+
+```
+Which security issues should be prioritized
+```
+
+---
+
+# 6. Audit Trail
+
+An Audit Trail is:
+
+```
+A chronological record of events and activities within a system
+```
+
+It records important actions such as:
+
+- User logins
+- File modifications
+- Command execution
+
+Audit Trails are useful for:
+
+```
+Tracking what happened and identifying who performed an action
+```
+
+They are important for incident response, investigations, and compliance requirements.
+
+---
+
+# 7. Compliance Audit
+
+A Compliance Audit is:
+
+```
+An assessment performed to verify that an organization follows security standards and policies
+```
+
+It checks whether security controls and procedures meet required compliance requirements.
+
+Examples:
 
 - ISO 27001
 - PCI-DSS
@@ -26,111 +141,42 @@
 
 ---
 
-# 3) Vulnerability
+# 8. Access Control
+
+Access Control is:
 
 ```
-ثغرة أو نقطة ضعف يمكن استغلالها
+The process of controlling who can access resources and what actions they are allowed to perform
 ```
 
-مثل:
+It determines:
 
-- SMBv1
-- SQL Injection
-- كلمات مرور ضعيفة
+- Who can access systems.
+- What permissions users have.
+- Which actions users can perform.
 
----
-
-# 4) Control
-
-```
-إجراء أمني للحماية وتقليل المخاطر
-```
-
-مثل:
-
-- Firewall
-- Antivirus
-- MFA
-- Access Control
-
----
-
-# 5) Risk Assessment
-
-```
-تقييم وتحليل المخاطر الأمنية
-```
-
-يعني:
-
-- ما هي التهديدات؟
-- ما تأثيرها؟
-- ما احتمال حدوثها؟
-
-ثم تحديد:
-
-```
-ما الأولوية في الحماية
-```
-
-## 6) Audit Trail
-
-```
-سجل زمني للأحداث والأنشطة داخل النظام
-```
-
-مثل:
-
-- تسجيل الدخول
-- تغيير الملفات
-- تشغيل الأوامر
-
-يفيد في:
-
-```
-تتبع ما حدث ومن قام به
-```
-
----
-
-# 7) Compliance Audit
-
-```
-فحص للتأكد من التزام الشركة بالمعايير والسياسات الأمنية
-```
-
-مثل:
-
-- ISO
-- PCI-DSS
-- GDPR
-
----
-
-# 8) Access Control
-
-```
-التحكم بمن يستطيع الوصول وماذا يمكنه أن يفعل
-```
-
-مثل:
+Examples:
 
 - Users
 - Permissions
 - Roles
-- MFA
+- Multi-Factor Authentication (MFA)
 
 ---
 
-# 9) Audit Report
+# 9. Audit Report
+
+An Audit Report is:
 
 ```
-تقرير نهائي يحتوي نتائج التدقيق الأمني
+The final document containing the results of a security audit
 ```
 
-ويشمل:
+It usually includes:
 
-- الثغرات
-- المخاطر
-- التوصيات
-- التحسينات المطلوبة
+- Identified vulnerabilities
+- Security risks
+- Recommendations
+- Required improvements
+
+A professional audit report helps organizations understand their security weaknesses and the steps needed to improve their security posture.

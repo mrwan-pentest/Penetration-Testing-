@@ -1,12 +1,12 @@
+# Windows Password Storage and Hashes
 
-
-ويندوز غالبًا:
+# Windows usually:
 
 ```
-لا يخزن الباسورد الحقيقي
+Does not store the real password
 ```
 
-بل يخزن:
+Instead, it stores:
 
 ```
 Hash
@@ -14,32 +14,31 @@ Hash
 
 ---
 
-# ما هو الـ Hash؟ 
+# What is a Hash?
 
-الـ Hash هو:
+A Hash is:
 
 ```
-تحويل كلمة المرور إلى قيمة مشفرة ثابتة
+Converting a password into a fixed-length value
 ```
 
-مثلاً:
+For example:
 
 ```
 password123
 ```
 
-قد تصبح:
+may become:
 
 ```
 482c811da5d5b4bc6d497ffa98491e38
 ```
 
-
 ---
 
-# أين يخزن ويندوز الـ Hashes؟ 
+# Where does Windows store Hashes?
 
-غالبًا داخل:
+Usually inside:
 
 ```
 SAM Database
@@ -47,22 +46,22 @@ SAM Database
 
 ---
 
-# ما هو SAM؟ 
+# What is SAM?
 
-اختصار:
+SAM stands for:
 
 ```
 Security Account Manager
 ```
 
-ويحتوي:
+It contains:
 
-- المستخدمين
-- الـ Password Hashes
+- User accounts
+- Password Hashes
 
 ---
 
-# أين يوجد؟
+# Where is it located?
 
 ```
 C:\Windows\System32\config\SAM
@@ -70,37 +69,38 @@ C:\Windows\System32\config\SAM
 
 ---
 
-# هل يمكن فتحه مباشرة؟ ❌
+# Can it be opened directly? ❌
 
-غالبًا لا،  
-لأن النظام يقفله أثناء التشغيل.
+Usually no.
 
-ولهذا يحتاج المهاجم:
+Because Windows locks it while the system is running.
 
-- SYSTEM
-- أو أدوات خاصة
+Therefore, an attacker needs:
+
+- SYSTEM privileges
+- Or specialized tools
 
 ---
 
-# أنواع الـ Hashes في ويندوز 
+# Types of Hashes in Windows
 
 ## 1) LM Hash
 
-قديم جدًا وضعيف.
+Very old and weak.
 
 ---
 
-# لماذا ضعيف؟ 
+# Why is it weak?
 
-لأنه:
+Because it:
 
-- يحول الأحرف لـ Uppercase
-- يقسم الباسورد نصفين
-- سهل الكسر جدًا
+- Converts characters to Uppercase.
+- Splits the password into two parts.
+- Is very easy to crack.
 
 ---
 
-# مثال:
+# Example:
 
 ```
 PASSWORD
@@ -108,25 +108,25 @@ PASSWORD
 
 ---
 
-# هل ما زال مستخدم؟ ❌ غالبًا
+# Is it still used? ❌ Usually not
 
-الأنظمة الحديثة:
+Modern systems:
 
 ```
-تعطله
+Disable it
 ```
 
 ---
 
-# 2) NTLM Hash 
+# 2) NTLM Hash
 
-الأهم والأشهر.
+The most important and commonly used one.
 
 ---
 
-# ما هو NTLM؟ 
+# What is NTLM?
 
-اختصار:
+It stands for:
 
 ```
 NT LAN Manager
@@ -134,7 +134,7 @@ NT LAN Manager
 
 ---
 
-# هذا هو الـ Hash الذي نستخدمه غالبًا في:
+# This is the Hash commonly used in:
 
 - Pass-the-Hash
 - SMB Authentication
@@ -143,7 +143,7 @@ NT LAN Manager
 
 ---
 
-# مثال NTLM Hash 
+# Example NTLM Hash:
 
 ```
 b4b9b02e6f09a9bd760f388b67351e2b
@@ -151,29 +151,26 @@ b4b9b02e6f09a9bd760f388b67351e2b
 
 ---
 
-# كيف يحصل المهاجم على الـ Hashes؟ 
+# How does an attacker obtain Hashes?
 
-بعد الوصول لـ:
+After gaining access to:
 
 ```
-Administrator أو SYSTEM
+Administrator or SYSTEM
 ```
 
-يستخدم أدوات مثل:
+They use tools such as:
 
 - Mimikatz
 - secretsdump
 - hashdump
 - reg save
 
-
-
 ---
 
+# The second important source
 
-## ثاني Hash
-
-هذا المهم:
+The important one:
 
 ```
 NTLM Hash
@@ -181,9 +178,9 @@ NTLM Hash
 
 ---
 
-# كيف تُسرق الـ Hashes أيضًا؟ 
+# How are Hashes also stolen?
 
-من:
+From:
 
 ```
 LSASS Memory
@@ -191,51 +188,58 @@ LSASS Memory
 
 ---
 
-# ما هو LSASS؟ 
-اختصار:
+# What is LSASS?
+
+It stands for:
 
 ```
 Local Security Authority Subsystem Service
 ```
 
+# What is its function?
 
-# ما وظيفته؟ 
+It is a very important Windows process responsible for:
 
-هو Process مهم جدًا في ويندوز مسؤول عن:
-
-- تسجيل الدخول
+- Login management
 - Authentication
 - Password validation
-- Tokens
+- Security Tokens
 - Kerberos
 - NTLM
-- Sessions
+- User Sessions
 
+# In simple words:
 
-# يعني باختصار 
-
-LSASS هو:
+LSASS is:
 
 ```
-مركز إدارة تسجيل الدخول والصلاحيات
+The center responsible for managing login and permissions
 ```
+
 ---
 
-# أشهر أداة 
+# The famous tool
 
 # Mimikatz
 
-
 ---
 
-# الفرق بين SAM و LSASS 
+# Difference Between SAM and LSASS
 
 ## SAM
 
-يحتوي Hashes المخزنة.
+Contains:
+
+```
+Stored Hashes
+```
 
 ---
 
 ## LSASS
 
-يحتوي Credentials حية داخل الذاكرة.
+Contains:
+
+```
+Live Credentials stored in memory
+```

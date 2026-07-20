@@ -1,66 +1,94 @@
+# Types of Security Audits
 
-## 1) Internal Audit
+## 1. Internal Audit
 
-تدقيق داخلي تقوم به الشركة نفسها لفحص:
+An Internal Audit is a security assessment performed by the organization itself.
 
-- السياسات
-- الصلاحيات
-- الحماية الداخلية
+It focuses on reviewing internal security practices, including:
 
-مثال:  
-فحص صلاحيات المستخدمين.
+- Security policies
+- User permissions
+- Internal protection mechanisms
 
----
+Example:
 
-## 2) External Audit
-
-تدقيق بواسطة جهة خارجية مستقلة لتقييم الأمان والالتزام بالمعايير.
-
-مثال:  
-فحص PCI DSS.
+Reviewing user access permissions to ensure that employees only have the required level of access.
 
 ---
 
-## 3) Compliance Audit
+# 2. External Audit
 
-التأكد أن الشركة ملتزمة بالقوانين والمعايير الأمنية مثل:
+An External Audit is performed by an independent third-party organization to evaluate security and compliance.
+
+The purpose is to provide an objective assessment of the organization's security posture.
+
+Example:
+
+Performing an assessment to verify compliance with:
+
+```
+PCI DSS
+```
+
+---
+
+# 3. Compliance Audit
+
+A Compliance Audit focuses on verifying that an organization follows required security regulations, standards, and legal requirements.
+
+Examples include:
 
 - GDPR
 - HIPAA
 - PCI DSS
 
----
-
-## 4) Technical Audit
-
-فحص الجوانب التقنية مثل:
-
-- الأنظمة
-- السيرفرات
-- الشبكات
-- إعدادات الحماية
-
-مثال:  
-مراجعة إعدادات الـ Firewall.
+The goal is to ensure that the organization meets specific security and compliance requirements.
 
 ---
 
-## 5) Network Audit
+# 4. Technical Audit
 
-فحص أمان الشبكة وأجهزة الشبكة مثل:
+A Technical Audit evaluates the technical aspects of an organization's infrastructure.
+
+It examines:
+
+- Operating systems
+- Servers
+- Networks
+- Security configurations
+
+Example:
+
+Reviewing Firewall configurations to ensure that security rules are properly implemented.
+
+---
+
+# 5. Network Audit
+
+A Network Audit focuses on evaluating the security of network infrastructure and devices.
+
+It examines components such as:
 
 - Routers
 - Switches
 - Firewalls
 
-لاكتشاف مشاكل الشبكة والبروتوكولات الضعيفة.
+The goal is to identify:
+
+- Network security weaknesses
+- Misconfigurations
+- Weak or insecure protocols
 
 ---
 
-## 6) Application Audit
+# 6. Application Audit
 
-فحص أمان التطبيقات والمواقع لاكتشاف ثغرات مثل:
+An Application Audit evaluates the security of applications and web services.
+
+It focuses on identifying application-level vulnerabilities such as:
 
 - SQL Injection
-- XSS
-- مشاكل Authentication
+- Cross-Site Scripting (XSS)
+- Authentication weaknesses
+
+The goal is to ensure that applications are securely developed and properly protected against attacks.

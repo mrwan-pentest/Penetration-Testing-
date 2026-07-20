@@ -1,141 +1,168 @@
+# Overview
 
-هذا الموضوع يتكلم عن:
+This topic covers:
 
 ```
-القواعد والمعايير والإرشادات الأمنية
+Security rules, standards, and guidelines
 ```
 
-التي تستخدمها الشركات لتنظيم الأمن السيبراني.
+that organizations use to manage and improve their cybersecurity practices.
 
-يعني بدل كل شركة تخترع طريقة حماية من نفسها،  
-يوجد:
+Instead of every company creating its own security approach from scratch, organizations rely on established:
 
 - Frameworks
 - Standards
 - Guidelines
 
-تساعدهم يعرفوا:
+These resources help companies understand:
 
 ```
-كيف يطبقوا الأمن بشكل صحيح
+How to implement security correctly
 ```
+
+and build a structured security program.
 
 ---
 
-# أول شيء: Frameworks 
+# Frameworks
 
-الـ Framework هو:
-
-```
-إطار أو خطة عامة لتنظيم الأمن
-```
-
-يعني يعطيك:
-
-- طريقة عمل
-- خطوات
-- منهجية
-
-لكن:
+A Framework is:
 
 ```
-مرن ويمكن تعديله حسب الشركة
+A general structure or approach for organizing security
 ```
 
+It provides:
+
+- A methodology
+- A structured process
+- Security practices
+- Steps for improving security
+
+However, frameworks are:
+
+```
+Flexible and can be adapted based on the organization's needs
+```
+
+Organizations can customize the framework depending on:
+
+- Business requirements
+- Industry
+- Risk level
+- Available resources
 
 ---
 
-# ثاني شيء: Standards 
+# Standards
 
-الـ Standards تختلف.
+Standards are different from frameworks.
 
-هي:
-
-```
-قوانين ومتطلبات محددة يجب الالتزام بها
-```
-
-يعني ليست مجرد نصائح.
-
-غالبًا:
+A Standard is:
 
 ```
-إلزامية
+A set of specific requirements that organizations must follow
 ```
 
-خصوصًا بالشركات الكبيرة.
+Unlike frameworks, standards are not just recommendations.
 
+They usually define:
+
+- Required security controls
+- Mandatory procedures
+- Compliance requirements
+
+In many cases, standards are:
+
+```
+Mandatory
+```
+
+especially for large organizations and regulated industries.
 
 ---
 
-# ثالث شيء: Guidelines 
+# Guidelines
 
-الـ Guidelines هي:
+Guidelines are:
 
 ```
-إرشادات ونصائح Best Practices
+Security recommendations and best practices
 ```
 
-ليست إلزامية غالبًا،  
-لكن مفيدة جدًا.
+They provide advice on how organizations can improve their security posture.
 
+Guidelines are usually:
+
+```
+Not mandatory
+```
+
+but they are valuable because they help organizations follow recommended security practices.
 
 ---
 
-# الفرق المهم 
+# Key Differences
 
 ## Framework
 
-يعطيك:
+Provides:
 
 ```
-طريقة وهيكل لتنظيم الأمن
+A structure and methodology for organizing security
 ```
+
+It explains how an organization can build and manage its security program.
 
 ---
 
 ## Standard
 
-يعطيك:
+Provides:
 
 ```
-متطلبات إلزامية يجب تحقيقها
+Specific requirements that must be achieved
 ```
+
+It defines what security controls or conditions must exist.
 
 ---
 
 ## Guideline
 
-يعطيك:
+Provides:
 
 ```
-نصائح وممارسات جيدة لتحسين الأمن
+Recommendations and best practices to improve security
 ```
+
+It suggests better ways to implement security.
 
 ---
 
-# لماذا هذا مهم للـ Pentester؟ 
+# Why Are Security Frameworks Important for Pentesters?
 
-لأنك أثناء الاختبار تحتاج تفهم:
+Understanding security frameworks, standards, and guidelines helps penetration testers during assessments because they need to understand:
 
-- ما الذي يجب على الشركة الالتزام به
-- ما المخاطر المهمة
-- هل توجد مخالفة للمعايير
+- What security requirements the organization should follow.
+- Which risks are considered important.
+- Whether security controls violate industry standards.
+- How findings should be reported professionally.
 
 ---
 
-# مثال 
+# Example
 
-إذا وجدت:
-
-```
-بيانات بطاقات غير مشفرة
-```
-
-فأنت تعرف مباشرة:
+During a penetration test, you discover:
 
 ```
-هذا يخالف PCI DSS
+Payment card data is stored without encryption
 ```
 
-وهذا يجعل تقريرك أقوى واحترافي أكثر.
+You can identify that this violates:
+
+```
+PCI DSS
+```
+
+This makes the penetration testing report stronger because the finding is not only a technical vulnerability but also a compliance issue.

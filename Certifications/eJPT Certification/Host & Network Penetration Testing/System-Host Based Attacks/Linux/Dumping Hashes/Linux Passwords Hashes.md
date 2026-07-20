@@ -1,35 +1,49 @@
-# الفكرة الأساسية
+# Linux Password Hashes
 
-في لينكس:
+## Overview
 
-- كل المستخدمين معلوماتهم موجودة بملفات نظام.
-- الباسوردات لا تُخزن كنص عادي.
-- تُخزن كـ hashes.
+In Linux systems, user account information is stored in system files, while passwords are never stored in plaintext. Instead, they are stored as cryptographic hashes to help protect user credentials.
 
+A password hash is a one-way representation of a password. During authentication, the operating system hashes the password entered by the user and compares it to the stored hash rather than comparing the plaintext password itself.
 
-# أين تُخزن الهاشس؟
+## Where Are Password Hashes Stored?
 
-في:
+Linux stores password hashes in the following file:
 
-```
+```text
 /etc/shadow
 ```
 
----
-# Lab
- بعد ما حصلنا على السشن
- عشان نحوله الى meterpreter نستخدم الأمر 
- sessions -u sessino number
-ونقرأ الهاش
+This file is accessible only to privileged users and contains the password hashes along with additional password policy information, such as password expiration and account aging.
 
-أو في مديول ب الميتا
+---
+
+# Lab
+
+## Step 1: Upgrade the Shell to a Meterpreter Session
+
+After obtaining a shell on the target system, we upgraded it to a Meterpreter session to gain access to additional post-exploitation capabilities provided by Metasploit.
+
+```text
+sessions -u <SESSION_ID>
+```
+
+Alternatively, Metasploit provides a dedicated post-exploitation module for extracting password hashes.
 
 ![[Pasted image 20260521022745.png]]
 
-عشان تكسر هذا الهاش باستخدام مديول على الميتا
-اولا ضروري نكون مشغلين قاعدة البيانات
+## Step 2: Start the Metasploit Database
 
-	service postgresql start
-بعدين نشغل هذا المديول
+Before attempting to crack the collected hashes using Metasploit, the PostgreSQL database service must be running.
+
+We started the database service using:
+
+```bash
+service postgresql start
+```
+
+## Step 3: Crack the Password Hashes
+
+After starting the database service, we used the appropriate Metasploit module to crack the collected password hashes.
 
 ![[Pasted image 20260521022943.png]]

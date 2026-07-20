@@ -1,104 +1,141 @@
+# Security Audit vs Penetration Test
+
+## What is a Security Audit?
+
+A Security Audit focuses on:
+
+```
+Evaluating the overall security posture of an organization
+```
+
+It examines whether the company has implemented proper security practices and controls.
+
+A Security Audit reviews:
+
+- Security policies
+- User permissions
+- System configurations
+- Compliance requirements
+- Security controls
+
+The main question of a Security Audit is:
+
+```
+Is the organization following secure practices?
+```
+
+It determines whether the company's security processes are properly designed and implemented.
 
 ---
 
-# أولًا: ما هو Security Audit؟ 
+# What is a Penetration Test?
 
-الـ Security Audit فكرته:
+A Penetration Test has a different purpose.
 
-```
-تقييم أمان الشركة بشكل عام
-```
-
-يعني يفحص:
-
-- السياسات
-- الصلاحيات
-- الإعدادات
-- الالتزام بالمعايير
-- الحماية
-
-ويرى:
+It is:
 
 ```
-هل الشركة ماشية بشكل آمن أو لا
+A simulation of a real-world attack
 ```
+
+During a Penetration Test, the tester attempts to:
+
+- Exploit vulnerabilities
+- Gain unauthorized access
+- Bypass security controls
+
+The goal is to behave like a real attacker and determine whether the system can actually be compromised.
 
 ---
 
-# أما الـ Penetration Test 🔥
+# The Main Difference
 
-فكرته مختلفة.
-
-هو:
+## Security Audit Asks:
 
 ```
-محاكاة هجوم حقيقي
+Is the organization implementing security correctly?
 ```
 
-المختبر يحاول:
+The focus is on:
 
-- استغلال الثغرات
-- الدخول للنظام
-- تجاوز الحماية
-
-كأنه مهاجم حقيقي.
-
-# الفرق الأساسي بينهم 
-
-## الـ Audit يسأل:
-
-```
-هل الشركة تطبق الحماية بشكل صحيح؟
-```
+- Policies
+- Procedures
+- Compliance
+- Security controls
 
 ---
 
-## أما الـ Pentest يسأل:
+## Penetration Test Asks:
 
 ```
-هل أستطيع اختراق النظام فعليًا؟
+Can the system actually be compromised?
 ```
+
+The focus is on:
+
+- Technical vulnerabilities
+- Exploitation
+- Attack scenarios
 
 ---
 
-# الـ Audit يكون شامل أكثر 
+# Scope Difference
 
-يفحص:
+## Security Audit
 
-- السياسات
-- القوانين
-- الشبكة
-- الصلاحيات
-- الإجراءات
+A Security Audit is usually broader and more comprehensive.
 
----
+It examines:
 
-# أما الـ Pentest 
-
-يركز أكثر على:
-
-- الثغرات التقنية
-- الاستغلال
-- الهجوم
----
-# Sequential Approach 
-
-هذا يعني:
-
-```
-Audit ثم Pentest
-```
-
-وهذا الأكثر شيوعًا.
+- Security policies
+- Regulations and standards
+- Network security
+- User permissions
+- Security procedures
+- Organizational controls
 
 ---
 
-# Combined Approach 
+## Penetration Test
 
-يعني:
+A Penetration Test focuses mainly on technical security weaknesses.
+
+It evaluates:
+
+- Vulnerabilities
+- Exploitation possibilities
+- Attack paths
+- Real-world impact
+
+---
+
+# Security Assessment Approaches
+
+## Sequential Approach
+
+The Sequential Approach follows this order:
 
 ```
-دمج الـ Audit والـ Pentest معًا
+Security Audit → Penetration Test
 ```
 
-في تقييم واحد.
+This is the most common approach.
+
+The organization first evaluates its security controls and identifies weaknesses, then performs a Penetration Test to verify whether those weaknesses can be exploited.
+
+---
+
+## Combined Approach
+
+The Combined Approach means:
+
+```
+Security Audit + Penetration Test
+```
+
+Both activities are performed together as part of a single security assessment.
+
+This provides both:
+
+- Compliance and policy evaluation.
+- Real-world attack simulation.
