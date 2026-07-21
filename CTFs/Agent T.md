@@ -9,9 +9,6 @@
 
 ![](../Images/Pasted%20image%2020260403162704.png)
 
-
-
-
 # Vulnerability Research
 
 ## Searched for a matching public exploit using SearchSploit.
