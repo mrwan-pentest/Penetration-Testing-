@@ -13,8 +13,6 @@
 ![](../../Images/Pasted%20image%2020260721202303.png)
 
 
-![](Pasted%20image%2020260721202452.png)
-
 # Service Enumeration
 
 ## Used Nmap NSE scripts to gather additional information about the discovered services.
