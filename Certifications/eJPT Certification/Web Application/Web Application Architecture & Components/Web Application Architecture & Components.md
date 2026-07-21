@@ -1,7 +1,6 @@
+# Web Technologies
 
-##  Web Technologies ?
-
-كمختبر اختراق ستتعامل يوميًا مع:
+As a penetration tester, you will work daily with technologies such as:
 
 - HTML
 - JavaScript
@@ -10,83 +9,94 @@
 - Databases
 - Web Servers
 
-لذلك يجب أن تعرف:
+Therefore, you should understand:
 
-- أين تعمل كل تقنية؟
-- ما وظيفتها؟
-- كيف يمكن استغلالها؟
+- Where each technology operates.
+- What its purpose is.
+- How it can potentially be exploited.
 
 ---
 
 # Client-Side Technologies
 
-هي التقنيات التي تعمل داخل متصفح المستخدم.
+Client-side technologies run inside the user's web browser.
 
+---
 
 ## HTML
 
-لغة بناء صفحات الويب.
+HTML (**HyperText Markup Language**) is the standard language used to build web pages.
 
-تستخدم لإنشاء:
+It is used to create:
 
-- العناوين
-- الأزرار
-- النماذج
-- الجداول
+- Headings
+- Buttons
+- Forms
+- Tables
 
-مهم للمختبر لأنك قد تجد:
+### Why is HTML important for penetration testers?
+
+HTML pages may contain valuable information such as:
 
 - Hidden Fields
-- Comments
-- معلومات حساسة داخل الصفحة
+- HTML Comments
+- Sensitive Information embedded in the page source
 
 ---
 
 ## CSS
 
-مسؤول عن شكل الصفحة.
+CSS (**Cascading Style Sheets**) controls the appearance of a web page.
 
-يحدد:
+It defines:
 
-- الألوان
-- الخطوط
-- الأحجام
-- ترتيب العناصر
+- Colors
+- Fonts
+- Sizes
+- Layout and positioning
 
-نادراً ما يحتوي ثغرات مباشرة لكنه قد يكشف ملفات أو مسارات.
+CSS rarely contains direct vulnerabilities, but it may reveal:
+
+- Hidden files
+- Internal paths
+- Directory structures
 
 ---
 
 ## JavaScript
 
-لغة البرمجة التي تعمل داخل المتصفح.
+JavaScript is the programming language executed inside the browser.
 
-تستخدم لـ:
+It is commonly used for:
 
-- التفاعل مع المستخدم
-- التحقق من المدخلات
-- تحديث الصفحة دون إعادة تحميلها
+- User interaction
+- Input validation
+- Updating web pages without reloading (AJAX)
 
-مهمة جدًا لأن ملفات JS قد تحتوي:
+### Why is JavaScript important?
+
+JavaScript files may expose valuable information, including:
 
 - API Endpoints
-- مفاتيح API
-- وظائف مخفية
-- منطق يمكن تجاوزه
+- API Keys
+- Hidden Functions
+- Client-side logic that may be bypassed
 
 ---
 
 ## Cookies
 
-ملفات صغيرة يخزنها المتصفح.
+Cookies are small pieces of data stored by the browser.
 
-غالباً تستخدم لـ:
+They are commonly used for:
 
-- Sessions
-- تذكر المستخدم
-- الإعدادات
+- Session Management
+- Remembering Users
+- Storing User Preferences
 
-مهمة لأن سرقتها قد تؤدي إلى:
+### Security Importance
+
+Stealing session cookies may lead to:
 
 - Session Hijacking
 
@@ -94,14 +104,14 @@
 
 ## Local Storage
 
-مكان لتخزين البيانات داخل المتصفح.
+Local Storage is browser storage used to save data locally.
 
-الفرق عن Cookie:
+### Difference Between Cookies and Local Storage
 
-- لا ترسل تلقائياً للسيرفر.
-- تبقى داخل المتصفح.
+- Local Storage is **not automatically sent** to the server.
+- Data remains stored only within the browser.
 
-قد تحتوي:
+It may contain sensitive information such as:
 
 - JWT Tokens
 - API Keys
@@ -110,137 +120,139 @@
 
 # Server-Side Technologies
 
-هي التقنيات التي تعمل على السيرفر.
+Server-side technologies execute on the web server.
 
 ---
 
 ## Web Server
 
-أمثلة:
+### Examples
 
 - Apache
 - Nginx
 - IIS
 
-وظيفته:
+### Responsibilities
 
-- استقبال HTTP Requests
-- إرسال الملفات الثابتة
-- تمرير الطلبات للتطبيق
+- Receiving HTTP Requests
+- Serving static content
+- Forwarding requests to the application
 
-فكر فيه كـ "الباب الأمامي للموقع".
+Think of it as the **front door** of a website.
 
 ---
 
 ## Application Server
 
-يشغل التطبيق نفسه.
+The Application Server runs the application's code.
 
-وظيفته:
+### Responsibilities
 
-- تنفيذ الكود
-- معالجة الطلبات
-- التواصل مع قاعدة البيانات
+- Executing application logic
+- Processing requests
+- Communicating with databases
 
-فكر فيه كـ "عقل التطبيق".
+Think of it as the **brain** of the application.
 
 ---
 
 ## Database Server
 
-مكان تخزين البيانات.
+The Database Server stores application data.
 
-أمثلة:
+### Examples
 
 - MySQL
 - PostgreSQL
-- MSSQL
-- Oracle
+- Microsoft SQL Server (MSSQL)
+- Oracle Database
 
-يخزن:
+Typical stored information includes:
 
-- المستخدمين
-- كلمات المرور
-- المنتجات
-- الطلبات
+- Users
+- Passwords
+- Products
+- Orders
 
-أشهر ثغرة مرتبطة به:
+### Common Related Vulnerability
 
-```
-SQL Injection
+```text
+SQL Injection (SQLi)
 ```
 
 ---
 
 ## Server-Side Languages
 
-لغات تشغيل التطبيق.
+These languages execute on the server.
 
-أشهرها:
+### Common Languages
 
 - PHP
 - Python
 - Java
 - Ruby
 
-معرفة اللغة تساعدك على فهم:
+Knowing the backend language helps identify:
 
-- الملفات
-- الأخطاء
-- الثغرات المحتملة
+- File structures
+- Error messages
+- Potential vulnerabilities
 
 ---
 
 # Communication & Data Flow
 
-آلية التواصل:
+The typical communication process is:
 
-```
-Browser        
-↓
-HTTP Request   
-↓
-Server        
-↓
-Database      
-↓
-HTTP Response  
-↓
+```text
+Browser
+    │
+HTTP Request
+    │
+Web Server
+    │
+Application
+    │
+Database
+    │
+HTTP Response
+    │
 Browser
 ```
-
-
 
 ---
 
 # Data Interchange
 
-يقصد به تبادل البيانات بين الأنظمة المختلفة.
+Data interchange refers to exchanging information between different systems.
 
-مثال:
+### Examples
 
-- موقع يتواصل مع PayPal.
-- تطبيق يستخدم Google Maps.
+- A website communicating with PayPal
+- An application using Google Maps APIs
 
-كل هذا يعتمد على تبادل البيانات.
+Modern web applications constantly exchange data with external services.
 
 ---
 
-# API
+# API (Application Programming Interface)
 
-اختصار:
+API stands for:
 
-```
+```text
 Application Programming Interface
 ```
 
-واجهة تسمح للأنظمة بالتواصل.
+An API allows different systems and applications to communicate with each other.
 
-مثال:
+### Example
 
-تطبيق الطقس يطلب البيانات من API خاص بالأرصاد.
+A weather application requests weather information from a weather API.
 
-كمختبر اختراق تعتبر APIs هدفاً أساسياً للفحص.
+### Security Perspective
+
+For penetration testers, APIs are primary assessment targets.
 
 ---
 
@@ -248,73 +260,75 @@ Application Programming Interface
 
 ## JSON
 
-أكثر صيغة استخداماً حالياً.
+JSON (**JavaScript Object Notation**) is the most commonly used data format today.
 
-مميزاته:
+### Advantages
 
-- بسيط
-- سريع
-- سهل القراءة
+- Lightweight
+- Fast
+- Human-readable
 
-يستخدم بكثرة مع APIs.
+Widely used in REST APIs.
 
 ---
 
 ## XML
 
-صيغة أقدم وأكثر تفصيلاً.
+XML (**eXtensible Markup Language**) is an older and more verbose format.
 
-تستخدم في:
+Commonly used with:
 
-- SOAP
-- بعض الأنظمة القديمة
+- SOAP Services
+- Legacy Applications
 
-مرتبطة بثغرات مثل:
+### Related Vulnerability
 
-```
-XXE
+```text
+XML External Entity (XXE)
 ```
 
 ---
 
 # REST
 
-أشهر أسلوب لبناء APIs.
+REST (**Representational State Transfer**) is the most common architectural style for building web APIs.
 
-يعتمد على HTTP Methods.
+REST primarily relies on HTTP methods.
 
 ---
 
 ## GET
 
-جلب البيانات.
+Retrieves data from the server.
 
 ---
 
 ## POST
 
-إرسال بيانات جديدة.
+Creates or submits new data.
 
 ---
 
 ## PUT
 
-تعديل البيانات.
+Updates existing resources.
 
 ---
 
 ## DELETE
 
-حذف البيانات.
-
+Deletes resources.
 
 ---
 
-## SOAP
+# SOAP
 
-بروتوكول أقدم يعتمد على XML.
+SOAP (**Simple Object Access Protocol**) is an older protocol based on XML.
 
-أقل انتشاراً من REST لكنه ما زال موجوداً في بعض الشركات والأنظمة القديمة.
+Although less common than REST, it is still used in:
+
+- Enterprise Environments
+- Legacy Systems
 
 ---
 
@@ -322,15 +336,15 @@ XXE
 
 ## Authentication
 
-التحقق من الهوية.
+Authentication verifies a user's identity.
 
-السؤال:
+The primary question is:
 
+```text
+Who are you?
 ```
-من أنت؟
-```
 
-مثال:
+### Examples
 
 - Username
 - Password
@@ -339,75 +353,63 @@ XXE
 
 ## Authorization
 
-التحقق من الصلاحيات.
+Authorization determines what an authenticated user is allowed to do.
 
-السؤال:
+The primary question is:
 
+```text
+What are you allowed to access?
 ```
-ماذا يسمح لك أن تفعل؟
-```
 
-مثال:
+### Example
 
-هل المستخدم العادي يستطيع دخول لوحة الإدارة؟
+Can a normal user access the administrator dashboard?
 
 ---
 
 ## SSL/TLS
 
-المسؤول عن تشفير الاتصال.
+SSL/TLS is responsible for encrypting communications.
 
-يحوّل:
+It secures:
 
-```
-HTTP
-```
-
-إلى:
-
-```
-HTTPS
+```text
+HTTP → HTTPS
 ```
 
-يحمي:
+SSL/TLS protects:
 
-- كلمات المرور
+- Passwords
 - Sessions
-- البيانات الحساسة
+- Sensitive Data
 
-أثناء انتقالها عبر الشبكة.
+while they are transmitted across the network.
 
 ---
 
 # External Technologies
 
-## CDN
+## CDN (Content Delivery Network)
 
-اختصار:
+A CDN is a distributed network of servers located around the world.
 
-```
-Content Delivery Network
-```
+### Purpose
 
-شبكة سيرفرات موزعة حول العالم.
-
-وظيفتها:
-
-- تسريع تحميل الموقع.
-- تقليل الضغط على السيرفر الأساسي.
+- Speed up website loading
+- Reduce the load on the origin server
 
 ---
 
 ## Third-Party Libraries
 
-مكتبات جاهزة يستخدمها المطورون.
+Developers often rely on external libraries to simplify development.
 
-أمثلة:
+### Examples
 
 - jQuery
 - Bootstrap
 - React Packages
 
-إذا كانت قديمة قد تحتوي على ثغرات معروفة.
+### Security Importance
 
----
+Outdated libraries may contain publicly known vulnerabilities and should always be assessed during penetration testing.

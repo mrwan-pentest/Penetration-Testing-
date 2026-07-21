@@ -1,195 +1,160 @@
+# HTTPS (HyperText Transfer Protocol Secure)
 
-# لماذا نحتاج HTTPS؟
+## Why Do We Need HTTPS?
 
-المشكلة في HTTP العادي:
+The primary weakness of standard HTTP is that it transmits data in **plain text**.
 
-```
-HTTP يرسل البيانات كنص عادي (Clear Text)
-```
+For example:
 
-مثال:
-
-```
+```http
 POST /login HTTP/1.1
+
 username=admin
 password=123456
 ```
 
-إذا كان هناك مهاجم في الشبكة:
+Anyone with access to the network traffic can read this information using packet capture or interception tools such as:
 
-```
-Wireshark
-tcpdump
-MITM
-```
+- Wireshark
+- tcpdump
+- Man-in-the-Middle (MITM) attacks
 
-فيمكنه رؤية البيانات مباشرة.
+Sensitive information such as usernames, passwords, session cookies, and personal data can therefore be exposed.
 
 ---
 
-# ما هو HTTPS؟
+# What is HTTPS?
 
-HTTPS اختصار:
+HTTPS stands for:
 
-```
+```text
 HyperText Transfer Protocol Secure
 ```
 
-وهو:
+It is the secure version of HTTP that protects communication between:
 
-```
-نسخة آمنة من HTTP
+```text
+Browser  ⇄  Web Server
 ```
 
-تستخدم لتأمين الاتصال بين:
-
-```
-المتصفح ↔ السيرفر
-```
+HTTPS provides confidentiality, integrity, and authentication by encrypting all HTTP traffic.
 
 ---
 
-# كيف يعمل؟
+# How HTTPS Works
 
-في HTTP العادي:
+With standard HTTP, communication occurs directly between the browser and the web server.
 
+```text
+Browser
+    │
+   HTTP
+    │
+Web Server
 ```
-Browser   
- │    
-  HTTP   
-  │
-  Web Server
+
+With HTTPS, HTTP is encapsulated inside a secure TLS connection.
+
+```text
+Browser
+    │
+HTTP
+    │
+TLS / SSL
+    │
+Web Server
 ```
+
+This additional security layer encrypts all transmitted data before it travels across the network.
 
 ---
 
-في HTTPS:
+# What are SSL and TLS?
 
-```
-Browser    │    │ HTTP    │ SSL/TLS    │Web Server
-```
+## SSL (Secure Sockets Layer)
 
-أي أن HTTP أصبح يعمل داخل طبقة حماية إضافية.
+SSL stands for:
 
----
-
-# ما هو SSL/TLS؟
-
-## SSL
-
-اختصار:
-
-```
+```text
 Secure Sockets Layer
 ```
 
-تقنية قديمة.
+SSL was the original protocol designed to secure network communications.
+
+Today, SSL is considered obsolete due to known security weaknesses.
 
 ---
 
-## TLS
+## TLS (Transport Layer Security)
 
-اختصار:
+TLS stands for:
 
-```
+```text
 Transport Layer Security
 ```
 
-النسخة الحديثة والأكثر استخداماً.
+TLS is the modern successor to SSL and is the protocol currently used to secure HTTPS connections.
 
-
-عملياً عندما نقول:
-
-```
-SSL Certificate
-```
-
-غالباً نقصد:
-
-```
-TLS Certificate
-```
+Although the term **SSL Certificate** is still widely used, it almost always refers to a **TLS Certificate**.
 
 ---
 
-# ماذا تضيف TLS؟
+# What Does TLS Provide?
 
-تعطي HTTP ثلاثة أشياء مهمة جداً:
+TLS adds three fundamental security properties to HTTP communications:
 
+- Confidentiality
+- Integrity
+- Authentication
 
-## 1. Confidentiality
+---
 
-### السرية
+# Confidentiality
 
-تعني:
+Confidentiality ensures that transmitted data cannot be read by unauthorized parties.
 
-```
-لا أحد يستطيع قراءة البيانات أثناء انتقالها
-```
+Before encryption:
 
-مثال:
-
-قبل التشفير:
-
-```
+```text
 password=123456
 ```
 
-بعد التشفير:
+After encryption:
 
-```
+```text
 a8f91x0d8f1s0df81...
 ```
 
-المهاجم يرى بيانات مشفرة فقط.
+Anyone intercepting the traffic will only see encrypted data that cannot be understood without the appropriate cryptographic keys.
 
 ---
 
-## 2. Integrity
+# Integrity
 
-### سلامة البيانات
+Integrity ensures that transmitted data cannot be modified without detection.
 
-تعني:
+For example, suppose the client sends:
 
-```
-لا يمكن تعديل البيانات أثناء النقل
-```
-
-مثال:
-
-أرسلت:
-
-```
+```text
 amount=100
 ```
 
-المهاجم يحاول تغييرها إلى:
+An attacker attempts to modify the request during transmission:
 
-```
+```text
 amount=10000
 ```
 
-TLS يكتشف التعديل.
+TLS performs integrity verification and detects any unauthorized modifications, causing the altered data to be rejected.
 
 ---
 
-## 3. Authentication
+# Authentication
 
-### التحقق من الهوية
+Authentication verifies that the client is communicating with the legitimate web server rather than an attacker.
 
-تعني:
+Without authentication, an attacker could impersonate a trusted website and steal sensitive information.
 
-```
-التأكد أنك متصل بالسيرفر الحقيقي
-```
+To establish trust, HTTPS uses a **Digital Certificate** issued by a trusted Certificate Authority (CA).
 
-وليس:
-
-```
-سيرفر مزيف
-```
-
-لهذا يستخدم الموقع شهادة (Certificate).
-
-
----
+The browser validates the certificate before establishing the encrypted connection, ensuring that the server's identity is authentic.

@@ -1,407 +1,393 @@
+# HTTP Response
 
-# ما هو HTTP Response؟
+After a client (such as a web browser) sends an HTTP request, the web server processes it and returns an **HTTP Response**.
 
-بعد أن يرسل المتصفح Request:
+For example, the browser sends:
 
-```
+```http
 GET / HTTP/1.1
 Host: google.com
 ```
 
-السيرفر يرد:
+The server responds with:
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: text/html
+
 <html>...</html>
 ```
 
-هذا يسمى:
-
-```
-HTTP Response
-```
+This message is known as an **HTTP Response**.
 
 ---
 
-# مكونات HTTP Response
+# HTTP Response Components
 
-يتكون من:
+An HTTP response consists of three main parts:
 
-```
+```text
 Status Line
 Headers
 Body
 ```
 
-# مثال كامل
+Example:
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Fri, 13 Mar 2015 11:26:05 GMT
 Content-Type: text/html
 Content-Length: 258
+
 <html>...</html>
 ```
 
 ---
 
-# 1) Status Line
+# 1. Status Line
 
-أول سطر في الـ Response.
+The **Status Line** is the first line of every HTTP response.
 
-مثال:
+Example:
 
-```
+```http
 HTTP/1.1 200 OK
 ```
 
-يتكون من:
+It consists of three components:
 
-### HTTP Version
+## HTTP Version
 
-```
+```text
 HTTP/1.1
 ```
 
+Indicates the version of the HTTP protocol used by the server.
+
 ---
 
-### Status Code
+## Status Code
 
-```
+```text
 200
 ```
 
+A numerical code that indicates the outcome of the request.
+
 ---
 
-### Status Message
+## Status Message
 
-```
+```text
 OK
 ```
 
+A short textual description of the status code.
+
 ---
 
-# أهم Status Codes
+# Common HTTP Status Codes
 
 ## 200 OK
 
-```
+```http
 200 OK
 ```
 
-معناه:
+Indicates that the request was processed successfully.
 
-```
-كل شيء نجح
-```
-
+---
 
 ## 301 Moved Permanently
 
-```
-301
-```
-
-معناه:
-
-```
-تم نقل الصفحة نهائياً
+```http
+301 Moved Permanently
 ```
 
-مثال:
+Indicates that the requested resource has been permanently moved to a new location.
 
-```
+Example:
+
+```text
 http://site.com
-↓
+        ↓
 https://site.com
 ```
 
+---
 
 ## 302 Found
 
-```
-302
+```http
+302 Found
 ```
 
-إعادة توجيه مؤقتة.
+Indicates a temporary redirect.
 
+The resource is temporarily available at a different location.
+
+---
 
 ## 400 Bad Request
 
-```
-400
+```http
+400 Bad Request
 ```
 
-الطلب الذي أرسلته غير صحيح.
+Indicates that the server could not process the request because it was malformed or invalid.
 
+---
 
 ## 401 Unauthorized
 
-```
-401
-```
-
-يجب تسجيل الدخول.
-
-
-مثال:
-
-```
-API يحتاج Token
+```http
+401 Unauthorized
 ```
 
-ولم ترسل Token.
+Indicates that authentication is required.
 
+Example:
+
+An API requires an authentication token, but the client did not provide one.
+
+---
 
 ## 403 Forbidden
 
+```http
+403 Forbidden
 ```
-403
-```
 
-السيرفر فهمك.
+Indicates that the server understood the request but refuses to authorize it.
 
-لكن لا يسمح لك بالدخول.
+Example:
 
+A non-administrative user attempts to access:
 
-مثال:
-
-```
+```text
 /admin
 ```
 
-أنت لست Admin.
-
+---
 
 ## 404 Not Found
 
+```http
+404 Not Found
 ```
-404
-```
 
-الصفحة غير موجودة.
+Indicates that the requested resource does not exist on the server.
 
+This is one of the most common HTTP status codes encountered during web assessments.
 
-من أشهر الأكواد في الـ Web.
-
+---
 
 ## 500 Internal Server Error
 
+```http
+500 Internal Server Error
 ```
-500
-```
 
-خطأ داخل السيرفر نفسه.
+Indicates that an unexpected error occurred on the server.
 
-ظهور 500 أحياناً يدل على:
+A **500** response may be caused by:
 
-- خطأ برمجي
-- Input غير متوقع
-- احتمال وجود ثغرة
+- Application bugs
+- Unexpected user input
+- Server-side exceptions
+- Misconfigurations
+
+During penetration testing, unexpected **500** responses may sometimes indicate the presence of a vulnerability.
 
 ---
 
 # Response Headers
 
-بعد Status Line تأتي الـ Headers.
+The response headers appear immediately after the Status Line.
 
-مثال:
+Example:
 
+```http
+Date: Fri, 13 Mar 2015 11:26:05 GMT
+Content-Type: text/html
+Server: Apache
 ```
-Date: ...
-Content-Type: ...
-Server: ...
-```
+
+Headers provide additional information about the server and the response.
 
 ---
 
 # Date Header
 
-مثال:
+Example:
 
-```
+```http
 Date: Fri, 13 Mar 2015 11:26:05 GMT
 ```
 
-
-يبين:
-
-```
-وقت إنشاء الرد
-```
+The **Date** header indicates when the server generated the response.
 
 ---
 
 # Cache-Control Header
 
-من أهم الـ Headers.
+One of the most important HTTP response headers.
 
-مثال:
+Example:
 
-```
+```http
 Cache-Control: private, max-age=3600
 ```
 
+This header controls how responses are cached by browsers and intermediary proxies.
 
-وظيفته:
+Instead of downloading the same content repeatedly, the browser may reuse a cached copy according to the specified policy.
 
-```
-التحكم في التخزين المؤقت (Cache)
-```
-
-
-بدلاً من تحميل الصفحة كل مرة.
-
-المتصفح يحتفظ بنسخة مؤقتة.
-
+---
 
 ## private
 
-```
+```http
 Cache-Control: private
 ```
 
-البيانات تخص مستخدماً واحداً فقط.
+Indicates that the response is intended for a single user and should not be stored by shared caches.
 
+---
 
 ## no-cache
 
-```
+```http
 Cache-Control: no-cache
 ```
 
-تحقق من السيرفر قبل استخدام النسخة المخزنة.
+Instructs the client to revalidate the cached content with the server before using it.
 
+---
 
 ## no-store
 
-```
+```http
 Cache-Control: no-store
 ```
 
-لا تخزن الصفحة أبداً.
+Prevents the response from being stored anywhere.
 
+This directive is commonly used for:
 
-يستخدم كثيراً مع:
+- Banking applications
+- Financial services
+- Sensitive user accounts
 
-- البنوك
-- الحسابات الحساسة
-
+---
 
 ## max-age
 
-```
+```http
 Cache-Control: max-age=3600
 ```
 
-احتفظ بالنسخة لمدة ساعة.
+Specifies that the response may be cached for **3600 seconds (1 hour)** before it must be refreshed.
 
 ---
 
 # Content-Type Header
 
-من أهم Headers في اختبار الاختراق.
+One of the most important headers during web application testing.
 
-مثال:
+Example:
 
-```
+```http
 Content-Type: text/html
 ```
 
+The **Content-Type** header tells the client what type of data is contained in the response.
 
-يخبر المتصفح:
+Examples include:
 
-```
-ما نوع البيانات القادمة؟
+```text
+text/html
+application/json
+application/xml
+image/png
+text/plain
 ```
 
 ---
 
-
 # Content-Encoding Header
 
-مثال:
+Example:
 
-```
+```http
 Content-Encoding: gzip
 ```
 
+Indicates that the response body has been compressed before transmission.
 
-معناه:
+The browser automatically decompresses the content before displaying it.
 
-```
-تم ضغط البيانات قبل إرسالها
-```
+Common values include:
 
-
-السيرفر يرسل:
-
-```
-HTML مضغوط
-```
-
-ثم المتصفح يفك الضغط تلقائياً.
-
-
-أشهر القيم:
-
-```
+```text
 gzip
+deflate
+br
 ```
+
+Compression improves:
+
+- Response speed
+- Bandwidth efficiency
 
 ---
 
 # Server Header
 
-مثال:
+Example:
 
-```
+```http
 Server: Apache
 ```
 
-أو
+or
 
-```
+```http
 Server: nginx
 ```
 
-أو
+or
 
-```
+```http
 Server: IIS
 ```
 
+The **Server** header identifies the web server software handling the request.
 
-هذا الهيدر يخبرك بنوع Web Server.
-
+This information is valuable during reconnaissance because it helps identify the target's technology stack.
 
 ---
 
 # Content-Length Header
 
-مثال:
+Example:
 
-```
+```http
 Content-Length: 258
 ```
 
-معناه:
+Specifies the size of the response body in bytes.
 
-```
-حجم الـ Body بالبايت
-```
+For example:
 
-
-إذا كان:
-
-```
+```http
 Content-Length: 50000
 ```
 
-فحجم المحتوى:
+Indicates that the response body contains:
 
-```
+```text
 50000 Bytes
 ```
 
@@ -409,26 +395,25 @@ Content-Length: 50000
 
 # Response Body
 
-آخر جزء من الـ Response.
+The **Response Body** is the final section of the HTTP response.
 
-مثال:
+Example:
 
-```
+```http
 HTTP/1.1 200 OK
 Content-Type: text/html
 
-<html><h1>Welcome</h1></html>
+<html>
+    <h1>Welcome</h1>
+</html>
 ```
 
+The following content:
 
-الجزء:
+```html
+<html>
+    <h1>Welcome</h1>
+</html>
+```
 
-```
-<html><h1>Welcome</h1></html>
-```
-
-هو:
-
-```
-Response Body
-```
+is the **Response Body**, which contains the actual data returned by the server.

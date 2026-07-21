@@ -1,75 +1,124 @@
+# cURL HTTP Methods
 
-```
+## What is cURL?
+
+cURL is a command-line tool used to send HTTP requests and interact with web servers.
+
+It is commonly used during web application penetration testing to:
+
+- Send custom HTTP requests
+- Inspect server responses
+- Test supported HTTP methods
+- Upload and download files
+- Interact with web APIs
+- Perform manual web application testing
+
+---
+
+# GET Request
+
+The following command sends a standard **GET** request while displaying the complete HTTP request and response.
+
+```bash
 curl -v http://192.1.213.3/
 ```
 
-**الوظيفة:**
+## Purpose
 
-```
-إرسال GET Request مع عرض جميع تفاصيل الطلب والرد.
-```
+- Send a GET request.
+- Display request headers.
+- Display response headers.
+- Display the response body.
+- Help analyze server behavior.
 
 ---
 
-### 2
+# HEAD Request
 
-```
+The following command sends a **HEAD** request.
+
+```bash
 curl -v -I http://192.1.213.3/
 ```
 
-**الوظيفة:**
+## Purpose
 
-```
-إرسال HEAD Request والحصول على Headers فقط بدون تحميل محتوى الصفحة.
-```
+A HEAD request retrieves only the HTTP response headers without downloading the page content.
+
+This is useful for:
+
+- Identifying the web server
+- Checking response status codes
+- Viewing response headers
+- Inspecting caching information
 
 ---
 
-### 3
+# OPTIONS Request
 
-```
+The following command sends an **OPTIONS** request.
+
+```bash
 curl -v -X OPTIONS http://192.1.213.3/
 ```
 
-**الوظيفة:**
+## Purpose
 
-```
-معرفة HTTP Methods المسموح بها على السيرفر.
+Used to determine which HTTP methods are allowed by the target web server.
+
+Example response:
+
+```text
+GET
+POST
+PUT
+DELETE
+OPTIONS
 ```
 
-مثال:
-
-```
-GET POST PUT DELETE OPTIONS
-```
+This information is valuable during enumeration because it reveals supported functionality that may introduce attack vectors.
 
 ---
 
-### 4
+# Uploading a File Using PUT
 
-```
+The following command uploads a local file to the web server using the **PUT** method.
+
+```bash
 curl demo.ine.local/uploads/ --upload-file hello.txt
 ```
 
-**الوظيفة:**
+## Purpose
 
+Uploads the file:
+
+```text
+hello.txt
 ```
-رفع الملف hello.txt إلى السيرفر باستخدام PUT.
-```
+
+to the target server.
+
+If the server allows unrestricted PUT requests, this may lead to arbitrary file upload vulnerabilities.
 
 ---
 
-### 5
+# Deleting a File Using DELETE
 
-```
+The following command removes a file from the web server using the **DELETE** method.
+
+```bash
 curl -X DELETE demo.ine.local/uploads/hello.txt
 ```
 
-**الوظيفة:**
+## Purpose
 
+Deletes the following file from the target server:
+
+```text
+hello.txt
 ```
-حذف الملف hello.txt من السيرفر باستخدام DELETE.
-```
+
+If the DELETE method is improperly configured or exposed to unauthorized users, it may allow attackers to remove files from the server.
 
 ---
 

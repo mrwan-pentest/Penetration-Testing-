@@ -1,11 +1,10 @@
+# Web Applications & Web Security
 
+## What is a Web Application?
 
+A **Web Application** is software that runs on a **Web Server** and is accessed through a web browser.
 
-## ما هو Web Application؟
-
-تطبيق يعمل على Web Server ويتم الوصول إليه عبر المتصفح.
-
-أمثلة:
+### Examples
 
 - Gmail
 - Facebook
@@ -14,95 +13,95 @@
 
 ---
 
-## كيف يعمل؟
+## How Does It Work?
 
-```
-Browser      ↓
-HTTP/HTTPS   ↓
-Web Server   ↓
+```text
+Browser
+   │
+HTTP/HTTPS
+   │
+Web Server
+   │
 Database
 ```
 
-المستخدم يرسل Request.
+The user sends an **HTTP Request**.
 
-السيرفر يعالجه ويرجع Response.
+The server processes the request and returns an **HTTP Response**.
 
 ---
 
-## مكونات الواجهة
+## Front-End Components
 
 ### HTML
 
-يبني الصفحة.
+Builds the structure of the webpage.
 
 ### CSS
 
-التصميم والشكل.
+Controls the design and appearance.
 
 ### JavaScript
 
-التفاعل والحركة.
+Adds interactivity and dynamic behavior.
 
 ---
 
 ## Client-Server Architecture
 
-المتصفح = Client
+- **Client:** Web Browser
+- **Server:** Web Server
 
-السيرفر = Server
+The client sends requests.
 
-العميل يطلب.
-
-السيرفر يرد.
+The server processes them and returns responses.
 
 ---
 
 ## Stateless HTTP
 
-HTTP لا يتذكر المستخدم.
+HTTP is a **stateless protocol**, meaning it does not remember previous requests.
 
-لذلك تستخدم التطبيقات:
+To maintain user sessions, web applications use:
 
 - Cookies
 - Sessions
 - Tokens
 
-لكي تعرف أن هذا نفس المستخدم.
-
 ---
 
 # Web Application Security
 
-هدفه حماية:
+The goal of Web Application Security is to protect:
 
-### Confidentiality
+## Confidentiality
 
-سرية البيانات.
-
----
-
-### Integrity
-
-عدم تعديل البيانات بدون صلاحية.
+Ensuring sensitive information remains private.
 
 ---
 
-### Availability
+## Integrity
 
-استمرار الخدمة وعدم توقفها.
+Preventing unauthorized modification of data.
 
 ---
 
-## لماذا تطبيقات الويب هدف مهم؟
+## Availability
 
-لأنها غالبًا تحتوي:
+Keeping services accessible and operational.
 
-- Users
+---
+
+## Why Are Web Applications Attractive Targets?
+
+Web applications often store sensitive information such as:
+
+- User Accounts
 - Passwords
-- Credit Cards
+- Credit Card Information
 - Personal Data
 
-وهي متاحة للعالم كله عبر الإنترنت.
+Since they are exposed to the Internet, they are common attack targets.
 
 ---
 
@@ -110,228 +109,227 @@ HTTP لا يتذكر المستخدم.
 
 ## Threat
 
-شيء يمكن أن يسبب ضررًا.
+Anything capable of causing damage.
 
-مثال:
+### Examples
 
-- Hacker
+- Hackers
 - Malware
-- Phishing
+- Phishing Attacks
 
 ---
 
 ## Risk
 
-احتمال حدوث الضرر + حجم الضرر.
+The likelihood and impact of a threat exploiting a vulnerability.
 
-```
+```text
 Threat + Vulnerability = Risk
 ```
 
 ---
 
-# أشهر تهديدات الويب
+# Common Web Application Threats
 
-## SQL Injection
+## SQL Injection (SQLi)
 
-حقن أوامر SQL داخل التطبيق.
+Injecting SQL statements into an application.
 
-قد يؤدي إلى:
+May allow attackers to:
 
-- قراءة البيانات
-- تعديل البيانات
-- حذف البيانات
-
----
-
-## XSS
-
-حقن JavaScript داخل صفحات الموقع.
-
-قد يؤدي إلى:
-
-- سرقة Cookies
-- سرقة Session
-- السيطرة على حسابات المستخدمين
+- Read data
+- Modify data
+- Delete data
 
 ---
 
-## CSRF
+## Cross-Site Scripting (XSS)
 
-إجبار مستخدم مسجل دخول على تنفيذ عملية دون علمه.
+Injecting JavaScript into web pages.
 
-مثال:
+May lead to:
 
-- تغيير كلمة المرور
-- تعديل الحساب
+- Cookie theft
+- Session hijacking
+- Account compromise
+
+---
+
+## Cross-Site Request Forgery (CSRF)
+
+Forcing an authenticated user to perform actions without their knowledge.
+
+### Examples
+
+- Changing passwords
+- Updating account settings
 
 ---
 
 ## Security Misconfiguration
 
-إعدادات أمنية خاطئة.
+Incorrect or insecure application settings.
 
-أمثلة:
+### Examples
 
-- كلمات مرور افتراضية
-- Debug Mode
-- صفحات إدارة مكشوفة
+- Default credentials
+- Debug Mode enabled
+- Exposed administration pages
 
 ---
 
 ## Sensitive Data Exposure
 
-تسريب بيانات حساسة.
+Leaking confidential information such as:
 
-مثل:
-
-- كلمات المرور
-- البيانات الشخصية
-- معلومات الدفع
+- Passwords
+- Personal Information
+- Payment Data
 
 ---
 
-## Brute Force
+## Brute Force Attacks
 
-تخمين كلمات المرور باستمرار حتى النجاح.
+Repeatedly attempting passwords until the correct one is found.
 
 ---
 
 ## Credential Stuffing
 
-استخدام بيانات مسربة سابقًا لتسجيل الدخول في مواقع أخرى.
+Using leaked credentials from previous breaches to access other accounts.
 
 ---
 
 ## File Upload Vulnerabilities
 
-رفع ملفات خبيثة بدل الملفات العادية.
+Uploading malicious files instead of legitimate ones.
 
-قد يؤدي إلى:
+May lead to:
 
-```
-Remote Code ExecutionWeb Shell
+```text
+Remote Code Execution (RCE)
+Web Shell Upload
 ```
 
 ---
 
-## SSRF
+## Server-Side Request Forgery (SSRF)
 
-جعل السيرفر نفسه يرسل طلبات نيابة عن المهاجم.
+Forcing the server to send requests on behalf of the attacker.
 
-قد يسمح بالوصول إلى:
+Possible targets include:
 
 - Internal Services
-- Cloud Metadata
+- Cloud Metadata Services
 - Internal Networks
 
 ---
 
-## DoS / DDoS
+## Denial of Service (DoS / DDoS)
 
-إغراق السيرفر بالطلبات.
+Overwhelming a server with excessive requests.
 
-الهدف:
+### Goal
 
-تعطيل الخدمة.
+Disrupt or completely stop the service.
 
 ---
 
 ## Broken Access Control
 
-فشل نظام الصلاحيات.
+Improper authorization controls that allow unauthorized access.
 
-مثال:
+### Example
 
-المستخدم العادي يستطيع الوصول إلى بيانات مستخدم آخر أو لوحة الإدارة.
+A regular user can access another user's data or the administrator panel.
 
 ---
 
 # Web Application Security Testing
 
-هو عملية البحث عن:
+The process of identifying:
 
 - Vulnerabilities
 - Weaknesses
 - Security Risks
 
-قبل أن يستغلها المهاجم.
+before attackers can exploit them.
 
 ---
 
 ## Vulnerability Scanning
 
-فحص آلي باستخدام أدوات.
+Automated scanning using specialized tools.
 
-يبحث عن:
+Typically searches for:
 
-- SQLi
-- XSS
-- Misconfigurations
-- Software Versions
+- SQL Injection
+- Cross-Site Scripting (XSS)
+- Security Misconfigurations
+- Outdated Software Versions
 
 ---
 
 ## Penetration Testing
 
-محاكاة هجوم حقيقي.
+Simulating real-world attacks.
 
-الهدف:
+### Goal
 
-التحقق من إمكانية استغلال الثغرات.
+Verify whether discovered vulnerabilities can actually be exploited.
 
 ---
 
 ## Code Review
 
-مراجعة الكود للبحث عن:
+Reviewing application source code to identify:
 
-- أخطاء برمجية
-- ثغرات
-- إعدادات غير آمنة
+- Programming Errors
+- Security Vulnerabilities
+- Insecure Configurations
 
 ---
 
 ## Authentication Testing
 
-اختبار آلية تسجيل الدخول.
+Testing the application's authentication mechanism.
 
-السؤال:
+The main question is:
 
-```
-هل أنت فعلاً من تدعي أنك؟
+```text
+Are you really who you claim to be?
 ```
 
 ---
 
 ## Authorization Testing
 
-اختبار الصلاحيات.
+Testing user permissions.
 
-السؤال:
+The main question is:
 
-```
-هل تملك صلاحية الوصول لهذا المورد؟
+```text
+Are you authorized to access this resource?
 ```
 
 ---
 
 ## Input Validation Testing
 
-اختبار كيف يتعامل التطبيق مع مدخلات المستخدم.
+Testing how the application handles user input.
 
-مهم جدًا لمنع:
+Critical for preventing:
 
-- SQLi
-- XSS
+- SQL Injection (SQLi)
+- Cross-Site Scripting (XSS)
 
 ---
 
 ## Session Management Testing
 
-اختبار إدارة الـ Session.
+Evaluating how user sessions are handled.
 
-البحث عن مشاكل مثل:
+Looking for issues such as:
 
 - Session Hijacking
 - Session Fixation
@@ -340,9 +338,9 @@ Remote Code ExecutionWeb Shell
 
 ## API Security Testing
 
-اختبار واجهات API.
+Assessing the security of application APIs.
 
-التركيز على:
+Primary focus areas include:
 
 - Authentication
 - Authorization
@@ -350,28 +348,28 @@ Remote Code ExecutionWeb Shell
 
 ---
 
-# الفرق بين Security Testing و Pentesting
+# Security Testing vs Penetration Testing
 
 ## Security Testing
 
-الهدف:
+### Goal
 
-```
+```text
 Finding Vulnerabilities
 ```
 
-اكتشاف الثغرات فقط.
+Focuses on identifying security weaknesses.
 
-قد يكون يدويًا أو آليًا.
+Can be performed manually or automatically.
 
 ---
 
-## Pentesting
+## Penetration Testing
 
-الهدف:
+### Goal
 
-```
+```text
 Exploiting Vulnerabilities
 ```
 
-استغلال الثغرات والتأكد من تأثيرها.
+Focuses on exploiting discovered vulnerabilities to verify their real-world impact.

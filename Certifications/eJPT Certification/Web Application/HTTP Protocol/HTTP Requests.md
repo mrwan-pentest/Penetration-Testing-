@@ -1,33 +1,33 @@
-
 # HTTP Request Components
 
-أي HTTP Request يتكون عادة من 3 أجزاء:
+An HTTP request is typically composed of three main parts:
 
-```
+```text
 Request Line
 Headers
-Body (اختياري)
+Body (Optional)
 ```
 
-مثال:
+Example:
 
-```
+```http
 GET /login HTTP/1.1
 Host: example.com
 User-Agent: Firefox
 Cookie: session=123456
+
 username=admin&password=123456
 ```
 
 ---
 
-# 1) Request Line
+# 1. Request Line
 
-أول سطر في الطلب.
+The **Request Line** is the first line of every HTTP request.
 
-يتكون من 3 أجزاء:
+It consists of three components:
 
-```
+```http
 GET /login HTTP/1.1
 ```
 
@@ -35,13 +35,13 @@ GET /login HTTP/1.1
 
 ## HTTP Method
 
-```
+```text
 GET
 ```
 
-يحدد ماذا تريد أن تفعل.
+Specifies the action that the client wants to perform.
 
-أمثلة:
+Common HTTP methods include:
 
 - GET
 - POST
@@ -49,74 +49,76 @@ GET
 - DELETE
 - PATCH
 
+---
 
 ## URL / Path
 
-```
+```text
 /login
 ```
 
-الملف أو الصفحة المطلوبة.
-
-
-## HTTP Version
-
-```
-HTTP/1.1
-```
-
-إصدار البروتوكول.
+Specifies the requested resource or page.
 
 ---
 
-# Request Headers
+## HTTP Version
 
-بعد Request Line تأتي الـ Headers.
-
-شكلها دائماً:
-
+```text
+HTTP/1.1
 ```
+
+Specifies the version of the HTTP protocol being used.
+
+---
+
+# 2. Request Headers
+
+After the Request Line come the HTTP headers.
+
+Each header follows the format:
+
+```text
 Header-Name: Value
 ```
 
-مثال:
+Example:
 
-```
+```http
 Host: google.com
 User-Agent: Firefox
 ```
 
-الـ Headers تعطي معلومات إضافية للسيرفر.
+Headers provide additional information about the request to the web server.
 
 ---
 
-# Request Body
+# 3. Request Body
 
-اختياري.
+The **Request Body** is optional.
 
-يستخدم غالباً مع:
+It is commonly used with methods such as:
 
-```
+```text
 POST
 PUT
 PATCH
 ```
 
-مثال:
+Example:
 
-```
+```http
 POST /login HTTP/1.1
 
 username=admin&password=123456
 ```
 
-البيانات الموجودة أسفل الـ Headers هي الـ Body.
+Everything below the headers represents the request body.
 
 ---
 
-# مثال عملي كامل
+# Complete HTTP Request Example
 
-```
+```http
 GET / HTTP/1.1
 Host: www.google.com
 User-Agent: Firefox
@@ -127,65 +129,58 @@ Connection: keep-alive
 
 ---
 
-تقسيمه:
+## Request Breakdown
 
-## Request Line
+### Request Line
 
-```
+```http
 GET / HTTP/1.1
 ```
 
 ---
 
-## Headers
+### Headers
 
-```
+```http
 Host: www.google.com
 User-Agent: Firefox
-Accept: text/htm
-lAccept-Encoding: gzip
+Accept: text/html
+Accept-Encoding: gzip
 Connection: keep-alive
 ```
 
 ---
 
-## Body
+### Body
 
-لا يوجد لأن GET عادة لا يحتوي Body.
+No body is included because **GET** requests typically do not contain one.
 
 ---
 
 # HTTP Methods
 
-
-
-
 ## GET
 
-يستخدم لجلب البيانات.
+Used to retrieve data from the server.
 
-مثال:
+Example:
 
-```
+```http
 GET /products
 ```
 
-معناه:
+Meaning:
 
-```
-اعرض لي المنتجات
-```
+> Retrieve the list of products.
 
+### Characteristics
 
-خصائصه:
+- Read-only operation.
+- Does not modify server-side data.
 
-- لا يغير البيانات.
-- يستخدم للقراءة فقط.
+Example:
 
-
-مثال:
-
-```
+```http
 GET /profile
 ```
 
@@ -193,296 +188,286 @@ GET /profile
 
 ## POST
 
-يرسل بيانات للسيرفر.
+Used to send data to the server.
 
-مثال:
+Example:
 
-```
+```http
 POST /login
 ```
 
-Body:
+Request Body:
 
-```
+```text
 username=admin&password=123456
 ```
 
-
-يستخدم في:
+Common use cases:
 
 - Login
 - Registration
-- Upload
+- File Upload
 
 ---
 
 ## PUT
 
-تحديث مورد كامل.
+Used to completely replace an existing resource.
 
-مثال:
+Example:
 
-```
+```http
 PUT /users/1
 ```
 
+Suppose the current resource is:
 
-إذا كان المستخدم:
-
-```
-{ "name":"Ali", "age":20}
-```
-
-وأرسلت PUT:
-
-```
-{ "name":"Ahmed", "age":25}
+```json
+{
+  "name": "Ali",
+  "age": 20
+}
 ```
 
-يتم استبدال البيانات كاملة.
+Sending:
+
+```json
+{
+  "name": "Ahmed",
+  "age": 25
+}
+```
+
+replaces the entire resource.
 
 ---
 
 ## PATCH
 
-يشبه PUT لكن لتعديل جزء فقط.
+Used to modify only part of an existing resource.
 
-مثال:
+Example:
 
+```json
+{
+  "age": 25
+}
 ```
-{ "age":25}
-```
 
-يعدل العمر فقط.
+Only the specified field is updated.
 
 ---
 
 ## DELETE
 
-يحذف مورد.
+Used to remove a resource.
 
-```
+Example:
+
+```http
 DELETE /users/1
 ```
 
+Meaning:
 
-معناه:
-
-```
-احذف المستخدم رقم 1
-```
+> Delete user with ID 1.
 
 ---
 
 ## HEAD
 
-مثل GET لكن بدون المحتوى.
+Similar to **GET**, but returns only the response headers without the response body.
 
-يرجع Headers فقط.
+Example:
 
-مثال:
-
-```
+```http
 HEAD /file.zip
 ```
 
+Useful for checking:
 
-مفيد لمعرفة:
-
-- حجم الملف
-- تاريخ التعديل
-- وجود الملف
+- File size
+- Last modification date
+- File existence
 
 ---
 
 ## OPTIONS
 
-يعرض ما هي الطرق المسموح بها.
+Returns the HTTP methods supported by the target resource.
 
-مثال:
+Example:
 
-```
+```http
 OPTIONS /api/users
 ```
 
-قد يرجع:
+Possible response:
 
-```
+```text
 GET, POST, PUT, DELETE
 ```
 
-
+This method is commonly used during enumeration.
 
 ---
 
 # URL / Path
 
-في:
+In the following request:
 
-```
+```http
 GET /downloads/index.php HTTP/1.1
 ```
 
-الـ Path هو:
+The path is:
 
-```
+```text
 /downloads/index.php
 ```
 
+The root page is always represented by:
 
-الصفحة الرئيسية دائماً:
-
-```
+```text
 /
 ```
 
-أمثلة:
+Examples:
 
-```
-//login/admin/uploads/api/users
+```text
+/login
+/admin
+/uploads
+/api/users
 ```
 
 ---
 
 # HTTP Protocol Version
 
-في:
+In the request:
 
-```
+```http
 GET / HTTP/1.1
 ```
 
-الجزء:
+The following component:
 
-```
+```text
 HTTP/1.1
 ```
 
-هو إصدار البروتوكول.
+indicates the HTTP protocol version.
 
 ---
 
 # Host Header
 
-من أهم الـ Headers.
+One of the most important HTTP headers.
 
-مثال:
+Example:
 
-```
+```http
 Host: www.google.com
 ```
 
+A single web server may host multiple websites on the same IP address.
 
-السيرفر قد يستضيف عدة مواقع على نفس الـ IP.
+The **Host** header tells the server which website the client wants to access.
 
-الـ Host يخبره أي موقع تريد.
+Example:
 
-
-مثال:
-
+```text
+One IP Address
+│
+├── google.com
+├── mail.google.com
+└── maps.google.com
 ```
-IP واحد│├── google.com├── mail.google.com└── maps.google.com
-```
 
-السيرفر يحدد الموقع المطلوب من Host Header.
-
+The server uses the Host header to determine the correct website.
 
 ---
 
 # User-Agent Header
 
-مثال:
+Example:
 
-```
+```http
 User-Agent: Firefox
 ```
 
+The **User-Agent** header identifies:
 
-يخبر السيرفر:
+- Browser type
+- Browser version
+- Operating system
 
-- نوع المتصفح
-- الإصدار
-- نظام التشغيل
+Real-world example:
 
-مثال حقيقي:
-
-```
+```http
 User-Agent: Mozilla/5.0 (Windows NT 10.0)
 ```
-
 
 ---
 
 # Accept Header
 
-مثال:
+Example:
 
-```
+```http
 Accept: text/html
 ```
 
+The **Accept** header tells the server which content types the client can process.
 
-يخبر السيرفر:
+Example:
 
-```
-ما نوع البيانات التي أستطيع استقبالها؟
-```
-
-
-أمثلة:
-
-```
+```http
 Accept: text/html
 ```
 
-HTML فقط.
-
-
+Indicates that the client expects HTML content.
 
 ---
 
 # Accept-Encoding Header
 
-مثال:
+Example:
 
-```
+```http
 Accept-Encoding: gzip, deflate
 ```
 
+This header informs the server that the client supports compressed responses.
 
-معناه:
+The server may respond using:
 
-```
-يمكنك ضغط البيانات قبل إرسالها
-```
-
-
-السيرفر يرسل:
-
-```
+```text
 gzip
 ```
 
-بدلاً من البيانات العادية.
+instead of uncompressed data.
 
-النتيجة:
+Benefits include:
 
-- سرعة أكبر
-- استهلاك أقل للشبكة
+- Faster response times
+- Reduced bandwidth usage
 
 ---
 
 # Connection Header
 
-مثال:
+Example:
 
-```
+```http
 Connection: keep-alive
 ```
 
+The **Connection** header controls whether the TCP connection remains open after the request.
 
-معناه:
+```text
+keep-alive
+```
 
-```
-لا تغلق الاتصال
-```
+Instructs the server to keep the connection open for additional requests instead of closing it immediately.

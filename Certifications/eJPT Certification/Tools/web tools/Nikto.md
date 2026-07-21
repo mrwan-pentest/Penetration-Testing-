@@ -1,184 +1,417 @@
-# ما هي Nikto؟
+# Nikto
 
-### **Nikto** أداة مفتوحة المصدر تستخدم لفحص خوادم الويب (Web Servers) واكتشاف:
+`Nikto` is an open-source **Web Server Scanner** used to perform security assessments against web servers.
 
-- الملفات الحساسة
-- الصفحات الخطيرة
-- الإعدادات الخاطئة (Misconfigurations)
-- الإصدارات القديمة
-- الثغرات المعروفة
-- المجلدات الافتراضية
+It is designed to identify common security issues, including:
 
+- Sensitive files
+- Dangerous web pages
+- Misconfigurations
+- Outdated software versions
+- Known vulnerabilities
+- Default directories and files
+
+Nikto is commonly used during the **Web Enumeration** phase of a penetration test to gather information about the target web server and identify potential attack vectors.
 
 ---
 
-# أهم الأوامر
+# What is Nikto Used For?
 
-## فحص موقع
+Nikto performs automated checks against web servers to discover security weaknesses.
+
+It can identify issues such as:
+
+- Exposed administrative pages
+- Default files installed by web servers
+- Backup files
+- Unsafe HTTP headers
+- Outdated server software
+- Known vulnerable components
+- Incorrect server configurations
+
+Example:
+
+A web server may expose files such as:
+
+```
+backup.zip
+config.old
+admin/
+```
+
+These resources may reveal sensitive information or provide additional attack opportunities.
+
+---
+
+# How Does Nikto Work?
+
+Nikto uses a database of known vulnerabilities and common web server issues.
+
+The scanning process:
+
+1. Nikto connects to the target web server.
+2. It sends HTTP/HTTPS requests.
+3. It compares responses against its vulnerability database.
+4. It reports discovered issues.
+
+Nikto does not exploit vulnerabilities automatically; instead, it identifies possible weaknesses that require further investigation.
+
+---
+
+# Basic Syntax
+
+```
+nikto -h <target>
+```
+
+Where:
+
+- `-h` specifies the target host or URL.
+
+---
+
+# Scanning a Website
+
+To scan a web server:
 
 ```
 nikto -h http://192.168.1.10
 ```
 
-الوظيفة:
+This performs a general security scan against the target.
 
-```
-فحص الموقع بالكامل واكتشاف المشاكل الشائعة.
-```
+Nikto checks for:
+
+- Common vulnerabilities
+- Misconfigurations
+- Exposed files
+- Known server issues
 
 ---
 
-# فحص HTTPS
+# Scanning HTTPS Websites
+
+If the target uses HTTPS:
 
 ```
 nikto -h https://192.168.1.10
 ```
 
-الوظيفة:
+Nikto will perform the scan against the HTTPS service.
 
-```
-فحص موقع يعمل عبر HTTPS.
-```
+This is useful when testing:
+
+- Secure web applications
+- HTTPS configurations
+- SSL-enabled services
 
 ---
 
-# تحديد منفذ معين
+# Scanning a Specific Port
+
+Web services are not always hosted on the default ports:
+
+```
+80  → HTTP
+443 → HTTPS
+```
+
+A web application may run on another port such as `8080`.
+
+Example:
 
 ```
 nikto -h 192.168.1.10 -p 8080
 ```
 
-الوظيفة:
+This scans the web service running on port:
 
 ```
-فحص خدمة ويب تعمل على المنفذ 8080.
+8080
 ```
 
 ---
 
-# فحص عدة منافذ
+# Scanning Multiple Ports
+
+Nikto can scan multiple web ports by separating them with commas.
+
+Example:
 
 ```
 nikto -h 192.168.1.10 -p 80,443,8080
 ```
 
-الوظيفة:
+This checks web services running on:
 
 ```
-فحص أكثر من منفذ ويب.
+80
+443
+8080
 ```
 
 ---
 
-# استخدام SSL
+# Using SSL Mode
+
+To force Nikto to use HTTPS:
 
 ```
 nikto -h 192.168.1.10 -ssl
 ```
 
-الوظيفة:
+This is useful when:
 
-```
-إجبار Nikto على استخدام HTTPS.
-```
+- The service uses SSL/TLS.
+- The target does not automatically detect HTTPS.
 
 ---
 
-# حفظ النتائج
+# Saving Scan Results
+
+Nikto results can be exported into a file for later analysis.
+
+Example:
 
 ```
 nikto -h 192.168.1.10 -o report.txt
 ```
 
-الوظيفة:
+The scan output will be saved as:
 
 ```
-حفظ التقرير في ملف.
+report.txt
 ```
+
+This is useful for:
+
+- Penetration testing reports
+- Documentation
+- Reviewing findings later
 
 ---
 
-# حفظ بصيغة HTML
+# Saving Results as HTML
+
+Nikto can generate reports in HTML format.
+
+Example:
 
 ```
 nikto -h 192.168.1.10 -o report.html -Format htm
 ```
 
-الوظيفة:
+This creates a browser-readable report.
 
-```
-إنشاء تقرير HTML.
-```
+HTML reports are useful for:
+
+- Professional security reports
+- Sharing findings with clients
+- Visual review of scan results
 
 ---
 
-# فحص Host محدد
+# Scanning a Domain Name
+
+Nikto can scan a target using a hostname instead of an IP address.
+
+Example:
 
 ```
 nikto -h example.com
 ```
 
-الوظيفة:
+Nikto will perform the scan against:
 
 ```
-فحص الموقع باستخدام اسم النطاق.
+example.com
 ```
+
+This is common when testing real-world web applications.
 
 ---
 
-# تشغيل فحص معين
+# Running a Specific Scan Type
+
+Nikto allows selecting specific categories of checks using the `-Tuning` option.
+
+Example:
 
 ```
 nikto -h target -Tuning 9
 ```
 
-الوظيفة:
+This performs checks for:
 
 ```
-فحص الملفات الخطيرة فقط.
+Dangerous Files
 ```
 
+---
 
-# خيار Tuning
+# Nikto Tuning Option
 
-يسمح بتحديد نوع الفحص.
+The `-Tuning` option allows testers to control which types of checks Nikto performs.
 
-أشهر ما يهمك:
+|Value|Scan Type|
+|---|---|
+|`0`|File Upload|
+|`1`|Interesting Files|
+|`2`|Misconfiguration|
+|`3`|Information Disclosure|
+|`4`|Injection|
+|`5`|Authentication|
+|`6`|Denial of Service|
+|`9`|Dangerous Files|
 
-```
-0 = File Upload
-1 = Interesting Files
-2 = Misconfiguration
-3 = Information Disclosure
-4 = Injection
-5 = Authentication
-6 = Denial of Service
-9 = Dangerous Files
-```
+---
 
-مثال:
+## Example: Misconfiguration Scan
 
 ```
 nikto -h target -Tuning 2
 ```
 
-يفحص:
+This focuses only on:
 
 ```
-Misconfigurations فقط
+Misconfigurations
 ```
+
+Examples:
+
+- Incorrect server settings
+- Default configurations
+- Unsafe options
 
 ---
 
-# فحص من خلال Proxy (Burp)
+## Example: Dangerous Files Scan
+
+```
+nikto -h target -Tuning 9
+```
+
+This focuses on finding:
+
+- Backup files
+- Sensitive files
+- Dangerous default resources
+
+---
+
+# Using Nikto Through a Proxy (Burp Suite)
+
+Nikto traffic can be routed through a proxy such as Burp Suite.
+
+Example:
 
 ```
 nikto -h target -useproxy http://127.0.0.1:8080
 ```
 
-الوظيفة:
+This sends all Nikto requests through:
 
 ```
-تمرير جميع الطلبات عبر Burp Suite.
+Burp Suite Proxy
+127.0.0.1:8080
 ```
 
+---
+
+# Why Use a Proxy During Testing?
+
+Passing Nikto traffic through Burp Suite allows you to:
+
+- Inspect HTTP requests
+- Modify requests manually
+- Analyze server responses
+- Combine automated scanning with manual testing
+
+This is useful for deeper web application assessments.
+
+---
+
+# Nikto in a Penetration Testing Workflow
+
+A common web testing workflow:
+
+## Step 1: Identify the Web Service
+
+First, identify open web ports:
+
+```
+nmap -p 80,443 target
+```
+
+---
+
+## Step 2: Run Nikto Scan
+
+Perform automated web server enumeration:
+
+```
+nikto -h http://target
+```
+
+---
+
+## Step 3: Analyze Findings
+
+Review discovered issues such as:
+
+```
+- Exposed files
+- Outdated versions
+- Misconfigurations
+- Sensitive directories
+```
+
+---
+
+## Step 4: Perform Manual Testing
+
+Use tools such as:
+
+- Burp Suite
+- Gobuster
+- Dirb
+- Manual HTTP testing
+
+to investigate discovered issues further.
+
+---
+
+# Summary
+
+`Nikto` is an open-source Web Server Scanner used to identify common security weaknesses in web servers.
+
+Key points:
+
+- Used during Web Enumeration.
+- Detects:
+    - Sensitive files
+    - Misconfigurations
+    - Outdated software
+    - Known vulnerabilities
+    - Dangerous directories
+- Supports:
+    - HTTP and HTTPS scanning
+    - Custom ports
+    - Report generation
+    - Scan customization
+    - Proxy integration
+
+Important options:
+
+```
+-h              → Target host
+-p              → Specify port
+-ssl            → Use HTTPS
+-o              → Save output
+-Format htm     → Generate HTML report
+-Tuning         → Select scan categories
+-useproxy       → Use proxy server
+```
+
+Nikto is a valuable first-pass scanner that helps penetration testers quickly identify potential weaknesses before moving to deeper manual analysis.
