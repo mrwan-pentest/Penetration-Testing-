@@ -13,7 +13,7 @@
 ![](../../Images/Pasted%20image%2020260721202303.png)
 
 
-![](../../Images/Pasted%20image%2020260721202339.png)
+![](Pasted%20image%2020260721202452.png)
 
 # Service Enumeration
 
