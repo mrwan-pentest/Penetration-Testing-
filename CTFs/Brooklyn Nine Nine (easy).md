@@ -10,7 +10,7 @@ The objective of this lab was to enumerate the FTP service, extract useful infor
 
 Performed an Nmap scan to identify the exposed services running on the target.
 
-![[Pasted image 20260401113044.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260401113044.png)
 
 ---
 
@@ -18,11 +18,11 @@ Performed an Nmap scan to identify the exposed services running on the target.
 
 Connected to the FTP server using **anonymous login** and enumerated the available files.
 
-![[Pasted image 20260401113133.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260401113133.png)
 
 During the enumeration, discovered a valid username.
 
-![[Pasted image 20260701225623.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260701225623.png)
 
 ---
 
@@ -30,7 +30,7 @@ During the enumeration, discovered a valid username.
 
 Performed a brute-force attack against the discovered user account and successfully recovered its password.
 
-![[Pasted image 20260401113200.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260401113200.png)
 
 ---
 
@@ -38,7 +38,7 @@ Performed a brute-force attack against the discovered user account and successfu
 
 Authenticated to the target through SSH using the recovered credentials.
 
-![[Pasted image 20260701225659.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260701225659.png)
 
 ---
 
@@ -48,15 +48,15 @@ Executed `sudo -l` to identify commands that could be run with elevated privileg
 
 Discovered a binary that could be abused for privilege escalation.
 
-![[Pasted image 20260701225736.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260701225736.png)
 
 Searched **GTFOBins** for the binary and obtained the appropriate exploitation technique.
 
-![[Pasted image 20260701225811.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260701225811.png)
 
 Executed the provided commands and successfully obtained root privileges.
 
-![[Pasted image 20260701225902.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260701225902.png)
 
 ---
 

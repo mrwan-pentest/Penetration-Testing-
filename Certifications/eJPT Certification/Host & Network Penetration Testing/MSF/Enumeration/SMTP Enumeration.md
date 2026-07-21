@@ -109,7 +109,7 @@ Username Enumeration
 
 It attempts to identify valid usernames by interacting with the SMTP server.
 
-![[Pasted image 20260514160819.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514160819.png)
 
 Discovered usernames can later be used in attacks against other services, such as:
 

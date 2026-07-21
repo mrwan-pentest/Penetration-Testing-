@@ -76,7 +76,7 @@ select user from mysql.user;
 	auxiliary/scanner/mysql/mysql_version
 	
 
-![[Pasted image 20260514141335.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141335.png)
 
 ---
 
@@ -92,7 +92,7 @@ Username/Password
 (Bruteforce)
 
 
-![[Pasted image 20260514141431.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141431.png)
 
 ---
 
@@ -108,7 +108,7 @@ auxiliary/admin/mysql/mysql_enum
 ### privileges
 ### versions
 
-![[Pasted image 20260514141535.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141535.png)
 
 ---
 
@@ -121,7 +121,7 @@ auxiliary/scanner/mysql/mysql_schemadump
 - Databases
 - Tables
 
-![[Pasted image 20260514141642.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141642.png)
 
 ---
 - `auxiliary/admin/mysql/mysql_sql`
@@ -130,7 +130,7 @@ auxiliary/scanner/mysql/mysql_schemadump
 Excute SQL commands
 ```
 
-![[Pasted image 20260514141834.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141834.png)
 
 ---
 - `auxiliary/scanner/mysql/mysql_file_enum`
@@ -148,7 +148,7 @@ Search for files stored on the target server using MySQL features.
 موجودة ويمكن الوصول لها.
 
 
-![[Pasted image 20260514141919.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514141919.png)
 
 ---
 - `auxiliary/scanner/mysql/mysql_writable_dirs`
@@ -157,7 +157,7 @@ Search for files stored on the target server using MySQL features.
 Identify writable directories that can be accessed through MySQL.
 ```
 
-![[Pasted image 20260514142003.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514142003.png)
 
 ---
 - `auxiliary/scanner/mysql/mysql_hashdump`
@@ -166,6 +166,6 @@ Identify writable directories that can be accessed through MySQL.
 Extract password hashes associated with MySQL user accounts.
 ```
 
-![[Pasted image 20260514142119.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514142119.png)
 
 ---

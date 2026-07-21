@@ -229,7 +229,7 @@ Kernel exploits are highly dependent on the Linux kernel version. Therefore, the
 uname -r
 ```
 
-![[Pasted image 20260709165621.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709165621.png)
 
 ## Step 2 - Search for a Matching Exploit
 
@@ -237,13 +237,13 @@ After identifying the kernel version, we searched for publicly available exploit
 
 We found a suitable exploit on **Exploit-DB**.
 
-![[Pasted image 20260709165908.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709165908.png)
 
 ## Step 3 - Transfer the Exploit
 
 We copied the exploit source code to the target machine, placing it inside the `/tmp` directory.
 
-![[Pasted image 20260709172348.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709172348.png)
 
 ## Step 4 - Compile the Exploit
 
@@ -257,7 +257,7 @@ The `gcc` compiler translates the C source code into an executable binary.
 
 However, compilation failed with several errors.
 
-![[Pasted image 20260709170534.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709170534.png)
 
 Because this exploit targets an older Linux kernel, some required GNU features and function declarations were missing.
 
@@ -274,11 +274,11 @@ To resolve the issue, we added the following code at the beginning of the source
 
 These headers expose functions such as `clone()`, `unshare()`, `wait()`, and `waitpid()`, which are required by the exploit.
 
-![[Pasted image 20260709170731.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709170731.png)
 
 After adding the required definitions, the exploit compiled successfully.
 
-![[Pasted image 20260709172431.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709172431.png)
 
 ## Step 5 - Execute the Exploit
 
@@ -290,7 +290,7 @@ Finally, we executed the compiled exploit.
 
 The exploit successfully escalated our privileges and spawned a root shell.
 
-![[Pasted image 20260709172634.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709172634.png)
 
 ---
 
@@ -312,7 +312,7 @@ We checked which commands the current user was allowed to execute with `sudo`.
 sudo -l
 ```
 
-![[Pasted image 20260709173022.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709173022.png)
 
 The output revealed three binaries that could be executed as **root** without requiring a password.
 
@@ -322,15 +322,15 @@ Any of these binaries could potentially be used for Privilege Escalation.
 
 We selected the `find` binary and searched for it on **GTFOBins** to determine whether it could be abused for Privilege Escalation.
 
-![[Pasted image 20260709173344.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709173344.png)
 
 GTFOBins provided a payload specifically designed for `sudo` exploitation.
 
-![[Pasted image 20260709173415.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709173415.png)
 
 We executed the payload using `sudo`, successfully obtaining a root shell.
 
-![[Pasted image 20260709173540.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709173540.png)
 
 ---
 
@@ -352,19 +352,19 @@ We searched the system for executables with the SUID permission.
 find / -type f -perm /4000 2>/dev/null
 ```
 
-![[Pasted image 20260709173856.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709173856.png)
 
 During enumeration, we look for binaries that are commonly listed on **GTFOBins**, such as `bash`, `find`, `vim`, `less`, `cp`, `base64`, and many others.
 
 We discovered a vulnerable `base64` binary.
 
-![[Pasted image 20260711213157.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711213157.png)
 
 ## Step 2 - Search GTFOBins
 
 We searched GTFOBins to determine whether `base64` could be abused.
 
-![[Pasted image 20260711213416.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711213416.png)
 
 The documentation showed that the binary could be used to read arbitrary files with root privileges.
 
@@ -379,11 +379,11 @@ For demonstration purposes, we used the technique to read the flag.
 
 First, we located the flag file.
 
-![[Pasted image 20260711214146.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711214146.png)
 
 Then, we used `base64` to read its contents.
 
-![[Pasted image 20260711215528.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711215528.png)
 
 ## Useful Commands for Enumerating SUID Files
 
@@ -414,21 +414,21 @@ We searched the system for binaries with Linux Capabilities assigned.
 getcap -r / 2>/dev/null
 ```
 
-![[Pasted image 20260711221033.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711221033.png)
 
 The command returned two binaries with assigned capabilities.
 
-![[Pasted image 20260711221236.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711221236.png)
 
 ## Step 2 - Search GTFOBins
 
 We selected the `view` binary and searched for it on **GTFOBins** to determine whether it could be abused for Privilege Escalation.
 
-![[Pasted image 20260711223303.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711223303.png)
 
 GTFOBins provided a payload capable of spawning a root shell.
 
-![[Pasted image 20260711223323.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711223323.png)
 
 Before executing the payload, we verified which version of Python was available on the target.
 
@@ -442,7 +442,7 @@ If Python 2 is unavailable, check for Python 3.
 which python3
 ```
 
-![[Pasted image 20260711223417.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711223417.png)
 
 Since the target was running Python 3, we modified the payload accordingly.
 
@@ -480,7 +480,7 @@ cat /etc/crontab
 
 The output showed several scripts executed as the **root** user.
 
-![[Pasted image 20260711224647.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711224647.png)
 
 The schedule contained five asterisks (`* * * * *`), indicating that the scripts were executed every minute.
 
@@ -488,7 +488,7 @@ The schedule contained five asterisks (`* * * * *`), indicating that the scripts
 
 After inspecting one of the configured scripts, we discovered that the referenced file no longer existed.
 
-![[Pasted image 20260711224909.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711224909.png)
 
 Since the cron job still attempted to execute the missing file as **root**, we could create a new file with the same name and path.
 
@@ -496,7 +496,7 @@ Since the cron job still attempted to execute the missing file as **root**, we c
 
 We navigated to the directory where the missing script was expected and created a new file with the same name.
 
-![[Pasted image 20260711225126.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711225126.png)
 
 Before writing the payload, we confirmed which Python version was installed.
 
@@ -504,7 +504,7 @@ Before writing the payload, we confirmed which Python version was installed.
 which python3
 ```
 
-![[Pasted image 20260711225350.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711225350.png)
 
 The system was running Python 3.
 
@@ -518,21 +518,21 @@ os.system("")
 
 We then inserted the Reverse Shell payload into the script.
 
-![[Pasted image 20260711231729.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711231729.png)
 
-![[Pasted image 20260711231756.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711231756.png)
 
 Next, we made the script executable.
 
-![[Pasted image 20260711231826.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711231826.png)
 
 Finally, we started a listener on our attacking machine.
 
-![[Pasted image 20260711231849.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711231849.png)
 
 Within one minute, the cron service executed our malicious script as **root**, resulting in a root shell.
 
-![[Pasted image 20260711231933.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260711231933.png)
 
 ---
 
@@ -552,19 +552,19 @@ We inspected the files inside the `murdoch` directory.
 
 The directory contained a Python script and another executable.
 
-![[Pasted image 20260712161253.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712161253.png)
 
 When we executed the binary, it attempted to run a command named `thm`, but failed because the command could not be found.
 
-![[Pasted image 20260712161454.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712161454.png)
 
 We then reviewed the Python source code and confirmed that it also attempted to execute the `thm` command.
 
-![[Pasted image 20260712161619.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712161619.png)
 
 Executing the command manually produced the same error.
 
-![[Pasted image 20260712161901.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712161901.png)
 
 This confirmed that `thm` did not exist in any directory listed in the `PATH` environment variable.
 
@@ -572,35 +572,35 @@ This confirmed that `thm` did not exist in any directory listed in the `PATH` en
 
 We navigated to the `/tmp` directory and created a malicious executable named `thm`.
 
-![[Pasted image 20260712162235.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162235.png)
 
 Inside the file, we added a payload that launches a Bash shell.
 
-![[Pasted image 20260712162320.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162320.png)
 
 Next, we granted the file execute permissions.
 
-![[Pasted image 20260712162423.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162423.png)
 
 ## Step 3 - Modify the PATH Variable
 
 To ensure Linux could locate our malicious executable, we displayed the current `PATH` variable.
 
-![[Pasted image 20260712162623.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162623.png)
 
 We then prepended the `/tmp` directory to the `PATH`.
 
-![[Pasted image 20260712162725.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162725.png)
 
 After updating the environment variable, the `thm` command executed successfully.
 
-![[Pasted image 20260712162818.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162818.png)
 
 Finally, we executed the privileged binary again.
 
 This time, it executed our malicious `thm` program instead of a legitimate command, resulting in a root shell.
 
-![[Pasted image 20260712162931.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712162931.png)
 
 ---
 
@@ -621,17 +621,17 @@ We began by searching for binaries with the SUID permission.
 find / -type f -perm /4000 2>/dev/null
 ```
 
-![[Pasted image 20260712163439.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712163439.png)
 
 During enumeration, we discovered a `base64` binary with the SUID bit set.
 
-![[Pasted image 20260712163516.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712163516.png)
 
 ## Step 2 - Search GTFOBins
 
 We searched for the `base64` binary on **GTFOBins**.
 
-![[Pasted image 20260712164401.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164401.png)
 
 The documentation showed that this binary could be abused to read arbitrary files with root privileges.
 
@@ -639,19 +639,19 @@ The documentation showed that this binary could be abused to read arbitrary file
 
 Using the provided technique, we read the `/etc/shadow` file and extracted the stored password hashes.
 
-![[Pasted image 20260712163826.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712163826.png)
 
 ## Step 4 - Crack the Password Hash
 
 We copied the password hash belonging to the **missy** user and cracked it using **John the Ripper**.
 
-![[Pasted image 20260712163955.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712163955.png)
 
 ## Step 5 - SSH Login
 
 Using the recovered credentials, we authenticated to the target via SSH.
 
-![[Pasted image 20260712164126.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164126.png)
 
 ## Step 6 - Enumerate Sudo Permissions
 
@@ -663,20 +663,20 @@ sudo -l
 
 The output revealed a binary that could be executed with root privileges.
 
-![[Pasted image 20260712164303.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164303.png)
 
 ## Step 7 - Search GTFOBins
 
 We searched the binary on **GTFOBins** to identify a suitable Privilege Escalation technique.
 
-![[Pasted image 20260712164427.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164427.png)
 
 We executed the recommended payload and successfully obtained a root shell.
 
-![[Pasted image 20260712164458.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164458.png)
 
 ## Step 8 - Capture the Flags
 
 Finally, we located and read both flag files.
 
-![[Pasted image 20260712164647.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260712164647.png)

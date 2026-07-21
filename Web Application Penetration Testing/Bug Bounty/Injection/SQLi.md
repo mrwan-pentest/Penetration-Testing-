@@ -40,11 +40,11 @@ An attacker may inject additional SQL logic to alter the query and bypass authen
 
 We started by testing the password field with a single quote (`'`). The application returned a database error, indicating that user input was likely being processed directly inside an SQL query. This behavior suggested that the application might be vulnerable to SQL Injection.
 
-![[Pasted image 20260708205556.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708205556.png)
 
 Next, we tested the login form by injecting a simple condition after the password input. The application accepted the modified input, further confirming that the login query was vulnerable to SQL Injection.
 
-![[Pasted image 20260708205639.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708205639.png)
 
 ---
 
@@ -56,7 +56,7 @@ We entered a random password, closed the original SQL statement using a single q
 
 This caused the authentication query to return a valid result, allowing us to bypass the login page successfully.
 
-![[Pasted image 20260708210240.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708210240.png)
 
 ---
 
@@ -68,7 +68,7 @@ We entered the target username, closed the string using a single quote, and comm
 
 After that, we either entered a random password or left the password field empty. Since the remaining part of the SQL query was ignored, the application authenticated us successfully.
 
-![[Pasted image 20260708210705.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708210705.png)
 
 ---
 
@@ -78,23 +78,23 @@ If the application performs stronger input validation or client-side filtering, 
 
 First, we submitted the login form using normal credentials without any special characters.
 
-![[Pasted image 20260708211416.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708211416.png)
 
 Next, we intercepted the HTTP request using Burp Suite.
 
-![[Pasted image 20260708211533.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708211533.png)
 
 After intercepting the request, we modified the SQL Injection payload directly inside the HTTP request before forwarding it to the server.
 
-![[Pasted image 20260708211937.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708211937.png)
 
 Finally, we forwarded the modified request.
 
-![[Pasted image 20260708211620.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708211620.png)
 
 The server processed the injected payload, and we successfully bypassed the authentication mechanism.
 
-![[Pasted image 20260708211953.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708211953.png)
 
 ---
 # Reading Database Information
@@ -109,7 +109,7 @@ If an invalid column index is supplied and the application returns a database er
 
 We first accessed the application normally to observe its default behavior.
 
-![[Pasted image 20260708215450.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708215450.png)
 
 ### Step 2 - Testing the First Column
 
@@ -121,11 +121,11 @@ ORDER BY 1
 
 This tells the database to sort the results using the first column.
 
-![[Pasted image 20260708215338.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708215338.png)
 
 The request executed successfully, confirming that the first column exists.
 
-![[Pasted image 20260708215426.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708215426.png)
 
 > **Note**
 >
@@ -137,11 +137,11 @@ The request executed successfully, confirming that the first column exists.
 
 Next, we tested a much larger column number.
 
-![[Pasted image 20260708215640.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708215640.png)
 
 The application returned a database error, indicating that the specified column does not exist. This also suggested that the application was likely vulnerable to SQL Injection.
 
-![[Pasted image 20260708215718.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708215718.png)
 
 ---
 
@@ -155,7 +155,7 @@ We tested multiple values using `ORDER BY` until the application generated an er
 
 The highest value that executed successfully was **5**, which confirmed that the original query returns **five columns**.
 
-![[Pasted image 20260708220651.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708220651.png)
 
 ## Using `UNION`
 
@@ -167,7 +167,7 @@ During SQL Injection, attackers use `UNION SELECT` to retrieve arbitrary informa
 
 We first identified which columns were reflected in the application's response.
 
-![[Pasted image 20260708220921.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708220921.png)
 
 ### Retrieving Database Information
 
@@ -177,9 +177,9 @@ After identifying the reflected columns, we extracted useful database informatio
 - Current database user
 - Database version
 
-![[Pasted image 20260708221105.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708221105.png)
 
-![[Pasted image 20260708221117.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708221117.png)
 
 ---
 
@@ -199,7 +199,7 @@ The `information_schema` database is automatically created by the database manag
 
 The query returned all tables contained within the **owasp10** database.
 
-![[Pasted image 20260708222505.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708222505.png)
 
 ---
 
@@ -217,7 +217,7 @@ WHERE table_name='accounts'
 
 This displayed all columns contained in the **accounts** table.
 
-![[Pasted image 20260708223241.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708223241.png)
 
 Once the column names were identified, we extracted sensitive information such as usernames and passwords.
 
@@ -228,7 +228,7 @@ FROM accounts
 
 The query successfully returned the usernames and passwords stored in the table.
 
-![[Pasted image 20260708223718.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260708223718.png)
 
 ---
 # SQL Injection (Blind)
@@ -287,10 +287,10 @@ order by 1000000000000
 حاولنا نفعل inject بكندشن صحيح عشان نعرف هل سيتم تنفيذ الأمر
 ولكن ظهر لنا هذا الخطأ
 
-![[Pasted image 20260710210208.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260710210208.png)
 
 من الواضح انه الخطأ بسبب أننا كتبنا  كوتس ' 
 جربنا الأمر بدونها وتنفذ الأمر بشكل صحيح
 
-![[Pasted image 20260710210416.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260710210416.png)
 

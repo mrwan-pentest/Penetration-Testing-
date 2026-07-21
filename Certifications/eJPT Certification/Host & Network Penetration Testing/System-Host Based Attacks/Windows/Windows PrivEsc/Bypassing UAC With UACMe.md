@@ -169,7 +169,7 @@ The official repository:
 
 [https://github.com/hfiref0x/UACME](https://github.com/hfiref0x/UACME)
 
-![[Pasted image 20260519015121.png]]
+![./Images/Pasted%20image%2020260519015121.png)
 
 ---
 
@@ -179,7 +179,7 @@ UACMe provides information about which methods work against specific Windows ver
 
 You can check the available techniques from the documentation.
 
-![[Pasted image 20260519015200.png]]
+![./Images/Pasted%20image%2020260519015200.png)
 
 ---
 
@@ -187,7 +187,7 @@ You can check the available techniques from the documentation.
 
 The tool can be downloaded from the official repository.
 
-![[Pasted image 20260519015232.png]]
+![./Images/Pasted%20image%2020260519015232.png)
 
 ---
 
@@ -197,7 +197,7 @@ The tool can be downloaded from the official repository.
 
 First, we verify that the current user belongs to the Administrators group.
 
-![[Pasted image 20260519020307.png]]
+![./Images/Pasted%20image%2020260519020307.png)
 
 ---
 
@@ -211,7 +211,7 @@ Example:
 cd C:\Users\admin\AppData\Local\Temp
 ```
 
-![[Pasted image 20260519020410.png]]
+![./Images/Pasted%20image%2020260519020410.png)
 
 ---
 
@@ -219,7 +219,7 @@ cd C:\Users\admin\AppData\Local\Temp
 
 We upload the UACMe executable to the target system.
 
-![[Pasted image 20260519020436.png]]
+![./Images/Pasted%20image%2020260519020436.png)
 
 ---
 
@@ -227,7 +227,7 @@ We upload the UACMe executable to the target system.
 
 After uploading the tool, we transfer the payload that will be executed after the UAC bypass.
 
-![[Pasted image 20260519020459.png]]
+![./Images/Pasted%20image%2020260519020459.png)
 
 ---
 
@@ -235,7 +235,7 @@ After uploading the tool, we transfer the payload that will be executed after th
 
 Before executing the bypass technique, we start a Listener to receive the incoming session.
 
-![[Pasted image 20260519020602.png]]
+![./Images/Pasted%20image%2020260519020602.png)
 
 ---
 
@@ -253,7 +253,7 @@ represents the specific UAC bypass method that will be used.
 
 Each method targets specific Windows versions and configurations.
 
-![[Pasted image 20260519020659.png]]
+![./Images/Pasted%20image%2020260519020659.png)
 
 ---
 

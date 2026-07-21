@@ -20,7 +20,7 @@ Performed an Nmap scan to identify the exposed services and open ports.
 
 The scan revealed that the web service was running on **port 8000**.
 
-![[Pasted image 20260419095204.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095204.png)
 
 ---
 
@@ -28,11 +28,11 @@ The scan revealed that the web service was running on **port 8000**.
 
 Recovered a valid password.
 
-![[Pasted image 20260419095350.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095350.png)
 
 Recovered a valid username.
 
-![[Pasted image 20260419095431.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095431.png)
 
 ---
 
@@ -50,7 +50,7 @@ Searched for publicly available exploits using **SearchSploit**.
 
 A corresponding **Metasploit** module was found for the identified Bolt CMS version.
 
-![[Pasted image 20260419095842.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095842.png)
 
 ---
 
@@ -60,9 +60,9 @@ Executed the Metasploit module to exploit the vulnerability.
 
 Successfully obtained a remote session on the target.
 
-![[Pasted image 20260419095928.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095928.png)
 
-![[Pasted image 20260419095946.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260419095946.png)
 
 ---
 

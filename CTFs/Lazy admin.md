@@ -8,29 +8,29 @@ This lab demonstrates a complete attack chain that begins with web enumeration, 
 
 We began by performing an Nmap scan against the target to identify open ports and running services.
 
-![[Pasted image 20260422065437.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065437.png)
 
 ## Step 2 - Directory Enumeration
 
 Next, we performed directory fuzzing to discover hidden files and directories exposed by the web server.
 
-![[Pasted image 20260422065501.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065501.png)
 
 During the scan, we discovered a **content** directory.
 
 To continue the enumeration process, we performed another fuzzing scan against this directory.
 
-![[Pasted image 20260422065530.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065530.png)
 
 The second scan revealed a MySQL backup file.
 
-![[Pasted image 20260422065656.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065656.png)
 
 ## Step 3 - Credential Discovery
 
 After downloading and inspecting the backup file, we discovered a username and a password hash.
 
-![[Pasted image 20260422065753.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065753.png)
 
 ## Step 4 - Hash Identification
 
@@ -40,11 +40,11 @@ The tool identified the hash as **MD5**.
 
 Next, we used **Hashcat** to crack the password.
 
-![[Pasted image 20260422065927.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065927.png)
 
 The attack successfully recovered the plaintext password.
 
-![[Pasted image 20260422065951.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422065951.png)
 
 # Exploitation
 
@@ -56,13 +56,13 @@ Using the recovered credentials, we authenticated to the application's administr
 
 After logging in, we uploaded a PHP payload through the dashboard.
 
-![[Pasted image 20260422070035.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422070035.png)
 
 ## Step 3 - Execute the Payload
 
 To execute the uploaded PHP code, we browsed to its location on the web server.
 
-![[Pasted image 20260422070104.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422070104.png)
 
 The payload executed successfully and established a Reverse Shell connection.
 
@@ -80,7 +80,7 @@ This command lists all programs that the current user can run with elevated priv
 
 The output revealed a PowerShell script that could be executed as the **root** user.
 
-![[Pasted image 20260422070304.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260422070304.png)
 
 ## Step 2 - Analyze the Script
 

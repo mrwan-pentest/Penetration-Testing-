@@ -134,7 +134,7 @@ x86/shikata_ga_nai
 
 ## Windows
 
-![[Pasted image 20260525003512.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525003512.png)
 
 ---
 
@@ -146,10 +146,10 @@ Use the following option:
 -i
 ```
 
-![[Pasted image 20260525004053.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525004053.png)
 
 ---
 
 # Linux
 
-![[Pasted image 20260525004433.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525004433.png)

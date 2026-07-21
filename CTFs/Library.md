@@ -8,13 +8,13 @@ This lab demonstrates an attack chain that begins with user enumeration, continu
 
 We began by performing an Nmap scan against the target to identify open ports and running services.
 
-![[Pasted image 20260709163048.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709163048.png)
 
 ## Step 2 - User Enumeration
 
 After accessing the web application, we performed user enumeration and successfully identified a valid username.
 
-![[Pasted image 20260406093000.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260406093000.png)
 
 # Exploitation
 
@@ -24,7 +24,7 @@ Using the discovered username, we performed an SSH brute-force attack with **Hyd
 
 Hydra is commonly used to test multiple password combinations against network services such as SSH, FTP, HTTP, SMB, and many others.
 
-![[Pasted image 20260709163437.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709163437.png)
 
 The attack successfully recovered valid SSH credentials.
 
@@ -32,7 +32,7 @@ The attack successfully recovered valid SSH credentials.
 
 Using the recovered credentials, we authenticated to the target through SSH.
 
-![[Pasted image 20260709163533.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260709163533.png)
 
 # Privilege Escalation
 
@@ -50,13 +50,13 @@ This command lists all programs that the current user can execute with elevated 
 
 The output revealed that a Python script could be executed as the **root** user.
 
-![[Pasted image 20260406093137.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260406093137.png)
 
 ## Step 2 - Replace the Python Script
 
 Since we had permission to modify the script, we deleted the original Python file and created a new file with the same name containing a Python shell payload.
 
-![[Pasted image 20260406093226.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260406093226.png)
 
 ## Step 3 - Execute the Script as Root
 
@@ -64,7 +64,7 @@ Finally, we executed the Python script using the permitted `sudo` command.
 
 Because the script was executed with root privileges, it spawned a root shell and successfully completed the Privilege Escalation.
 
-![[Pasted image 20260406093402.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260406093402.png)
 
 # Summary
 

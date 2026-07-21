@@ -209,33 +209,33 @@ Common Google Dorks Operators
 
 ## Show all indexed pages of a specific website.
 
-![[Pasted image 20260510150210.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510150210.png)
 
 
 
 ## Search for web pages that include the word “admin” in the URL or content.
 
-![[Pasted image 20260510150247.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510150247.png)
 
 
 
 ## Find and list subdomains related to a target domain.
 
-![[Pasted image 20260510150351.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510150351.png)
 
 ## Search for pages that contain files with a specific extension such as PDF.
 
-![[Pasted image 20260510154632.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510154632.png)
 
 بحث عن كلمة معينه داخل ملف
 هنا يعني هذا الامر 
 ابحث داخل موقع ine.com  عن pdf  وابحث داخله عن كلمة password
 
-![[Pasted image 20260510154936.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510154936.png)
 
 ## Search inside a website for files of a specific type (e.g. PDF) that contain a specific keyword.
 
 ### Example:  
 #### Search within `ine.com` for PDF files that contain the word “password”.
 
-![[Pasted image 20260510155356.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260510155356.png)

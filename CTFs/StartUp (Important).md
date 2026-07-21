@@ -45,7 +45,7 @@ If a Cron Job runs with root privileges and executes a file that is writable by 
 
 We started by performing an Nmap scan to identify open ports and running services on the target machine.
 
-![[Pasted image 20260716230758.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716230758.png)
 
 ---
 
@@ -55,7 +55,7 @@ We attempted to authenticate to the FTP service using the anonymous account.
 
 The server allowed anonymous authentication without requiring valid credentials.
 
-![[Pasted image 20260716231128.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716231128.png)
 
 This indicated that the FTP server was publicly accessible and could potentially allow file uploads.
 
@@ -65,7 +65,7 @@ This indicated that the FTP server was publicly accessible and could potentially
 
 Next, we performed directory enumeration against the web server to discover hidden resources.
 
-![[Pasted image 20260716231230.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716231230.png)
 
 The scan revealed a directory named:
 
@@ -73,7 +73,7 @@ The scan revealed a directory named:
 /files
 ```
 
-![[Pasted image 20260716231312.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716231312.png)
 
 After accessing this directory, we discovered that it pointed directly to the FTP server's files, meaning any uploaded files could be accessed through the web server.
 
@@ -85,11 +85,11 @@ This made it possible to upload a PHP script via FTP and execute it from the bro
 
 We searched for a PHP Reverse Shell.
 
-![[Pasted image 20260716231656.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716231656.png)
 
 After downloading the shell, we modified it by configuring our attacker's IP address and listening port.
 
-![[Pasted image 20260716231947.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716231947.png)
 
 ---
 
@@ -97,7 +97,7 @@ After downloading the shell, we modified it by configuring our attacker's IP add
 
 Using the anonymous FTP session, we uploaded the PHP Reverse Shell to the server.
 
-![[Pasted image 20260716232156.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716232156.png)
 
 ---
 
@@ -105,7 +105,7 @@ Using the anonymous FTP session, we uploaded the PHP Reverse Shell to the server
 
 Before executing the uploaded shell, we started a Netcat listener to receive the incoming Reverse Shell connection.
 
-![[Pasted image 20260716232032.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716232032.png)
 
 ---
 
@@ -115,11 +115,11 @@ We navigated to the uploaded PHP file through the web server.
 
 Executing the file caused the PHP code to run on the server and establish a Reverse Shell.
 
-![[Pasted image 20260716232249.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716232249.png)
 
 A successful Reverse Shell connection was established.
 
-![[Pasted image 20260716232319.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716232319.png)
 
 ---
 
@@ -127,15 +127,15 @@ A successful Reverse Shell connection was established.
 
 During post-exploitation enumeration, we discovered a Wireshark capture file.
 
-![[Pasted image 20260716232959.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716232959.png)
 
 To retrieve the file, we copied it into the FTP directory so it could be downloaded from our attacker machine.
 
-![[Pasted image 20260716233150.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716233150.png)
 
 We then downloaded the capture file for offline analysis.
 
-![[Pasted image 20260716233323.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716233323.png)
 
 ---
 
@@ -143,15 +143,15 @@ We then downloaded the capture file for offline analysis.
 
 We opened the capture file using Wireshark.
 
-![[Pasted image 20260717161229.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717161229.png)
 
 While analyzing the traffic, we noticed repeated communications involving port **4444**, making it an interesting indicator for further investigation.
 
-![[Pasted image 20260717161813.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717161813.png)
 
 Inspecting the suspicious packets revealed plaintext credentials.
 
-![[Pasted image 20260717162006.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717162006.png)
 
 These credentials were later used to access the target via SSH.
 
@@ -161,7 +161,7 @@ These credentials were later used to access the target via SSH.
 
 Using the recovered credentials, we authenticated successfully to the SSH service.
 
-![[Pasted image 20260717162227.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717162227.png)
 
 This provided a more stable shell for privilege escalation.
 
@@ -171,15 +171,15 @@ This provided a more stable shell for privilege escalation.
 
 During enumeration, we discovered a directory containing a script executed by the root user.
 
-![[Pasted image 20260717163017.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163017.png)
 
 After examining the script, we found that it executed another file.
 
-![[Pasted image 20260717163047.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163047.png)
 
 We checked the permissions of this secondary file and discovered that our current user had full write permissions.
 
-![[Pasted image 20260717163130.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163130.png)
 
 This represented a classic Cron Job privilege escalation opportunity.
 
@@ -189,19 +189,19 @@ This represented a classic Cron Job privilege escalation opportunity.
 
 We generated a Bash Reverse Shell payload from **revshells.com**.
 
-![[Pasted image 20260717163211.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163211.png)
 
 We replaced the contents of the writable script with the Reverse Shell payload.
 
-![[Pasted image 20260717163330.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163330.png)
 
 Before the Cron Job executed, we started a Netcat listener.
 
-![[Pasted image 20260717163347.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163347.png)
 
 Once the scheduled Cron Job ran, it executed our modified script with root privileges, establishing a Reverse Shell as the root user.
 
-![[Pasted image 20260717163411.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717163411.png)
 
 ---
 

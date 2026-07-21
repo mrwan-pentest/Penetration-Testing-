@@ -30,7 +30,7 @@ sessions -u <SESSION_ID>
 
 Alternatively, Metasploit provides a dedicated post-exploitation module for extracting password hashes.
 
-![[Pasted image 20260521022745.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521022745.png)
 
 ## Step 2: Start the Metasploit Database
 
@@ -46,4 +46,4 @@ service postgresql start
 
 After starting the database service, we used the appropriate Metasploit module to crack the collected password hashes.
 
-![[Pasted image 20260521022943.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521022943.png)

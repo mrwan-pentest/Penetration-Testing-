@@ -3,57 +3,56 @@
 ### The goal was to identify a vulnerable service, exploit it to gain initial access, and then escalate privileges using a misconfigured **sudo** rule.
 
 ---
-
 ## Nmap Scan
 
 Performed an Nmap scan to identify open ports and running services.
 
-![[Pasted image 20260501200135.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200135.png)
 
 
 ## Nmap Enumeration
 
 Executed Nmap scripts and version detection to gather additional information about the target.
 
-![[Pasted image 20260628223249.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260628223249.png)
 
 
 ## Service Discovery
 
 Identified a vulnerable service running on the target.
 
-![[Pasted image 20260501200209.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200209.png)
 
 
 ## Searching for an Exploit
 
 Searched Metasploit for an exploit targeting the discovered service.
 
-![[Pasted image 20260501200224.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200224.png)
 
 ## Exploit Found
 
 Located a suitable Metasploit module for the vulnerability.
 
-![[Pasted image 20260501200252.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200252.png)
 
 ## Exploiting the Target
 
 Executed the exploit to gain initial access
 
-![[Pasted image 20260628223535.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260628223535.png)
 
 ## Meterpreter Session
 
 Successfully obtained a Meterpreter session on the target.
 
-![[Pasted image 20260501200326.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200326.png)
 
 ## Privilege Escalation Enumeration
 
 After enumerating the system, we discovered that **fail2ban-client** could be executed with **sudo** privileges.
 
-![[Pasted image 20260501200446.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260501200446.png)
 
 
 ## Privilege Escalation
@@ -68,7 +67,7 @@ sudo fail2ban-client set sshd banip 127.0.0.1
  /bin/bash -p
 ```
 
-![[Pasted image 20260628224104.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260628224104.png)
 
 
 

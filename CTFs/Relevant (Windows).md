@@ -12,7 +12,7 @@ We started by performing an Nmap scan to identify open ports and running service
 
 The initial scan revealed **SMB** and **HTTP** services.
 
-![[Pasted image 20260410164813.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410164813.png)
 
 ---
 
@@ -20,7 +20,7 @@ The initial scan revealed **SMB** and **HTTP** services.
 
 Since the target was running **IIS**, we performed directory fuzzing using the **.aspx** extension, which is commonly used for ASP.NET applications hosted on IIS.
 
-![[Pasted image 20260410165246.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410165246.png)
 
 ---
 
@@ -30,13 +30,13 @@ We enumerated the SMB shares and discovered a shared file containing passwords.
 
 We copied the file for further analysis.
 
-![[Pasted image 20260410165447.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410165447.png)
 
 After examining the file, we noticed that the passwords were encoded using **Base64**, which is easily recognizable by its character set and the `=` or `==` padding at the end.
 
 We decoded the passwords and saved them into a separate file for later use.
 
-![[Pasted image 20260410165835.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410165835.png)
 
 ---
 
@@ -44,11 +44,11 @@ We decoded the passwords and saved them into a separate file for later use.
 
 To ensure no additional services were missed, we performed a full TCP port scan against the target.
 
-![[Pasted image 20260410170124.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410170124.png)
 
 The scan revealed several additional open ports.
 
-![[Pasted image 20260410170518.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410170518.png)
 
 ---
 
@@ -60,7 +60,7 @@ We attempted to access the previously discovered **Passwords** directory on the 
 
 However, accessing the same path on the newly discovered web service was successful.
 
-![[Pasted image 20260410171059.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171059.png)
 
 This indicated that the directory was accessible through the second IIS instance.
 
@@ -78,11 +78,11 @@ The file was uploaded with the following FTP command:
 put shell.aspx
 ```
 
-![[Pasted image 20260410171332.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171332.png)
 
 After the upload completed successfully, we browsed to the uploaded file to execute the Web Shell.
 
-![[Pasted image 20260410171403.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171403.png)
 
 ---
 
@@ -92,11 +92,11 @@ We started a Netcat listener on our attack machine.
 
 Once the uploaded ASPX shell was executed, we received a Reverse Shell from the target.
 
-![[Pasted image 20260410171427.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171427.png)
 
 We successfully accessed the system and obtained the user flag.
 
-![[Pasted image 20260410171534.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171534.png)
 
 ---
 
@@ -106,7 +106,7 @@ We enumerated the current user's privileges and discovered that the account poss
 
 This Windows privilege allows a process to impersonate another user's security token under specific conditions. If misconfigured, it can be abused to escalate privileges to **NT AUTHORITY\SYSTEM**.
 
-![[Pasted image 20260410171640.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410171640.png)
 
 ---
 
@@ -116,15 +116,15 @@ One of the most common tools for abusing **SeImpersonatePrivilege** is **PrintSp
 
 After downloading the executable, we started an SMB server on our attack machine to transfer it to the target.
 
-![[Pasted image 20260410172225.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410172225.png)
 
 From the target machine, we copied the executable from the SMB share.
 
-![[Pasted image 20260410172246.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410172246.png)
 
 We executed **PrintSpoofer**, which successfully elevated our privileges to **NT AUTHORITY\SYSTEM**.
 
-![[Pasted image 20260410172405.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410172405.png)
 
 ---
 
@@ -132,4 +132,4 @@ We executed **PrintSpoofer**, which successfully elevated our privileges to **NT
 
 With SYSTEM-level privileges, we accessed the Administrator's files and successfully retrieved the root flag.
 
-![[Pasted image 20260410172522.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260410172522.png)

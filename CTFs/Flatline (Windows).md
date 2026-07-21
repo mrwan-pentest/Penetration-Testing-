@@ -12,11 +12,11 @@ Performed an Nmap scan to identify the exposed services.
 
 The scan revealed an additional service running on **RDP (Remote Desktop Protocol)**.
 
-![[Pasted image 20260411131324.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131324.png)
 
 Executed Nmap NSE scripts to gather additional information about the exposed services.
 
-![[Pasted image 20260411131437.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131437.png)
 
 ---
 
@@ -28,11 +28,11 @@ Discovered a publicly available vulnerability that could be exploited either man
 
 I exploited **manually**.
 
-![[Pasted image 20260411131545.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131545.png)
 
 Reviewed the exploit documentation to understand how it should be used.
 
-![[Pasted image 20260411131639.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131639.png)
 
 ---
 
@@ -40,11 +40,11 @@ Reviewed the exploit documentation to understand how it should be used.
 
 Modified the exploit by replacing the original command with a **Reverse Shell** payload.
 
-![[Pasted image 20260411131701.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131701.png)
 
 Executed the exploit and successfully obtained a reverse shell.
 
-![[Pasted image 20260411131734.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411131734.png)
 
 ---
 
@@ -72,7 +72,7 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 Added the Administrator account to the **Remote Desktop Users** group.
 
-![[Pasted image 20260411132350.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132350.png)
 
 ---
 
@@ -80,13 +80,13 @@ Added the Administrator account to the **Remote Desktop Users** group.
 
 Attempted to authenticate through SMB but discovered that the Administrator account was disabled.
 
-![[Pasted image 20260411132513.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132513.png)
 
 Enabled the account.
 
-![[Pasted image 20260411132607.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132607.png)
 
-![[Pasted image 20260411132625.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132625.png)
 
 ---
 
@@ -94,11 +94,11 @@ Enabled the account.
 
 Authenticated successfully using **Impacket**.
 
-![[Pasted image 20260411132839.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132839.png)
 
 Obtained full SYSTEM-level access to the target.
 
-![[Pasted image 20260411132907.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260411132907.png)
 
 ---
 

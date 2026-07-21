@@ -7,7 +7,7 @@
 ###  Performed an Nmap scan and discovered the flag
 
 
-![[Pasted image 20260513015245.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260513015245.png)
 
 # **Flag 2**: The gatekeeper's instructions often reveal what should remain unseen. Don't forget to read between the line
 
@@ -15,7 +15,7 @@
   
 ### Checked the robots.txt file and found a hidden directory named secret_info.
 
-![[Pasted image 20260513015924.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260513015924.png)
 
 
 # Anonymous access sometimes leads to forgotten treasures. Connect and explore the directory; you might stumble upon something valuable.

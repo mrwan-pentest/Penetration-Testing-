@@ -41,4 +41,4 @@ Instead of sending the original request, an attacker changes parameters, cookies
 ---
 # Lab 
 
-![[Pasted image 20260626092739.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260626092739.png)

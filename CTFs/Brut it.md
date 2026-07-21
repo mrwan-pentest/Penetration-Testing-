@@ -17,7 +17,7 @@ The scan revealed the following services:
 - SSH
     
 
-![[Pasted image 20260702000221.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702000221.png)
 
 ---
 
@@ -27,11 +27,11 @@ Performed directory fuzzing to discover hidden resources on the web server.
 
 A hidden login page was identified.
 
-![[Pasted image 20260702000310.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702000310.png)
 
 Inspected the page source code and discovered a valid username.
 
-![[Pasted image 20260702001052.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001052.png)
 
 ---
 
@@ -47,7 +47,7 @@ The POST parameters (`user=^USER^&pass=^PASS^`) were obtained by intercepting th
 
 Successfully recovered the user's password.
 
-![[Pasted image 20260702001217.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001217.png)
 
 ---
 
@@ -57,11 +57,11 @@ Authenticated to the web application using the recovered credentials.
 
 Inside the application, discovered an SSH private key.
 
-![[Pasted image 20260702001310.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001310.png)
 
 Saved the private key to a file and adjusted its permissions.
 
-![[Pasted image 20260702001448.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001448.png)
 
 ---
 
@@ -69,11 +69,11 @@ Saved the private key to a file and adjusted its permissions.
 
 Converted the private key into a format supported by **John the Ripper**.
 
-![[Pasted image 20260702001542.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001542.png)
 
 Cracked the passphrase successfully.
 
-![[Pasted image 20260702001607.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001607.png)
 
 ---
 
@@ -81,7 +81,7 @@ Cracked the passphrase successfully.
 
 Authenticated to the target system using the recovered private key and its passphrase.
 
-![[Pasted image 20260702001948.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702001948.png)
 
 ---
 
@@ -95,17 +95,17 @@ sudo -l
 
 Discovered that the **cat** binary could be executed with elevated privileges.
 
-![[Pasted image 20260702002042.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702002042.png)
 
 Since `cat` could be executed as root, it was possible to read any file on the system.
 
 Used it to read the `/etc/shadow` file and extracted the root password hash.
 
-![[Pasted image 20260702002220.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702002220.png)
 
 Copied the complete hash into a file and cracked it using **John the Ripper**.
 
-![[Pasted image 20260702002351.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702002351.png)
 
 ---
 
@@ -113,7 +113,7 @@ Copied the complete hash into a file and cracked it using **John the Ripper**.
 
 After recovering the root password, authenticated as the **root** user.
 
-![[Pasted image 20260702002704.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260702002704.png)
 
 Successfully obtained root privileges.
 

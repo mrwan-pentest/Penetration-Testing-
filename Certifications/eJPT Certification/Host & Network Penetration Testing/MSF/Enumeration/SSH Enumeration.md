@@ -83,7 +83,7 @@ This module retrieves information such as:
 - SSH server software
 - Banner information
 
-![[Pasted image 20260514150446.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514150446.png)
 
 ---
 
@@ -103,9 +103,9 @@ It is commonly used to:
 - Perform brute-force attacks
 - Test password security
 
-![[Pasted image 20260514150518.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514150518.png)
 
-![[Pasted image 20260514150558.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514150558.png)
 
 ---
 
@@ -119,7 +119,7 @@ auxiliary/scanner/ssh/ssh_enumusers
 
 This module attempts to identify valid usernames on the target SSH server.
 
-![[Pasted image 20260514150740.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514150740.png)
 
 Before running the module, set the following option to:
 
@@ -129,6 +129,6 @@ CHECK_FALSE = false
 
 This allows the module to continue checking usernames even when the server returns misleading authentication responses.
 
-![[Pasted image 20260514150817.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514150817.png)
 
 ```

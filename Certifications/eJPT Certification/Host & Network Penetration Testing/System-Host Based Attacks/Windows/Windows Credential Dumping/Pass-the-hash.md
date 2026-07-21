@@ -179,7 +179,7 @@ Inside Meterpreter:
 load kiwi
 ```
 
-![[Pasted image 20260516012544.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516012544.png)
 
 ---
 
@@ -197,7 +197,7 @@ or:
 hashdump
 ```
 
-![[Pasted image 20260516012612.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516012612.png)
 
 ---
 
@@ -205,7 +205,7 @@ hashdump
 
 Retrieve LM hashes from the SAM database.
 
-![[Pasted image 20260516012854.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516012854.png)
 
 ---
 
@@ -227,7 +227,7 @@ When using PsExec:
 
 Change the SMB port if necessary to avoid conflicts with an existing session.
 
-![[Pasted image 20260516013606.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516013606.png)
 
 ---
 
@@ -245,7 +245,7 @@ Example:
 aad3b435b51404eeaad3b435b51404ee:5f4dcc3b5aa765d61d8327deb882cf99
 ```
 
-![[Pasted image 20260516013745.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516013745.png)
 
 ---
 
@@ -271,7 +271,7 @@ net user Administrator Pass123!
 
 After changing the password, we retrieved the hash again and successfully authenticated.
 
-![[Pasted image 20260516015120.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516015120.png)
 
 ---
 
@@ -297,7 +297,7 @@ It means:
 The account has administrative privileges.
 ```
 
-![[Pasted image 20260516015902.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516015902.png)
 
 ---
 
@@ -311,7 +311,7 @@ Example:
 nxc smb TARGET -u Administrator -H HASH -x "command"
 ```
 
-![[Pasted image 20260516020052.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516020052.png)
 
 ---
 
@@ -319,7 +319,7 @@ nxc smb TARGET -u Administrator -H HASH -x "command"
 
 NetExec can also retrieve hashes if sufficient privileges are available.
 
-![[Pasted image 20260516020332.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516020332.png)
 
 ---
 
@@ -333,7 +333,7 @@ Example:
 impacket-psexec Administrator@TARGET -hashes LM:NTLM
 ```
 
-![[Pasted image 20260516020725.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260516020725.png)
 
 ---
 

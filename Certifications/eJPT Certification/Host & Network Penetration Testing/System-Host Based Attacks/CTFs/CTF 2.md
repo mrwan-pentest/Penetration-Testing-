@@ -22,7 +22,7 @@ The techniques used included:
 
 We began by performing an Nmap scan against the target to identify open ports, running services, and potential attack vectors.
 
-![[Pasted image 20260521133644.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133644.png)
 
 ---
 
@@ -30,11 +30,11 @@ We began by performing an Nmap scan against the target to identify open ports, r
 
 Next, we performed directory enumeration to discover hidden resources exposed by the web server.
 
-![[Pasted image 20260521133703.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133703.png)
 
 During enumeration, we noticed that one of the discovered resources redirected requests to a **CGI** script.
 
-![[Pasted image 20260521133804.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133804.png)
 
 Since CGI scripts are a common attack surface for **Shellshock (CVE-2014-6271)**, this became the primary attack vector.
 
@@ -48,7 +48,7 @@ We used an Nmap NSE script to verify whether the CGI endpoint was vulnerable to 
 
 The scan confirmed that the target was vulnerable.
 
-![[Pasted image 20260521133912.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133912.png)
 
 ---
 
@@ -56,9 +56,9 @@ The scan confirmed that the target was vulnerable.
 
 After confirming the vulnerability, we searched for a suitable exploitation method capable of establishing a Reverse Shell.
 
-![[Pasted image 20260521133939.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133939.png)
 
-![[Pasted image 20260521133958.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521133958.png)
 
 The exploit successfully executed, providing remote shell access to the target.
 
@@ -68,7 +68,7 @@ The exploit successfully executed, providing remote shell access to the target.
 
 After obtaining shell access, we explored the root directory (`/`) and located the first flag.
 
-![[Pasted image 20260521134034.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134034.png)
 
 ---
 
@@ -82,7 +82,7 @@ The next objective instructed us to inspect the Apache web root located at:
 
 After carefully exploring the directory, we located the second flag.
 
-![[Pasted image 20260521134121.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134121.png)
 
 ---
 
@@ -96,7 +96,7 @@ We performed an Nmap scan against the second target.
 
 The scan revealed an SSH service.
 
-![[Pasted image 20260521134316.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134316.png)
 
 ---
 
@@ -106,7 +106,7 @@ The SSH version appeared to be vulnerable.
 
 We searched for publicly available exploits using **Searchsploit**.
 
-![[Pasted image 20260521134459.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134459.png)
 
 A search revealed a known authentication bypass vulnerability:
 
@@ -120,7 +120,7 @@ libssh_auth_bypass
 
 We reviewed the available exploit to understand its usage.
 
-![[Pasted image 20260521134532.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134532.png)
 
 ---
 
@@ -130,11 +130,11 @@ We reviewed the available exploit to understand its usage.
 
 We modified the exploit to execute a Reverse Shell payload.
 
-![[Pasted image 20260521134600.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134600.png)
 
 The exploit successfully provided remote shell access.
 
-![[Pasted image 20260521134621.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134621.png)
 
 ---
 
@@ -142,7 +142,7 @@ The exploit successfully provided remote shell access.
 
 After gaining shell access, we explored the user's home directory and located the third flag.
 
-![[Pasted image 20260521134650.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134650.png)
 
 ---
 
@@ -158,7 +158,7 @@ One of them had the **SUID** permission enabled.
 
 Further analysis showed that this binary executed the second binary internally.
 
-![[Pasted image 20260521134827.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134827.png)
 
 ---
 
@@ -172,7 +172,7 @@ Since the executed binary could be modified, we removed it and replaced it with 
 
 After executing the vulnerable SUID binary, it launched a root shell.
 
-![[Pasted image 20260521134917.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521134917.png)
 
 ---
 
@@ -180,7 +180,7 @@ After executing the vulnerable SUID binary, it launched a root shell.
 
 With root privileges obtained, we navigated to the `/root` directory and successfully retrieved the final flag.
 
-![[Pasted image 20260521135026.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521135026.png)
 
 ---
 

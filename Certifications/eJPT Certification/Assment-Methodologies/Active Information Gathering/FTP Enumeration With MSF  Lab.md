@@ -114,7 +114,7 @@ Lab
 ```
 use auxiliary/scanner/ftp/ftp_version
 ```
-![[Pasted image 20260514010026.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514010026.png)
 
 
 ## Perform brute-force attacks against FTP credentials.
@@ -130,17 +130,17 @@ set USER_FILE /usr/share/metasploit-framework/data/wordlists/common_users.txt
 
 set PASS_FILE /usr/share/metasploit-framework/data/wordlists/unix_passwords.txt
 ```
-![[Pasted image 20260514010212.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514010212.png)
 
 ## Check whether the FTP server allows anonymous login.
 ```
 use auxiliary/scanner/ftp/anonymous
 ```
 
-![[Pasted image 20260514010340.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514010340.png)
 
 
 ## Connect and authenticate to the FTP service.
-![[Pasted image 20260514010413.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514010413.png)
 
 # Done.

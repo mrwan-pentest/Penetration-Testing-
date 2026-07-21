@@ -54,7 +54,7 @@ Many known SUID exploitation techniques are documented on **GTFOBins**.
 
 We began by performing an Nmap scan to identify open ports and running services.
 
-![[Pasted image 20260717221406.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221406.png)
 
 ---
 
@@ -62,7 +62,7 @@ We began by performing an Nmap scan to identify open ports and running services.
 
 Next, we performed version detection and executed Nmap NSE scripts to gather additional information about the discovered services.
 
-![[Pasted image 20260717221515.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221515.png)
 
 The scan revealed an HTTP service running on port **3333**.
 
@@ -72,11 +72,11 @@ The scan revealed an HTTP service running on port **3333**.
 
 We performed directory fuzzing against the web server to discover hidden resources.
 
-![[Pasted image 20260717221648.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221648.png)
 
 One of the discovered directories appeared particularly interesting.
 
-![[Pasted image 20260717221742.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221742.png)
 
 ---
 
@@ -84,7 +84,7 @@ One of the discovered directories appeared particularly interesting.
 
 After accessing the page, we found a feature that allowed users to upload files.
 
-![[Pasted image 20260717221836.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221836.png)
 
 This indicated a potential **File Upload** vulnerability.
 
@@ -94,11 +94,11 @@ This indicated a potential **File Upload** vulnerability.
 
 We searched for a PHP Reverse Shell and copied it to our attacker machine.
 
-![[Pasted image 20260717221936.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717221936.png)
 
 We modified the payload by replacing the attacker's IP address and listening port.
 
-![[Pasted image 20260717222044.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222044.png)
 
 ---
 
@@ -106,7 +106,7 @@ We modified the payload by replacing the attacker's IP address and listening por
 
 Our first upload attempt failed because the application blocked files with the `.php` extension.
 
-![[Pasted image 20260717222151.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222151.png)
 
 To bypass the filter, we renamed the file using another PHP-supported extension:
 
@@ -114,11 +114,11 @@ To bypass the filter, we renamed the file using another PHP-supported extension:
 .phtml
 ```
 
-![[Pasted image 20260717222239.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222239.png)
 
 The upload was then accepted successfully.
 
-![[Pasted image 20260717222302.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222302.png)
 
 ---
 
@@ -128,13 +128,13 @@ Although the upload succeeded, the application did not reveal where the file was
 
 We therefore performed directory fuzzing against the upload directory itself.
 
-![[Pasted image 20260717222450.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222450.png)
 
 This revealed the directory used to access uploaded files.
 
 We navigated to the uploaded Reverse Shell.
 
-![[Pasted image 20260717222535.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222535.png)
 
 ---
 
@@ -144,7 +144,7 @@ Before executing the payload, we started a Netcat listener.
 
 After opening the uploaded file in the browser, the PHP code executed and connected back to our listener.
 
-![[Pasted image 20260717222641.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222641.png)
 
 We successfully obtained an initial shell on the target.
 
@@ -160,11 +160,11 @@ We searched for binaries with the SUID bit enabled.
 find / -type f -perm /4000 2>/dev/null
 ```
 
-![[Pasted image 20260717222930.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717222930.png)
 
 During enumeration, we discovered a binary that could be abused for privilege escalation.
 
-![[Pasted image 20260717223022.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717223022.png)
 
 ---
 
@@ -172,7 +172,7 @@ During enumeration, we discovered a binary that could be abused for privilege es
 
 We searched for the binary on **GTFOBins** to identify a known privilege escalation technique.
 
-![[Pasted image 20260717223326.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717223326.png)
 
 The published technique demonstrated how the binary could execute a custom **systemd service** as root.
 
@@ -190,7 +190,7 @@ We replaced the command with:
 ExecStart=/bin/sh -c "echo 'root:Passw@rd123!' | chpasswd"
 ```
 
-![[Pasted image 20260407070931.png|544]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260407070931.png|544)
 
 This command changes the root password to a value of our choosing.
 
@@ -200,13 +200,13 @@ This command changes the root password to a value of our choosing.
 
 After modifying the payload, we executed the remaining exploitation steps.
 
-![[Pasted image 20260717223908.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717223908.png)
 
 The exploit completed successfully and updated the root password.
 
 We then authenticated as the root user using the newly created password.
 
-![[Pasted image 20260717224108.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260717224108.png)
 
 Root access was successfully obtained.
 

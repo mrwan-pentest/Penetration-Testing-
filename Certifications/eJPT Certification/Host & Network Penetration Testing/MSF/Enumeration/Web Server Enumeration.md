@@ -18,7 +18,7 @@ Displays information about the target web server, including:
 - Version
 - Banner
 
-![[Pasted image 20260514130429.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514130429.png)
 
 ---
 
@@ -42,7 +42,7 @@ This file may reveal:
 - Administrative pages
 - Files or paths that the website owner does not want search engines to index
 
-![[Pasted image 20260514130639.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514130639.png)
 
 ---
 
@@ -61,7 +61,7 @@ Retrieves the HTTP response headers to gather information about the server, such
 - Software versions
 - Security-related headers
 
-![[Pasted image 20260514130731.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514130731.png)
 
 ---
 
@@ -79,7 +79,7 @@ Performs directory scanning to identify:
 - Sensitive files
 - Hidden directories
 
-![[Pasted image 20260514130929.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514130929.png)
 
 ---
 
@@ -100,7 +100,7 @@ If enabled, it may expose:
 - Backup files
 - Configuration files
 
-![[Pasted image 20260514131042.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514131042.png)
 
 ---
 
@@ -125,7 +125,7 @@ If misconfigured, it may allow an attacker to upload:
 - Web Shells
 - Malicious files
 
-![[Pasted image 20260514131123.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514131123.png)
 
 ---
 
@@ -151,7 +151,7 @@ For example:
 /~test
 ```
 
-![[Pasted image 20260514131208.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514131208.png)
 
 ---
 
@@ -171,4 +171,4 @@ It can be used against:
 - Control panels
 - Web applications
 
-![[Pasted image 20260514131238.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260514131238.png)

@@ -12,7 +12,7 @@ The objective of this lab is to exploit an exposed FTP service to gather sensiti
 
 We began by performing an Nmap scan to identify the open ports and running services on the target machine.
 
-![[Pasted image 20260330090032.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090032.png)
 
 ---
 
@@ -20,9 +20,9 @@ We began by performing an Nmap scan to identify the open ports and running servi
 
 After identifying the available services, we used Nmap NSE scripts to collect additional information that could assist during the enumeration phase.
 
-![[Pasted image 20260330090146.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090146.png)
 
-![[Pasted image 20260330090200.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090200.png)
 
 ---
 
@@ -32,7 +32,7 @@ After identifying the available services, we used Nmap NSE scripts to collect ad
 
 The scan revealed that the FTP server allowed anonymous authentication. This misconfiguration allowed us to access the FTP service without providing valid credentials.
 
-![[Pasted image 20260330090335.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090335.png)
 
 ---
 
@@ -49,7 +49,7 @@ mget file name
 
 The `mget` command downloads multiple files from the FTP server in a single operation, making it useful for collecting all accessible files during enumeration.
 
-![[Pasted image 20260330090427.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090427.png)
 
 ---
 
@@ -61,7 +61,7 @@ The downloaded FTP files contained a valid username.
 
 We used Hydra to perform a brute-force attack against the SSH service using the discovered username.
 
-![[Pasted image 20260330090755.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090755.png)
 
 ---
 
@@ -71,7 +71,7 @@ During enumeration, we discovered that the SSH service was running on port **222
 
 After recovering valid credentials, we authenticated to the SSH service using the custom port.
 
-![[Pasted image 20260330090855.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260330090855.png)
 
 ---
 
@@ -101,7 +101,7 @@ This command lists all commands that the current user is allowed to execute with
 
 The output revealed that **Vim** could be executed with root privileges.
 
-![[Pasted image 20260716203120.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716203120.png)
 
 ### Why is Vim Dangerous?
 
@@ -113,11 +113,11 @@ Vim is not just a text editor. It also supports executing shell commands from wi
 
 To determine the appropriate exploitation method, we searched for **Vim** on **GTFOBins**, a well-known resource that documents legitimate Unix binaries that can be abused for Privilege Escalation.
 
-![[Pasted image 20260716203602.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716203602.png)
 
 We executed the recommended GTFOBins command and successfully obtained a root shell.
 
-![[Pasted image 20260716203616.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716203616.png)
 
 ---
 

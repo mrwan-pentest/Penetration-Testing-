@@ -43,7 +43,7 @@ Successful exploitation can result in:
 
 We started by performing an Nmap scan to identify the open ports and running services on the target machine.
 
-![[Pasted image 20260716204905.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716204905.png)
 
 ---
 
@@ -51,7 +51,7 @@ We started by performing an Nmap scan to identify the open ports and running ser
 
 Next, we performed version detection and executed Nmap NSE scripts to gather additional information about the discovered services.
 
-![[Pasted image 20260716205046.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716205046.png)
 
 The scan revealed an HTTP service running on port **10000**, identified as **MiniServ**, which is the web server used by Webmin.
 
@@ -61,7 +61,7 @@ The scan revealed an HTTP service running on port **10000**, identified as **Min
 
 We accessed the web application running on port **10000** and discovered the Webmin authentication page.
 
-![[Pasted image 20260423160739.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260423160739.png)
 
 At this stage, we identified that the target was running **Webmin**, making it possible to search for publicly known vulnerabilities affecting this service.
 
@@ -77,7 +77,7 @@ We discovered the following Remote Code Execution vulnerability:
 CVE-2019-15107
 ```
 
-![[Pasted image 20260716210936.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716210936.png)
 
 ---
 
@@ -85,11 +85,11 @@ CVE-2019-15107
 
 We copied the public exploit to our attacker machine in preparation for exploitation.
 
-![[Pasted image 20260716211111.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211111.png)
 
 Before executing the exploit, we reviewed its documentation to understand the required arguments and usage.
 
-![[Pasted image 20260716211507.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211507.png)
 
 ---
 
@@ -97,7 +97,7 @@ Before executing the exploit, we reviewed its documentation to understand the re
 
 Before triggering the exploit, we started a Netcat listener to receive the incoming Reverse Shell.
 
-![[Pasted image 20260716211615.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211615.png)
 
 ---
 
@@ -116,11 +116,11 @@ Where:
 - **LHOST** → Attacker IP address.
 - **LPORT** → Listening port on the attacker's machine.
 
-![[Pasted image 20260716211634.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211634.png)
 
 The exploit successfully triggered the vulnerability and established a Reverse Shell connection.
 
-![[Pasted image 20260716211836.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211836.png)
 
 ---
 
@@ -128,7 +128,7 @@ The exploit successfully triggered the vulnerability and established a Reverse S
 
 After obtaining remote access, we navigated through the filesystem and successfully located the user flag.
 
-![[Pasted image 20260716211952.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716211952.png)
 
 ---
 
@@ -136,7 +136,7 @@ After obtaining remote access, we navigated through the filesystem and successfu
 
 The obtained shell already had sufficient privileges to access the root directory, allowing us to retrieve the root flag successfully.
 
-![[Pasted image 20260716212027.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260716212027.png)
 
 ---
 

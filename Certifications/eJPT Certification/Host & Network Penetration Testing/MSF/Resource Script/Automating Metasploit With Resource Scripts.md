@@ -16,7 +16,7 @@ Create a text file with the **`.rc`** extension and write the Metasploit command
 
 Example:
 
-![[Pasted image 20260525012852.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525012852.png)
 
 ---
 
@@ -36,7 +36,7 @@ resource exploit.rc
 
 Metasploit will execute every command inside the file automatically and in sequence.
 
-![[Pasted image 20260525012920.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525012920.png)
 
 ---
 
@@ -46,7 +46,7 @@ After loading the Resource Script, **Metasploit executes all the commands automa
 
 This is especially useful when repeatedly configuring exploits, payloads, handlers, or post-exploitation modules.
 
-![[Pasted image 20260525012956.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260525012956.png)
 
 ---
 

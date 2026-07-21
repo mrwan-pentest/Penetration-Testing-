@@ -89,7 +89,7 @@ We began by inspecting the files in our home directory.
 
 During enumeration, we discovered a file that unexpectedly appeared in our home directory even though we did not have permission to create or modify it.
 
-![[Pasted image 20260521010637.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521010637.png)
 
 This suggested that an automated process might be copying the file.
 
@@ -97,7 +97,7 @@ This suggested that an automated process might be copying the file.
 
 We searched for other copies of the same file and discovered another version located in the `/tmp` directory.
 
-![[Pasted image 20260521010811.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521010811.png)
 
 This indicated that an automated process was likely copying files between `/tmp` and our home directory.
 
@@ -107,7 +107,7 @@ A Cron job became the primary suspect.
 
 To identify the script responsible for this behavior, we searched the system for references to the file path.
 
-![[Pasted image 20260521011052.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521011052.png)
 
 The search command used several useful options:
 
@@ -133,7 +133,7 @@ because many system scripts and applications are commonly stored there.
 
 Eventually, we located the script responsible for copying the file.
 
-![[Pasted image 20260521011523.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521011523.png)
 
 ## Step 4: Verify File Permissions
 
@@ -141,7 +141,7 @@ Next, we checked the permissions of the identified script.
 
 We discovered that we had write permission, allowing us to modify its contents.
 
-![[Pasted image 20260521011550.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521011550.png)
 
 ## Step 5: Modify the Script
 
@@ -165,7 +165,7 @@ Once executed by the Cron job as **root**, the `student` user is granted permiss
 
 Since the Cron job executed once every minute, we simply waited for the scheduler to run our modified script.
 
-![[Pasted image 20260521011915.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521011915.png)
 
 ## Step 7: Obtain Root Privileges
 
@@ -173,4 +173,4 @@ After the Cron job completed, the `student` user had unrestricted `sudo` privile
 
 This allowed us to execute commands as **root** and successfully complete the privilege escalation process.
 
-![[Pasted image 20260521011931.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260521011931.png)

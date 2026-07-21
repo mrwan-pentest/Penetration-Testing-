@@ -1,7 +1,7 @@
 
-![[Pasted image 20260509171005.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260509171005.png)
 
-![[Pasted image 20260509171025.png]]
+![](Penetration%20Testing/Images/Pasted%20image%2020260509171025.png)
 
 #  Passive Information Gathering
 ## Definition
