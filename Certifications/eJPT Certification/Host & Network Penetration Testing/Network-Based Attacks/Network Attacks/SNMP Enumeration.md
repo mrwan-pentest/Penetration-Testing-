@@ -250,11 +250,11 @@ These scripts can retrieve:
 
 Performed an Nmap scan against UDP port **161** to verify that the SNMP service was running on the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522010753.png)
+![](../../../../../Images/Pasted%20image%2020260522010753.png)
 
 Performed another scan specifically targeting UDP port **161** for additional verification.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522010817.png)
+![](../../../../../Images/Pasted%20image%2020260522010817.png)
 
 ---
 
@@ -262,7 +262,7 @@ Performed another scan specifically targeting UDP port **161** for additional ve
 
 Used an SNMP brute-force tool to identify valid Community Strings that could be used to query the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522010942.png)
+![](../../../../../Images/Pasted%20image%2020260522010942.png)
 
 Once valid credentials were identified, they were used during the enumeration phase.
 
@@ -274,7 +274,7 @@ Used **snmpwalk** together with the discovered Community String to retrieve info
 
 Although data was returned successfully, much of the output was difficult to interpret directly.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011039.png)
+![](../../../../../Images/Pasted%20image%2020260522011039.png)
 
 ---
 
@@ -284,7 +284,7 @@ Executed the Nmap SNMP NSE scripts to perform a more complete enumeration of the
 
 The results were saved to a file for easier analysis.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011212.png)
+![](../../../../../Images/Pasted%20image%2020260522011212.png)
 
 ---
 
@@ -294,11 +294,11 @@ The enumeration results revealed several usernames configured on the target syst
 
 These usernames were extracted and saved into a wordlist for use in password guessing attacks.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011237.png)
+![](../../../../../Images/Pasted%20image%2020260522011237.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011249.png)
+![](../../../../../Images/Pasted%20image%2020260522011249.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011257.png)
+![](../../../../../Images/Pasted%20image%2020260522011257.png)
 
 ---
 
@@ -308,9 +308,9 @@ After identifying valid credentials, authentication was performed successfully u
 
 A Meterpreter session was established on the target system.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011337.png)
+![](../../../../../Images/Pasted%20image%2020260522011337.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522011346.png)
+![](../../../../../Images/Pasted%20image%2020260522011346.png)
 
 ---
 

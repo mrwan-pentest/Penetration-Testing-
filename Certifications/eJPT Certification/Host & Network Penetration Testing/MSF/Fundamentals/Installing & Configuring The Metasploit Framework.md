@@ -146,8 +146,8 @@ then the database is properly connected and ready to use.
 
 ---
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523170606.png)
+![](../../../../../Images/Pasted%20image%2020260523170606.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523170623.png)
+![](../../../../../Images/Pasted%20image%2020260523170623.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523170637.png)
+![](../../../../../Images/Pasted%20image%2020260523170637.png)

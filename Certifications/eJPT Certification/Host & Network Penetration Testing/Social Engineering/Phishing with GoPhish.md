@@ -166,33 +166,33 @@ Generate Reports
 
 Begin by logging into the GoPhish administrative dashboard.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021116.png)
+![](../../../../Images/Pasted%20image%2020260609021116.png)
 
 ---
 
 
 Review the main interface, which provides access to campaign management, templates, users, landing pages, and reports.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021125.png)
+![](../../../../Images/Pasted%20image%2020260609021125.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021142.png)
+![](../../../../Images/Pasted%20image%2020260609021142.png)
 
 ---
 
 
 Navigate to the Email Templates section and create a phishing email template that will be used during the campaign.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021218.png)
+![](../../../../Images/Pasted%20image%2020260609021218.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021229.png)
+![](../../../../Images/Pasted%20image%2020260609021229.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021238.png)
+![](../../../../Images/Pasted%20image%2020260609021238.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021252.png)
+![](../../../../Images/Pasted%20image%2020260609021252.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021308.png)
+![](../../../../Images/Pasted%20image%2020260609021308.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021321.png)
+![](../../../../Images/Pasted%20image%2020260609021321.png)
 
 ---
 
@@ -201,17 +201,17 @@ Create the Landing Page that users will be redirected to after clicking the phis
 
 The page should closely resemble the legitimate service being simulated for the awareness exercise.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021330.png)
+![](../../../../Images/Pasted%20image%2020260609021330.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021339.png)
+![](../../../../Images/Pasted%20image%2020260609021339.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021348.png)
+![](../../../../Images/Pasted%20image%2020260609021348.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021406.png)
+![](../../../../Images/Pasted%20image%2020260609021406.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021416.png)
+![](../../../../Images/Pasted%20image%2020260609021416.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021434.png)
+![](../../../../Images/Pasted%20image%2020260609021434.png)
 
 ---
 
@@ -221,13 +221,13 @@ Create the sending profile that defines how phishing emails will be delivered.
 
 This includes configuring the email server and sender information used during the simulation.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021444.png)
+![](../../../../Images/Pasted%20image%2020260609021444.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021456.png)
+![](../../../../Images/Pasted%20image%2020260609021456.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021507.png)
+![](../../../../Images/Pasted%20image%2020260609021507.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021516.png)
+![](../../../../Images/Pasted%20image%2020260609021516.png)
 
 ---
 
@@ -236,24 +236,24 @@ Add the users who will participate in the phishing simulation.
 
 Targets may be imported individually or organized into groups based on departments or business units.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021527.png)
+![](../../../../Images/Pasted%20image%2020260609021527.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021544.png)
+![](../../../../Images/Pasted%20image%2020260609021544.png)
 
 ---
 
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021747.png)
+![](../../../../Images/Pasted%20image%2020260609021747.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021800.png)
+![](../../../../Images/Pasted%20image%2020260609021800.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021814.png)
+![](../../../../Images/Pasted%20image%2020260609021814.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021824.png)
+![](../../../../Images/Pasted%20image%2020260609021824.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021835.png)
+![](../../../../Images/Pasted%20image%2020260609021835.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021846.png)
+![](../../../../Images/Pasted%20image%2020260609021846.png)
 
 ---
 
@@ -262,25 +262,25 @@ After verifying the configuration, launch the phishing campaign.
 
 GoPhish begins delivering phishing emails to the selected recipients.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021854.png)
+![](../../../../Images/Pasted%20image%2020260609021854.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021906.png)
-
----
-
-
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021917.png)
-
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021928.png)
+![](../../../../Images/Pasted%20image%2020260609021906.png)
 
 ---
 
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609021951.png)
+![](../../../../Images/Pasted%20image%2020260609021917.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609022002.png)
+![](../../../../Images/Pasted%20image%2020260609021928.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260609022012.png)
+---
+
+
+![](../../../../Images/Pasted%20image%2020260609021951.png)
+
+![](../../../../Images/Pasted%20image%2020260609022002.png)
+
+![](../../../../Images/Pasted%20image%2020260609022012.png)
 
 ---
 

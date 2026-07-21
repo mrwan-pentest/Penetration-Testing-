@@ -8,7 +8,7 @@ This lab demonstrates how to exploit a **File Upload** vulnerability to obtain a
 
 We began by performing an Nmap scan against the target to identify open ports and running services.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716171716.png)
+![](../Images/Pasted%20image%2020260716171716.png)
 
 ---
 
@@ -16,15 +16,15 @@ We began by performing an Nmap scan against the target to identify open ports an
 
 Next, we performed directory fuzzing to discover hidden files and directories exposed by the web server.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716171823.png)
+![](../Images/Pasted%20image%2020260716171823.png)
 
 During the enumeration process, we discovered a **panel** page.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716171907.png)
+![](../Images/Pasted%20image%2020260716171907.png)
 
 Further exploration revealed an **upload** page where users were allowed to upload files.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172013.png)
+![](../Images/Pasted%20image%2020260716172013.png)
 
 At this point, we identified a potential **File Upload** vulnerability.
 
@@ -49,11 +49,11 @@ Common impacts include:
 
 To gain remote access, we searched for a publicly available PHP Reverse Shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172114.png)
+![](../Images/Pasted%20image%2020260716172114.png)
 
 We copied the PHP shell to our attack machine and modified it by replacing the attacker's IP address and listening port with our own.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172326.png)
+![](../Images/Pasted%20image%2020260716172326.png)
 
 ---
 
@@ -63,17 +63,17 @@ Our first attempt was to upload the file with the standard **.php** extension.
 
 The upload failed, indicating that the application was filtering PHP files.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172443.png)
+![](../Images/Pasted%20image%2020260716172443.png)
 
 To bypass this restriction, we changed the file extension from **.php** to **.phtml**.
 
 The **.phtml** extension is another valid PHP extension that many web servers execute as PHP code.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172545.png)
+![](../Images/Pasted%20image%2020260716172545.png)
 
 After changing the extension, the upload completed successfully.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172622.png)
+![](../Images/Pasted%20image%2020260716172622.png)
 
 ---
 
@@ -81,15 +81,15 @@ After changing the extension, the upload completed successfully.
 
 We started a Netcat listener on our attack machine.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172652.png)
+![](../Images/Pasted%20image%2020260716172652.png)
 
 Next, we accessed the uploaded shell through the web application.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172725.png)
+![](../Images/Pasted%20image%2020260716172725.png)
 
 The shell executed successfully and established a Reverse Shell connection to our listener.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172744.png)
+![](../Images/Pasted%20image%2020260716172744.png)
 
 ---
 
@@ -103,7 +103,7 @@ To obtain a proper terminal, we upgraded the shell using Python's `pty` module.
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716172904.png)
+![](../Images/Pasted%20image%2020260716172904.png)
 
 A fully interactive shell greatly improves usability by enabling features such as command history, tab completion, and interactive applications.
 
@@ -113,7 +113,7 @@ A fully interactive shell greatly improves usability by enabling features such a
 
 After obtaining a stable shell, we located and retrieved the user flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173122.png)
+![](../Images/Pasted%20image%2020260716173122.png)
 
 ---
 
@@ -127,11 +127,11 @@ find / -type f -perm /4000 2>/dev/null
 
 This command searches the entire filesystem for files that execute with the permissions of their owner.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173306.png)
+![](../Images/Pasted%20image%2020260716173306.png)
 
 Among the results, we discovered that the **Python 2.7** binary had the SUID bit set.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173402.png)
+![](../Images/Pasted%20image%2020260716173402.png)
 
 ---
 
@@ -151,7 +151,7 @@ To determine whether the Python binary could be abused, we searched for it on **
 
 GTFOBins documents legitimate Unix binaries that can be abused for privilege escalation under specific configurations.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173551.png)
+![](../Images/Pasted%20image%2020260716173551.png)
 
 GTFOBins provided the following payload for spawning a root shell through the SUID Python binary:
 
@@ -161,7 +161,7 @@ GTFOBins provided the following payload for spawning a root shell through the SU
 
 After executing the command, we successfully obtained a root shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173649.png)
+![](../Images/Pasted%20image%2020260716173649.png)
 
 ---
 
@@ -169,7 +169,7 @@ After executing the command, we successfully obtained a root shell.
 
 With root privileges, we accessed the root user's directory and successfully retrieved the root flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260716173717.png)
+![](../Images/Pasted%20image%2020260716173717.png)
 
 ---
 

@@ -6,7 +6,7 @@
 
 ## Performed an Nmap scan to identify the open ports and running services on the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094255.png)
+![](../Images/Pasted%20image%2020260331094255.png)
 
 
 
@@ -14,44 +14,44 @@
 
 ## Used Nmap NSE scripts and version detection to gather additional information about the discovered services.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094323.png)
+![](../Images/Pasted%20image%2020260331094323.png)
 
 
 # Anonymous FTP Access
 
 ## Discovered that the FTP service allowed anonymous authentication.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094343.png)
+![](../Images/Pasted%20image%2020260331094343.png)
 
 # FTP Enumeration
 
 ## Logged into the FTP server and collected useful information.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626164427.png)
+![](../Images/Pasted%20image%2020260626164427.png)
 
 
 # Credential Discovery
 
 ## Recovered usernames and passwords from files stored on the FTP server.
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094417.png)
+![](../Images/Pasted%20image%2020260331094417.png)
 
 # Source Code Review
 
 ## Examined the application's source code and discovered additional usernames.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094554.png)
+![](../Images/Pasted%20image%2020260331094554.png)
 
 # SSH Brute Force
 
 ## Used Hydra to perform a brute-force attack against the SSH service using the discovered usernames and passwords.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260331094659.png)
+![](../Images/Pasted%20image%2020260331094659.png)
 
 # SSH Authentication
 
 ## Successfully authenticated to the SSH service using the recovered credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626163642.png)
+![](../Images/Pasted%20image%2020260626163642.png)
 
 
 
@@ -61,14 +61,14 @@
 
 sudo -l
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626163739.png)
+![](../Images/Pasted%20image%2020260626163739.png)
 
 
 # Sudo Misconfiguration
 
 ## Identified a binary that could be abused for privilege escalation.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626164729.png)
+![](../Images/Pasted%20image%2020260626164729.png)
 
 
 # GTFOBins
@@ -76,11 +76,11 @@ sudo -l
 ## Used GTFOBins to find a privilege escalation technique for the allowed binary.
 
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626163842.png)
+![](../Images/Pasted%20image%2020260626163842.png)
 
 
 # Root Access
 
 ## Executed the GTFOBins Command and successfully obtained root privileges.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260626163927.png)
+![](../Images/Pasted%20image%2020260626163927.png)

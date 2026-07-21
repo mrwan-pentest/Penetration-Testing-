@@ -8,7 +8,7 @@
 
 We started by performing an Nmap scan against the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706213325.png)
+![](../Images/Pasted%20image%2020260706213325.png)
 
 ---
 
@@ -16,7 +16,7 @@ We started by performing an Nmap scan against the target.
 
 Next, we performed version detection and executed Nmap scripts to gather additional information about the running services.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706213350.png)
+![](../Images/Pasted%20image%2020260706213350.png)
 
 ---
 
@@ -26,7 +26,7 @@ We used **Gobuster** to discover hidden files and directories on the web server.
 
 Initially, no interesting resources were found.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706213558.png)
+![](../Images/Pasted%20image%2020260706213558.png)
 
 ---
 
@@ -34,7 +34,7 @@ Initially, no interesting resources were found.
 
 After adding common file extensions to the wordlist, we discovered an interesting text file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426201929.png)
+![](../Images/Pasted%20image%2020260426201929.png)
 
 ---
 
@@ -42,7 +42,7 @@ After adding common file extensions to the wordlist, we discovered an interestin
 
 The text file contained several usernames that could be useful for later attacks.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426202027.png)
+![](../Images/Pasted%20image%2020260426202027.png)
 
 ---
 
@@ -54,7 +54,7 @@ We performed another Nmap scan against **all TCP ports** and discovered an addit
 8080
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706214619.png)
+![](../Images/Pasted%20image%2020260706214619.png)
 
 ---
 
@@ -62,7 +62,7 @@ We performed another Nmap scan against **all TCP ports** and discovered an addit
 
 Browsing to port **8080** revealed a page protected with **HTTP Basic Authentication**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211130.png)
+![](../Images/Pasted%20image%2020260426211130.png)
 
 ---
 
@@ -74,7 +74,7 @@ Using one of the previously discovered usernames, we performed a brute-force att
 hydra -l joker -P /usr/share/wordlists/rockyou.txt 10.130.166.31 -s 8080 http-get /
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211158.png)
+![](../Images/Pasted%20image%2020260426211158.png)
 
 ---
 
@@ -82,7 +82,7 @@ hydra -l joker -P /usr/share/wordlists/rockyou.txt 10.130.166.31 -s 8080 http-ge
 
 After authenticating, we used **Nikto** to gather additional information about the web application.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211456.png)
+![](../Images/Pasted%20image%2020260426211456.png)
 
 ---
 
@@ -90,11 +90,11 @@ After authenticating, we used **Nikto** to gather additional information about t
 
 Nikto identified an interesting file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211828.png)
+![](../Images/Pasted%20image%2020260426211828.png)
 
 We examined its contents.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706214800.png)
+![](../Images/Pasted%20image%2020260706214800.png)
 
 ---
 
@@ -102,7 +102,7 @@ We examined its contents.
 
 The file revealed the existence of a login page.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211904.png)
+![](../Images/Pasted%20image%2020260426211904.png)
 
 ---
 
@@ -110,11 +110,11 @@ The file revealed the existence of a login page.
 
 Nikto also identified another downloadable file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426211935.png)
+![](../Images/Pasted%20image%2020260426211935.png)
 
 We downloaded it for further analysis.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706214939.png)
+![](../Images/Pasted%20image%2020260706214939.png)
 
 ---
 
@@ -122,7 +122,7 @@ We downloaded it for further analysis.
 
 Attempting to extract the archive showed that it was password protected.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426213111.png)
+![](../Images/Pasted%20image%2020260426213111.png)
 
 ---
 
@@ -130,11 +130,11 @@ Attempting to extract the archive showed that it was password protected.
 
 We converted the archive into a crackable hash.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260706215113.png)
+![](../Images/Pasted%20image%2020260706215113.png)
 
 Then cracked it using John the Ripper.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426213226.png)
+![](../Images/Pasted%20image%2020260426213226.png)
 
 ---
 
@@ -142,7 +142,7 @@ Then cracked it using John the Ripper.
 
 Inside the extracted files, we found a database containing a username and a password hash.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426214104.png)
+![](../Images/Pasted%20image%2020260426214104.png)
 
 ---
 
@@ -150,7 +150,7 @@ Inside the extracted files, we found a database containing a username and a pass
 
 We cracked the hash to recover the plaintext password.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260707162321.png)
+![](../Images/Pasted%20image%2020260707162321.png)
 
 ---
 
@@ -158,7 +158,7 @@ We cracked the hash to recover the plaintext password.
 
 Using the recovered credentials, we successfully logged into the web application.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426214210.png)
+![](../Images/Pasted%20image%2020260426214210.png)
 
 ---
 
@@ -172,7 +172,7 @@ Extensions → Templates → index.php
 
 This allowed us to modify the template and upload PHP code.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426214604.png)
+![](../Images/Pasted%20image%2020260426214604.png)
 
 ---
 
@@ -180,7 +180,7 @@ This allowed us to modify the template and upload PHP code.
 
 After uploading the PHP payload, we accessed the modified page to execute the code and obtained a reverse shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426214847.png)
+![](../Images/Pasted%20image%2020260426214847.png)
 
 ---
 
@@ -188,7 +188,7 @@ After uploading the PHP payload, we accessed the modified page to execute the co
 
 After gaining shell access, we discovered that the compromised user belonged to the **LXD** group.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260426215043.png)
+![](../Images/Pasted%20image%2020260426215043.png)
 
 Since members of the **LXD** group can create privileged containers, we used the well-known **LXD privilege escalation** technique.
 

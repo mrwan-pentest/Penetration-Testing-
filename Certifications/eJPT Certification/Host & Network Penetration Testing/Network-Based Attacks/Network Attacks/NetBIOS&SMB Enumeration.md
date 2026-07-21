@@ -128,9 +128,9 @@ However, NetBIOS is still supported for compatibility with legacy environments.
 
 The engagement began by performing an Nmap scan to identify the services exposed by the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003114.png)
+![](../../../../../Images/Pasted%20image%2020260522003114.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003133.png)
+![](../../../../../Images/Pasted%20image%2020260522003133.png)
 
 ---
 
@@ -138,7 +138,7 @@ The engagement began by performing an Nmap scan to identify the services exposed
 
 Nmap NSE scripts were executed to identify the SMB version and gather additional information about the service.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003217.png)
+![](../../../../../Images/Pasted%20image%2020260522003217.png)
 
 ---
 
@@ -146,7 +146,7 @@ Nmap NSE scripts were executed to identify the SMB version and gather additional
 
 The following SMB security enumeration script was executed.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003408.png)
+![](../../../../../Images/Pasted%20image%2020260522003408.png)
 
 This script checks several SMB security settings, including:
 
@@ -173,7 +173,7 @@ When SMB Signing is not enforced, the host may be vulnerable to attacks such as:
 
 Anonymous access was tested to determine whether any SMB shares were accessible without authentication.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003549.png)
+![](../../../../../Images/Pasted%20image%2020260522003549.png)
 
 ---
 
@@ -181,15 +181,15 @@ Anonymous access was tested to determine whether any SMB shares were accessible 
 
 Nmap SMB scripts were then used to enumerate valid user accounts from the SMB service.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003643.png)
+![](../../../../../Images/Pasted%20image%2020260522003643.png)
 
 The discovered usernames were saved into a wordlist for password brute-forcing.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003727.png)
+![](../../../../../Images/Pasted%20image%2020260522003727.png)
 
 The brute-force attack successfully recovered valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003746.png)
+![](../../../../../Images/Pasted%20image%2020260522003746.png)
 
 ---
 
@@ -197,7 +197,7 @@ The brute-force attack successfully recovered valid credentials.
 
 The recovered credentials were used to authenticate to the target through Metasploit.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003818.png)
+![](../../../../../Images/Pasted%20image%2020260522003818.png)
 
 ---
 
@@ -205,7 +205,7 @@ The recovered credentials were used to authenticate to the target through Metasp
 
 After gaining access, a ping test was performed against another internal host.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522003942.png)
+![](../../../../../Images/Pasted%20image%2020260522003942.png)
 
 The successful response confirmed the existence of an internal network that was not directly reachable from the attacker's machine.
 
@@ -217,7 +217,7 @@ The internal subnet was added to Metasploit's routing table.
 
 The subnet mask identified from the target indicated that a **/20** network should be routed.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004017.png)
+![](../../../../../Images/Pasted%20image%2020260522004017.png)
 
 Once the route was added, only Metasploit modules could communicate with the internal network.
 
@@ -229,7 +229,7 @@ To access it using external tools such as Nmap, a SOCKS proxy was required.
 
 The proxy configuration file was reviewed to determine the listening port.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004203.png)
+![](../../../../../Images/Pasted%20image%2020260522004203.png)
 
 Metasploit's SOCKS proxy module was then loaded.
 
@@ -237,11 +237,11 @@ Metasploit's SOCKS proxy module was then loaded.
 use auxiliary/server/socks_proxy
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004258.png)
+![](../../../../../Images/Pasted%20image%2020260522004258.png)
 
 The listening port was configured to match the ProxyChains configuration.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004348.png)
+![](../../../../../Images/Pasted%20image%2020260522004348.png)
 
 ---
 
@@ -255,7 +255,7 @@ When scanning through ProxyChains, the following options are recommended:
 -sT -Pn
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004458.png)
+![](../../../../../Images/Pasted%20image%2020260522004458.png)
 
 The scan identified another host exposing an SMB service.
 
@@ -271,11 +271,11 @@ Available SMB shares were enumerated using:
 net view
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004536.png)
+![](../../../../../Images/Pasted%20image%2020260522004536.png)
 
 Initially, no shares were returned.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004622.png)
+![](../../../../../Images/Pasted%20image%2020260522004622.png)
 
 ---
 
@@ -283,11 +283,11 @@ Initially, no shares were returned.
 
 The Meterpreter session was migrated into a different process to obtain a more stable security context.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004708.png)
+![](../../../../../Images/Pasted%20image%2020260522004708.png)
 
 After migration, the SMB shares became accessible.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004737.png)
+![](../../../../../Images/Pasted%20image%2020260522004737.png)
 
 > **Why did this work?**
 >
@@ -303,7 +303,7 @@ The discovered SMB share was mapped as a local drive using:
 net use
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522004928.png)
+![](../../../../../Images/Pasted%20image%2020260522004928.png)
 
 Mapping the share allows it to be accessed like a local disk, making file browsing much easier.
 
@@ -313,11 +313,11 @@ Mapping the share allows it to be accessed like a local disk, making file browsi
 
 After browsing the mapped drive, several files containing credentials were discovered.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522005017.png)
+![](../../../../../Images/Pasted%20image%2020260522005017.png)
 
 To read their contents more easily, the investigation returned to the Meterpreter session.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260522005053.png)
+![](../../../../../Images/Pasted%20image%2020260522005053.png)
 
 ---
 

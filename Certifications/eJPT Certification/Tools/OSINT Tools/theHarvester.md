@@ -152,7 +152,7 @@ This information can be useful during:
 
 ---
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260510165847.png)
+![](../../../../Images/Pasted%20image%2020260510165847.png)
 
 ---
 

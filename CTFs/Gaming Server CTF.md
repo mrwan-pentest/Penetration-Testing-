@@ -13,7 +13,7 @@ The scan revealed two open ports:
 - SSH (22)
 - HTTP (80)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705210557.png)
+![](../Images/Pasted%20image%2020260705210557.png)
 
 ---
 
@@ -23,7 +23,7 @@ Next, we performed directory fuzzing using **Gobuster** to discover hidden pages
 
 During the scan, we found two interesting directories.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705210803.png)
+![](../Images/Pasted%20image%2020260705210803.png)
 
 ---
 
@@ -31,7 +31,7 @@ During the scan, we found two interesting directories.
 
 We visited the **secret** page and discovered an encrypted **SSH private key**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705210912.png)
+![](../Images/Pasted%20image%2020260705210912.png)
 
 We copied the private key so we could use it later for SSH authentication.
 
@@ -47,11 +47,11 @@ We converted the private key into a format that **John the Ripper** can crack us
 ssh2john
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211144.png)
+![](../Images/Pasted%20image%2020260705211144.png)
 
 After running John against the generated hash, we successfully recovered the passphrase.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211324.png)
+![](../Images/Pasted%20image%2020260705211324.png)
 
 At this point we had:
 
@@ -68,7 +68,7 @@ We continued enumerating the web application and inspected the page source.
 
 There we found the username.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211431.png)
+![](../Images/Pasted%20image%2020260705211431.png)
 
 ---
 
@@ -76,15 +76,15 @@ There we found the username.
 
 Before using the private key, we changed its permissions.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211523.png)
+![](../Images/Pasted%20image%2020260705211523.png)
 
 We then authenticated to the target over SSH using the discovered username, the private key, and its passphrase.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211619.png)
+![](../Images/Pasted%20image%2020260705211619.png)
 
 After logging in, we successfully obtained the **user flag**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211644.png)
+![](../Images/Pasted%20image%2020260705211644.png)
 
 ---
 
@@ -92,7 +92,7 @@ After logging in, we successfully obtained the **user flag**.
 
 During the enumeration process, we noticed that the current user belonged to the **LXD** group.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260705211743.png)
+![](../Images/Pasted%20image%2020260705211743.png)
 
 Membership in the **LXD** group is dangerous because it can allow a user to create privileged containers and mount the host filesystem, ultimately leading to **Root** access.
 

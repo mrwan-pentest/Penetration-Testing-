@@ -134,7 +134,7 @@ x86/shikata_ga_nai
 
 ## Windows
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260525003512.png)
+![](../../../../../Images/Pasted%20image%2020260525003512.png)
 
 ---
 
@@ -146,10 +146,10 @@ Use the following option:
 -i
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260525004053.png)
+![](../../../../../Images/Pasted%20image%2020260525004053.png)
 
 ---
 
 # Linux
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260525004433.png)
+![](../../../../../Images/Pasted%20image%2020260525004433.png)

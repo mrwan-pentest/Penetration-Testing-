@@ -16,7 +16,7 @@ post/multi/manage/shell_to_meterpreter
 
 This module automatically uploads the required Meterpreter payload to the target and migrates the current shell into a fully interactive Meterpreter session.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260527163540.png)
+![](../../../../../Images/Pasted%20image%2020260527163540.png)
 
 ### Advantages
 
@@ -36,7 +36,7 @@ This module automatically uploads the required Meterpreter payload to the target
 
 Another way to upgrade or interact with sessions is through Metasploit's built-in `sessions` command.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260527163821.png)
+![](../../../../../Images/Pasted%20image%2020260527163821.png)
 
 Some commonly used options include:
 

@@ -106,7 +106,7 @@ Used to:
 Enumerate valid usernames on the SMTP server
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514160819.png)
+![](../../../../Images/Pasted%20image%2020260514160819.png)
 
 ## Then we will use it for:
 

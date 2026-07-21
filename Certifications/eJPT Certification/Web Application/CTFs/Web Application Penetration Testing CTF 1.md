@@ -16,7 +16,7 @@ During the initial assessment, we discovered that the web application was vulner
 
 By exploiting the LFI vulnerability, we were able to access arbitrary files on the target system, including the first flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610163129.png)
+![](../../../../Images/Pasted%20image%2020260610163129.png)
 
 ---
 
@@ -30,7 +30,7 @@ To discover hidden directories and files, we performed directory brute-force enu
 
 During the scan, we discovered an interesting hidden URL.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610163339.png)
+![](../../../../Images/Pasted%20image%2020260610163339.png)
 
 ---
 
@@ -38,9 +38,9 @@ During the scan, we discovered an interesting hidden URL.
 
 After navigating to the discovered path, we found a protected resource containing the second flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610163506.png)
+![](../../../../Images/Pasted%20image%2020260610163506.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610163510.png)
+![](../../../../Images/Pasted%20image%2020260610163510.png)
 
 ---
 
@@ -65,7 +65,7 @@ We intercepted the login request using **Burp Suite** to identify:
 
 The captured request showed that the application uses the **POST** method for authentication.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610163843.png)
+![](../../../../Images/Pasted%20image%2020260610163843.png)
 
 ---
 
@@ -75,7 +75,7 @@ We also identified the error message returned when authentication fails.
 
 This message is required by Hydra to determine unsuccessful login attempts.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610164133.png)
+![](../../../../Images/Pasted%20image%2020260610164133.png)
 
 ---
 
@@ -102,7 +102,7 @@ hydra -f -V -L /usr/share/seclists/Usernames/top-usernames-shortlist.txt -P /roo
 
 Hydra successfully identified valid login credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610164410.png)
+![](../../../../Images/Pasted%20image%2020260610164410.png)
 
 ---
 
@@ -110,7 +110,7 @@ Hydra successfully identified valid login credentials.
 
 After logging into the application with the discovered credentials, we successfully obtained the third flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610164528.png)
+![](../../../../Images/Pasted%20image%2020260610164528.png)
 
 ---
 
@@ -122,7 +122,7 @@ The final hint suggested testing the login form with unexpected input.
 
 We attempted a **SQL Injection** attack against the authentication mechanism to bypass the login page and gain access to the administrator account.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610164751.png)
+![](../../../../Images/Pasted%20image%2020260610164751.png)
 
 ---
 
@@ -130,7 +130,7 @@ We attempted a **SQL Injection** attack against the authentication mechanism to 
 
 After successfully bypassing authentication, we gained access to the administrator account and obtained the final flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260610164820.png)
+![](../../../../Images/Pasted%20image%2020260610164820.png)
 
 ---
 

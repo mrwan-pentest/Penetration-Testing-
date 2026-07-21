@@ -127,13 +127,13 @@ To verify whether the application was vulnerable to **Reflected XSS**, we inject
 
 If the application reflects the input without proper sanitization, the browser executes the script immediately.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260711205947.png)
+![](../../../Images/Pasted%20image%2020260711205947.png)
 
 ## Step 2 - Confirm the Vulnerability
 
 After submitting the payload, the alert dialog appeared in the browser, confirming that the application was vulnerable to Reflected XSS.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260711210108.png)
+![](../../../Images/Pasted%20image%2020260711210108.png)
 
 ---
 
@@ -149,11 +149,11 @@ For example:
 <scriPT>alert("XSS")</SCRipt>
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260711211139.png)
+![](../../../Images/Pasted%20image%2020260711211139.png)
 
 The payload bypassed the filter and executed successfully.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260711211201.png)
+![](../../../Images/Pasted%20image%2020260711211201.png)
 
 ---
 
@@ -165,7 +165,7 @@ Unlike Reflected XSS, **Stored XSS** stores the malicious payload on the server,
 
 We submitted a JavaScript payload that was stored by the application.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714204213.png)
+![](../../../Images/Pasted%20image%2020260714204213.png)
 
 ## Step 2 - Verify Persistent Execution
 
@@ -173,7 +173,7 @@ Each time a user visits the affected page, the stored payload is automatically e
 
 This behavior confirms the presence of a Stored XSS vulnerability.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714204312.png)
+![](../../../Images/Pasted%20image%2020260714204312.png)
 
 ---
 
@@ -183,7 +183,7 @@ This behavior confirms the presence of a Stored XSS vulnerability.
 
 Initially, the input field restricted the number of characters that could be entered, preventing us from submitting a complete XSS payload.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714204723.png)
+![](../../../Images/Pasted%20image%2020260714204723.png)
 
 Since this restriction was enforced only on the client side, we modified the page's HTML source code.
 
@@ -191,23 +191,23 @@ Since this restriction was enforced only on the client side, we modified the pag
 
 We inspected the page source and located the input field.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714204841.png)
+![](../../../Images/Pasted%20image%2020260714204841.png)
 
 The field allowed only ten characters.
 
 We increased the maximum length to one hundred characters.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714204921.png)
+![](../../../Images/Pasted%20image%2020260714204921.png)
 
 After modifying the input length, we were able to enter the full payload.
 
 To bypass the application's keyword filter, we also changed the capitalization of the `<script>` tag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714205534.png)
+![](../../../Images/Pasted%20image%2020260714205534.png)
 
 The payload executed successfully.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714205550.png)
+![](../../../Images/Pasted%20image%2020260714205550.png)
 
 ---
 
@@ -223,7 +223,7 @@ To generate the character codes, we used an online converter.
 https://charcode98.neocities.org/
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714210358.png)
+![](../../../Images/Pasted%20image%2020260714210358.png)
 
 The generated character codes were then passed to `String.fromCharCode()`.
 
@@ -235,4 +235,4 @@ Each ASCII value must be separated by a comma.
 
 Using this technique, the payload successfully bypassed the filter and executed.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260714211247.png)
+![](../../../Images/Pasted%20image%2020260714211247.png)

@@ -82,11 +82,11 @@ we search for:
 unattend.xml
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519161909.png)
+![](../../../../../../Images/Pasted%20image%2020260519161909.png)
 
 We found it, accessed the path, and transferred it to our machine.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519161942.png)
+![](../../../../../../Images/Pasted%20image%2020260519161942.png)
 
 We read the file and noticed that the password was:
 
@@ -96,11 +96,11 @@ Base64
 
 encoded.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519162014.png)
+![](../../../../../../Images/Pasted%20image%2020260519162014.png)
 
 We decoded the password:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519162034.png)
+![](../../../../../../Images/Pasted%20image%2020260519162034.png)
 
 Then we logged in using:
 
@@ -108,4 +108,4 @@ Then we logged in using:
 psexec
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519162052.png)
+![](../../../../../../Images/Pasted%20image%2020260519162052.png)

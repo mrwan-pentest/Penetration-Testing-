@@ -114,19 +114,19 @@ After searching for SUID binaries, we discovered two executable files.
 
 One of them could not be accessed directly, while the second binary was owned by **root** and had the **SUID** permission enabled.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260521014249.png)
+![](../../../../../../Images/Pasted%20image%2020260521014249.png)
 
 ---
 
 Next, we used the `strings` command to inspect readable strings embedded inside the SUID binary.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260521014428.png)
+![](../../../../../../Images/Pasted%20image%2020260521014428.png)
 
 ---
 
 The output revealed that the binary attempts to execute another executable that we were unable to access directly.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260521014513.png)
+![](../../../../../../Images/Pasted%20image%2020260521014513.png)
 
 ---
 
@@ -134,7 +134,7 @@ We then removed the original executable and replaced it with our own binary that
 
 Since the `welcome` binary executes this program internally while running with **root** privileges through SUID, our malicious binary was executed as **root**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260521014628.png)
+![](../../../../../../Images/Pasted%20image%2020260521014628.png)
 
 ---
 

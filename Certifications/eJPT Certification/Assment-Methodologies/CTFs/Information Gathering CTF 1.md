@@ -3,7 +3,7 @@
 
 ## NMAP Scan
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260511215610.png)
+![](../../../../Images/Pasted%20image%2020260511215610.png)
 
 # robots.txt Discovery  
   

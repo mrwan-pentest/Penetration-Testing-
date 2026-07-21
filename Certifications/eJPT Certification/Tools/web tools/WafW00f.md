@@ -88,7 +88,7 @@ The tool will analyze the target and display whether a WAF was detected.
 
 ---
 
-![](Penetration%20Testing/Images/Pasted %20%20image%2020260510132937.png)
+![](../../../../Images/Pasted %20%20image%2020260510132937.png)
 
 ---
 

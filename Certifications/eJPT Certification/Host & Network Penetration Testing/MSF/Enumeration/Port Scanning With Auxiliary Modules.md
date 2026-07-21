@@ -18,7 +18,7 @@ The objective of this lab was to configure the target network, perform port scan
 
 Configured the internal network range that would be scanned by the Metasploit module.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524014057.png)
+![](../../../../../Images/Pasted%20image%2020260524014057.png)
 
 ---
 
@@ -26,7 +26,7 @@ Configured the internal network range that would be scanned by the Metasploit mo
 
 Executed a TCP port scan against the configured network to identify active hosts and open ports.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524014127.png)
+![](../../../../../Images/Pasted%20image%2020260524014127.png)
 
 ---
 
@@ -34,7 +34,7 @@ Executed a TCP port scan against the configured network to identify active hosts
 
 Performed a UDP scan to identify services running over the UDP protocol.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524014231.png)
+![](../../../../../Images/Pasted%20image%2020260524014231.png)
 
 ---
 

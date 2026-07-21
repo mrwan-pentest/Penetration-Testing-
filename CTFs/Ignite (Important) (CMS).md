@@ -8,7 +8,7 @@
 
 We began by performing an Nmap scan to identify the open ports on the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163404.png)
+![](../Images/Pasted%20image%2020260401163404.png)
 
 ---
 
@@ -16,7 +16,7 @@ We began by performing an Nmap scan to identify the open ports on the target.
 
 Next, we enabled **version detection** and executed the default Nmap scripts to gather additional information about the running services.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163435.png)
+![](../Images/Pasted%20image%2020260401163435.png)
 
 The scan revealed that the target was running the **FUEL CMS**.
 
@@ -26,7 +26,7 @@ The scan revealed that the target was running the **FUEL CMS**.
 
 We performed directory fuzzing against the web application to discover hidden files and directories.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163421.png)
+![](../Images/Pasted%20image%2020260401163421.png)
 
 ---
 
@@ -34,7 +34,7 @@ We performed directory fuzzing against the web application to discover hidden fi
 
 Since the target was running **FUEL CMS**, we searched for publicly available exploits affecting this version and downloaded the exploit to our attacking machine.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163520.png)
+![](../Images/Pasted%20image%2020260401163520.png)
 
 ---
 
@@ -44,9 +44,9 @@ We executed the exploit against the target.
 
 The exploit successfully demonstrated that the application was vulnerable to **Remote Code Execution (RCE)**, allowing arbitrary system commands to be executed.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163557.png)
+![](../Images/Pasted%20image%2020260401163557.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163624.png)
+![](../Images/Pasted%20image%2020260401163624.png)
 
 ---
 
@@ -56,7 +56,7 @@ We started a listener on our attacking machine and executed a reverse shell payl
 
 After triggering the payload, we successfully obtained a reverse shell on the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163644.png)
+![](../Images/Pasted%20image%2020260401163644.png)
 
 ---
 
@@ -64,7 +64,7 @@ After triggering the payload, we successfully obtained a reverse shell on the ta
 
 To improve the shell's usability, we upgraded it to a fully interactive TTY shell using `stty`.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163656.png)
+![](../Images/Pasted%20image%2020260401163656.png)
 
 ---
 
@@ -74,7 +74,7 @@ By reviewing the CMS documentation and directory structure, we identified the lo
 
 We navigated to the configuration directory.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163717.png)
+![](../Images/Pasted%20image%2020260401163717.png)
 
 ---
 
@@ -82,4 +82,4 @@ We navigated to the configuration directory.
 
 After reading the database configuration file, we recovered the database credentials, including the **MySQL root username and password**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260401163738.png)
+![](../Images/Pasted%20image%2020260401163738.png)

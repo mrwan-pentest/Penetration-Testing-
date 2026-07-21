@@ -73,7 +73,7 @@ This information can be used as a starting point for further activities such as:
 
 ---
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260511161631.png)
+![](../../Images/Pasted%20image%2020260511161631.png)
 
 ---
 

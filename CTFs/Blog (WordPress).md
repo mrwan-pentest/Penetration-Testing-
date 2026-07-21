@@ -8,7 +8,7 @@ The objective was to enumerate the target, gain initial access through a vulnera
 
 Performed an Nmap scan to identify the available services and open ports.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419063333.png)
+![](../Images/Pasted%20image%2020260419063333.png)
 
 ---
 
@@ -16,7 +16,7 @@ Performed an Nmap scan to identify the available services and open ports.
 
 Added the target domain to the local **hosts** file for proper name resolution.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419063559.png)
+![](../Images/Pasted%20image%2020260419063559.png)
 
 ---
 
@@ -24,9 +24,9 @@ Added the target domain to the local **hosts** file for proper name resolution.
 
 Discovered that the target was running **WordPress**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419064530.png)
+![](../Images/Pasted%20image%2020260419064530.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419064523.png)
+![](../Images/Pasted%20image%2020260419064523.png)
 
 
 ---
@@ -35,7 +35,7 @@ Discovered that the target was running **WordPress**.
 
 Performed web fuzzing to discover hidden files and directories.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419064838.png)
+![](../Images/Pasted%20image%2020260419064838.png)
 
 ---
 
@@ -43,11 +43,11 @@ Performed web fuzzing to discover hidden files and directories.
 
 Enumerated WordPress users using the **-u** option.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419064951.png)
+![](../Images/Pasted%20image%2020260419064951.png)
 
 The following usernames were successfully identified.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419065036.png)
+![](../Images/Pasted%20image%2020260419065036.png)
 
 ---
 
@@ -55,11 +55,11 @@ The following usernames were successfully identified.
 
 Performed a brute-force attack against the discovered users.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419065151.png)
+![](../Images/Pasted%20image%2020260419065151.png)
 
 Successfully recovered valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419070401.png)
+![](../Images/Pasted%20image%2020260419070401.png)
 
 ---
 
@@ -67,7 +67,7 @@ Successfully recovered valid credentials.
 
 Determined the WordPress version running on the target.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419070605.png)
+![](../Images/Pasted%20image%2020260419070605.png)
 
 ---
 
@@ -75,7 +75,7 @@ Determined the WordPress version running on the target.
 
 Searched for publicly available exploits targeting the identified version.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419070643.png)
+![](../Images/Pasted%20image%2020260419070643.png)
 
 ---
 
@@ -83,7 +83,7 @@ Searched for publicly available exploits targeting the identified version.
 
 Verified that a Metasploit module was available for the vulnerability using **SearchSploit**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419070824.png)
+![](../Images/Pasted%20image%2020260419070824.png)
 
 ---
 
@@ -91,11 +91,11 @@ Verified that a Metasploit module was available for the vulnerability using **Se
 
 Located the corresponding exploit module within Metasploit.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419070916.png)
+![](../Images/Pasted%20image%2020260419070916.png)
 
 Executed the exploit successfully.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419071129.png)
+![](../Images/Pasted%20image%2020260419071129.png)
 
 ---
 
@@ -103,7 +103,7 @@ Executed the exploit successfully.
 
 Successfully obtained a shell on the target system.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419071608.png)
+![](../Images/Pasted%20image%2020260419071608.png)
 
 ---
 
@@ -111,11 +111,11 @@ Successfully obtained a shell on the target system.
 
 Opened the WordPress configuration file.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419071635.png)
+![](../Images/Pasted%20image%2020260419071635.png)
 
 Recovered the database username and password.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419071754.png)
+![](../Images/Pasted%20image%2020260419071754.png)
 
 ---
 
@@ -123,7 +123,7 @@ Recovered the database username and password.
 
 Logged into the MySQL database using the recovered credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419072010.png)
+![](../Images/Pasted%20image%2020260419072010.png)
 
 After enumeration, no useful information was found that could be leveraged for further exploitation.
 
@@ -133,7 +133,7 @@ After enumeration, no useful information was found that could be leveraged for f
 
 Searched for SUID binaries and discovered a custom executable named **checker**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419073038.png)
+![](../Images/Pasted%20image%2020260419073038.png)
 
 To exploit the binary, the following commands were executed:
 
@@ -146,7 +146,7 @@ export admin=1
 
 This successfully resulted in root privileges.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260419074618.png)
+![](../Images/Pasted%20image%2020260419074618.png)
 
 ---
 

@@ -317,7 +317,7 @@ Attacker
 Gateway
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523134213.png)
+![](../../../../../Images/Pasted%20image%2020260523134213.png)
 
 ---
 
@@ -357,11 +357,11 @@ and immediately relays them to the real SMB server.
 
 If the server does not enforce SMB Signing, authentication succeeds and the payload is executed.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523134233.png)
+![](../../../../../Images/Pasted%20image%2020260523134233.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523134249.png)
+![](../../../../../Images/Pasted%20image%2020260523134249.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523134307.png)
+![](../../../../../Images/Pasted%20image%2020260523134307.png)
 
 ---
 

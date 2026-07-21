@@ -30,4 +30,4 @@ There is also the **`-k`** option, which attempts to preserve the original progr
 
 > **Note:** The `-k` option does not work reliably with every application and may not be compatible with all executable files.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260525011137.png)
+![](../../../../../Images/Pasted%20image%2020260525011137.png)

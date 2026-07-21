@@ -20,7 +20,7 @@ hydra -l bob -P /usr/share/metasploit-framework/data/wordlists/unix_passwords.tx
 
 This attack successfully recovered valid credentials for the target web application.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520144829.png)
+![](../../../../../Images/Pasted%20image%2020260520144829.png)
 
 ---
 
@@ -28,7 +28,7 @@ This attack successfully recovered valid credentials for the target web applicat
 
 After obtaining valid credentials, we performed directory enumeration to discover hidden resources exposed by the web server.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520144857.png)
+![](../../../../../Images/Pasted%20image%2020260520144857.png)
 
 During enumeration, we discovered a **WebDAV** directory.
 
@@ -50,7 +50,7 @@ We connected to the WebDAV share using **cadaver**.
 
 After authenticating with the recovered credentials, we browsed the available files and located the first flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145156.png)
+![](../../../../../Images/Pasted%20image%2020260520145156.png)
 
 ---
 
@@ -66,11 +66,11 @@ The first flag was obtained by authenticating to the exposed WebDAV share and br
 
 After confirming that the WebDAV service allowed uploads, we uploaded the required file to the server.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145244.png)
+![](../../../../../Images/Pasted%20image%2020260520145244.png)
 
 Once uploaded, we explored the **C:** drive and successfully located the second flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145306.png)
+![](../../../../../Images/Pasted%20image%2020260520145306.png)
 
 ---
 
@@ -82,19 +82,19 @@ Next, we targeted the SMB service.
 
 A brute-force attack was performed using a Metasploit SMB module to identify valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145421.png)
+![](../../../../../Images/Pasted%20image%2020260520145421.png)
 
 To obtain a separate session for each successful login, we enabled the appropriate option within the module.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145445.png)
+![](../../../../../Images/Pasted%20image%2020260520145445.png)
 
 After successful authentication, we accessed the **Administrator** account.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145550.png)
+![](../../../../../Images/Pasted%20image%2020260520145550.png)
 
 We then enumerated the available SMB shares, navigated to the appropriate share, and retrieved the third flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145612.png)
+![](../../../../../Images/Pasted%20image%2020260520145612.png)
 
 ---
 
@@ -104,9 +104,9 @@ After gaining access to the Administrator account, we navigated to the user's **
 
 There, we found and read the fourth flag.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145704.png)
+![](../../../../../Images/Pasted%20image%2020260520145704.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520145716.png)
+![](../../../../../Images/Pasted%20image%2020260520145716.png)
 
 ---
 

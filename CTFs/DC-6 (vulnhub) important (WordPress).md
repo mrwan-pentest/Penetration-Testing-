@@ -18,7 +18,7 @@ The objective of this lab was to identify the target, gain remote access through
 
 Performed a network scan to identify active hosts.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428105734.png)
+![](../Images/Pasted%20image%2020260428105734.png)
 
 ---
 
@@ -26,11 +26,11 @@ Performed a network scan to identify active hosts.
 
 Identified the target host along with its open ports.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428105846.png)
+![](../Images/Pasted%20image%2020260428105846.png)
 
 Performed a detailed Nmap scan against the discovered host.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110019.png)
+![](../Images/Pasted%20image%2020260428110019.png)
 
 ---
 
@@ -38,19 +38,19 @@ Performed a detailed Nmap scan against the discovered host.
 
 Visited the web application and identified it as a **WordPress** website.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110152.png)
+![](../Images/Pasted%20image%2020260428110152.png)
 
 Performed web fuzzing to discover additional resources.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110238.png)
+![](../Images/Pasted%20image%2020260428110238.png)
 
 Discovered the WordPress login page.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110324.png)
+![](../Images/Pasted%20image%2020260428110324.png)
 
 Added the target domain to the local **hosts** file for proper name resolution.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110512.png)
+![](../Images/Pasted%20image%2020260428110512.png)
 
 ---
 
@@ -58,11 +58,11 @@ Added the target domain to the local **hosts** file for proper name resolution.
 
 Enumerated valid WordPress usernames.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110548.png)
+![](../Images/Pasted%20image%2020260428110548.png)
 
 Successfully identified multiple users.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110618.png)
+![](../Images/Pasted%20image%2020260428110618.png)
 
 ---
 
@@ -70,19 +70,19 @@ Successfully identified multiple users.
 
 Based on the challenge hint, extracted passwords containing **k01** into a separate wordlist.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110744.png)
+![](../Images/Pasted%20image%2020260428110744.png)
 
 Saved the discovered usernames into a dedicated user list.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428110934.png)
+![](../Images/Pasted%20image%2020260428110934.png)
 
 Performed a brute-force attack using the generated username and password lists.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111048.png)
+![](../Images/Pasted%20image%2020260428111048.png)
 
 Successfully recovered valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111258.png)
+![](../Images/Pasted%20image%2020260428111258.png)
 
 ---
 
@@ -90,23 +90,23 @@ Successfully recovered valid credentials.
 
 Accessed the vulnerable application using the recovered credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111506.png)
+![](../Images/Pasted%20image%2020260428111506.png)
 
 Searched for publicly available exploits using **SearchSploit**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111645.png)
+![](../Images/Pasted%20image%2020260428111645.png)
 
 Copied the exploit to the local machine.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111734.png)
+![](../Images/Pasted%20image%2020260428111734.png)
 
 Reviewed the exploit source code to understand how it achieves **Remote Code Execution** through a crafted HTTP request.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428111916.png)
+![](../Images/Pasted%20image%2020260428111916.png)
 
 The exploit documentation showed that modifying the request would allow execution of arbitrary commands, making it possible to obtain a **Reverse Shell**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428112023.png)
+![](../Images/Pasted%20image%2020260428112023.png)
 
 ---
 
@@ -114,19 +114,19 @@ The exploit documentation showed that modifying the request would allow executio
 
 Prepared Burp Suite to intercept the vulnerable HTTP request.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428112418.png)
+![](../Images/Pasted%20image%2020260428112418.png)
 
 Intercepted the request.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428112458.png)
+![](../Images/Pasted%20image%2020260428112458.png)
 
 Modified the payload to execute a reverse shell and forwarded the request.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428112754.png)
+![](../Images/Pasted%20image%2020260428112754.png)
 
 Started a Netcat listener and successfully received a reverse shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428112826.png)
+![](../Images/Pasted%20image%2020260428112826.png)
 
 ---
 
@@ -134,15 +134,15 @@ Started a Netcat listener and successfully received a reverse shell.
 
 Performed local enumeration and recovered additional credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428115434.png)
+![](../Images/Pasted%20image%2020260428115434.png)
 
 Discovered a binary that could be executed as another user.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428115543.png)
+![](../Images/Pasted%20image%2020260428115543.png)
 
 Executed the binary to switch to the higher-privileged user.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428123811.png)
+![](../Images/Pasted%20image%2020260428123811.png)
 
 ---
 
@@ -150,7 +150,7 @@ Executed the binary to switch to the higher-privileged user.
 
 Enumerated the user's **sudo** privileges.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428124710.png)
+![](../Images/Pasted%20image%2020260428124710.png)
 
 Discovered that **Nmap** could be executed with **root** privileges.
 
@@ -165,7 +165,7 @@ sudo nmap --script=/tmp/root.nse
 
 Successfully obtained a root shell.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428124835.png)
+![](../Images/Pasted%20image%2020260428124835.png)
 
 ---
 
@@ -173,7 +173,7 @@ Successfully obtained a root shell.
 
 Successfully located and read the **Root Flag**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260428125242.png)
+![](../Images/Pasted%20image%2020260428125242.png)
 
 ---
 

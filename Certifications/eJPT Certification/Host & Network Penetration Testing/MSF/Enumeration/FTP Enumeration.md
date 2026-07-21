@@ -2,7 +2,7 @@
 
 Used the appropriate Nmap NSE script to identify the FTP service version.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524015609.png)
+![](../../../../../Images/Pasted%20image%2020260524015609.png)
 
 ---
 
@@ -10,7 +10,7 @@ Used the appropriate Nmap NSE script to identify the FTP service version.
 
 Performed a brute-force attack against the FTP service to identify valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524015629.png)
+![](../../../../../Images/Pasted%20image%2020260524015629.png)
 
 ---
 
@@ -18,4 +18,4 @@ Performed a brute-force attack against the FTP service to identify valid credent
 
 Verified whether the FTP server allowed anonymous authentication.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260524015704.png)
+![](../../../../../Images/Pasted%20image%2020260524015704.png)

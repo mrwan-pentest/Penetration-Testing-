@@ -92,7 +92,7 @@ Uses the following module to identify the installed MySQL version:
 auxiliary/scanner/mysql/mysql_version
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141335.png)
+![](../../../../../Images/Pasted%20image%2020260514141335.png)
 
 ---
 
@@ -104,7 +104,7 @@ Attempts to authenticate using supplied usernames and passwords or perform brute
 auxiliary/scanner/mysql/mysql_login
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141431.png)
+![](../../../../../Images/Pasted%20image%2020260514141431.png)
 
 ---
 
@@ -123,7 +123,7 @@ Collects information about the MySQL server, including:
 auxiliary/admin/mysql/mysql_enum
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141535.png)
+![](../../../../../Images/Pasted%20image%2020260514141535.png)
 
 ---
 
@@ -135,7 +135,7 @@ Enumerates available databases and tables.
 auxiliary/scanner/mysql/mysql_schemadump
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141642.png)
+![](../../../../../Images/Pasted%20image%2020260514141642.png)
 
 ---
 
@@ -147,7 +147,7 @@ Executes arbitrary SQL statements directly against the MySQL server.
 auxiliary/admin/mysql/mysql_sql
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141834.png)
+![](../../../../../Images/Pasted%20image%2020260514141834.png)
 
 ---
 
@@ -168,7 +168,7 @@ Examples include:
 auxiliary/scanner/mysql/mysql_file_enum
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514141919.png)
+![](../../../../../Images/Pasted%20image%2020260514141919.png)
 
 ---
 
@@ -186,7 +186,7 @@ This technique may allow attackers to upload files such as web shells.
 auxiliary/scanner/mysql/mysql_writable_dirs
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514142003.png)
+![](../../../../../Images/Pasted%20image%2020260514142003.png)
 
 ---
 
@@ -198,7 +198,7 @@ Extracts password hashes for MySQL user accounts.
 auxiliary/scanner/mysql/mysql_hashdump
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260514142119.png)
+![](../../../../../Images/Pasted%20image%2020260514142119.png)
 
 ---
 

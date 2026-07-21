@@ -93,7 +93,7 @@ Common Token Impersonation tools include:
 
 After obtaining a Meterpreter session, we first load the Incognito extension.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519132904.png)
+![](../../../../../../Images/Pasted%20image%2020260519132904.png)
 
 ---
 
@@ -101,7 +101,7 @@ After obtaining a Meterpreter session, we first load the Incognito extension.
 
 We enumerate the available Tokens that can be impersonated.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519132938.png)
+![](../../../../../../Images/Pasted%20image%2020260519132938.png)
 
 ---
 
@@ -109,7 +109,7 @@ We enumerate the available Tokens that can be impersonated.
 
 After identifying a privileged Token, we impersonate the Administrator Token.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519133022.png)
+![](../../../../../../Images/Pasted%20image%2020260519133022.png)
 
 ---
 
@@ -117,7 +117,7 @@ After identifying a privileged Token, we impersonate the Administrator Token.
 
 After successful Token impersonation, we gain access using the privileges of the impersonated user.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260519133038.png)
+![](../../../../../../Images/Pasted%20image%2020260519133038.png)
 
 ---
 

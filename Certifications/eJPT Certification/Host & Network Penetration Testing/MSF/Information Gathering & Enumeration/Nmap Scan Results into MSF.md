@@ -14,7 +14,7 @@ Instead of scanning the target again, Metasploit can directly use the imported i
 
 First, save the Nmap scan results in XML format.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260513232600.png)
+![](../../../../../Images/Pasted%20image%2020260513232600.png)
 
 ---
 
@@ -22,7 +22,7 @@ First, save the Nmap scan results in XML format.
 
 Start the PostgreSQL database used by Metasploit.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260513232702.png)
+![](../../../../../Images/Pasted%20image%2020260513232702.png)
 
 ---
 
@@ -64,7 +64,7 @@ Import the previously saved XML scan into the active workspace.
 db_import
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260513232801.png)
+![](../../../../../Images/Pasted%20image%2020260513232801.png)
 
 ---
 
@@ -100,4 +100,4 @@ vulns
 
 Displays any vulnerabilities associated with the imported hosts, if available.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260513233241.png)
+![](../../../../../Images/Pasted%20image%2020260513233241.png)

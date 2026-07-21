@@ -2,7 +2,7 @@
 
 To display the installed Metasploit Framework version, run:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523171639.png)
+![](../../../../../Images/Pasted%20image%2020260523171639.png)
 
 ---
 
@@ -10,7 +10,7 @@ To display the installed Metasploit Framework version, run:
 
 To display every module available in Metasploit:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523171748.png)
+![](../../../../../Images/Pasted%20image%2020260523171748.png)
 
 ---
 
@@ -18,7 +18,7 @@ To display every module available in Metasploit:
 
 To display only a specific type of module (such as exploits, auxiliary modules, or payloads):
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523171850.png)
+![](../../../../../Images/Pasted%20image%2020260523171850.png)
 
 ---
 
@@ -26,7 +26,7 @@ To display only a specific type of module (such as exploits, auxiliary modules, 
 
 To search for a specific module by keyword:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523172012.png)
+![](../../../../../Images/Pasted%20image%2020260523172012.png)
 
 ---
 
@@ -38,7 +38,7 @@ You can narrow your search by specifying:
 - Module type
 - Target platform
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523172923.png)
+![](../../../../../Images/Pasted%20image%2020260523172923.png)
 
 ---
 
@@ -46,7 +46,7 @@ You can narrow your search by specifying:
 
 To load a module into the current workspace:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523172109.png)
+![](../../../../../Images/Pasted%20image%2020260523172109.png)
 
 ---
 
@@ -54,7 +54,7 @@ To load a module into the current workspace:
 
 To view all configurable options required by the selected module:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523172251.png)
+![](../../../../../Images/Pasted%20image%2020260523172251.png)
 
 ---
 
@@ -62,7 +62,7 @@ To view all configurable options required by the selected module:
 
 To execute a command against the loaded module:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523172337.png)
+![](../../../../../Images/Pasted%20image%2020260523172337.png)
 
 ---
 
@@ -70,7 +70,7 @@ To execute a command against the loaded module:
 
 To choose the payload that will be executed after successful exploitation:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523173244.png)
+![](../../../../../Images/Pasted%20image%2020260523173244.png)
 
 ---
 
@@ -78,7 +78,7 @@ To choose the payload that will be executed after successful exploitation:
 
 To display all active sessions created by Metasploit:
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260523173350.png)
+![](../../../../../Images/Pasted%20image%2020260523173350.png)
 
 ---
 

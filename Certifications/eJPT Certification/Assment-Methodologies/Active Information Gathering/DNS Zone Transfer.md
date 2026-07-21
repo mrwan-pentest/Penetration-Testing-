@@ -103,4 +103,4 @@ DNS Zone Transfers are often considered a high-value finding because they can ex
 
 ---
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260510212128.png)
+![](../../../../Images/Pasted%20image%2020260510212128.png)

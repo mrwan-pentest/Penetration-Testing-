@@ -40,7 +40,7 @@ The objective of this lab was to identify a vulnerable SMB service, exploit the 
 
 Performed an Nmap scan to identify the exposed services and open ports.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412094911.png)
+![](../Images/Pasted%20image%2020260412094911.png)
 
 ---
 
@@ -54,9 +54,9 @@ Executed the Nmap SMB vulnerability detection scripts located in:
 
 The scan confirmed that the target was vulnerable to **MS17-010 (EternalBlue)**.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412094957.png)
+![](../Images/Pasted%20image%2020260412094957.png)
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095025.png)
+![](../Images/Pasted%20image%2020260412095025.png)
 
 ---
 
@@ -64,7 +64,7 @@ The scan confirmed that the target was vulnerable to **MS17-010 (EternalBlue)**.
 
 Searched for the appropriate EternalBlue exploit module within Metasploit.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095123.png)
+![](../Images/Pasted%20image%2020260412095123.png)
 
 ---
 
@@ -72,7 +72,7 @@ Searched for the appropriate EternalBlue exploit module within Metasploit.
 
 Configured the exploit and selected the appropriate payload.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095223.png)
+![](../Images/Pasted%20image%2020260412095223.png)
 
 Successfully exploited the vulnerability and obtained an initial shell.
 
@@ -94,7 +94,7 @@ use post/multi/manage/shell_to_meterpreter
 
 This module converts a standard shell into a fully interactive **Meterpreter** session.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095515.png)
+![](../Images/Pasted%20image%2020260412095515.png)
 
 ---
 
@@ -104,7 +104,7 @@ After executing the module, two sessions became available.
 
 Interacted with **Session 2**, which contained the upgraded Meterpreter session.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095605.png)
+![](../Images/Pasted%20image%2020260412095605.png)
 
 ---
 
@@ -112,7 +112,7 @@ Interacted with **Session 2**, which contained the upgraded Meterpreter session.
 
 Migrated the Meterpreter session into a stable process to improve reliability and reduce the risk of losing access.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095639.png)
+![](../Images/Pasted%20image%2020260412095639.png)
 
 ---
 
@@ -120,7 +120,7 @@ Migrated the Meterpreter session into a stable process to improve reliability an
 
 Extracted the Windows password hashes from the target system.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095701.png)
+![](../Images/Pasted%20image%2020260412095701.png)
 
 ---
 
@@ -128,7 +128,7 @@ Extracted the Windows password hashes from the target system.
 
 Cracked the recovered password hashes to obtain valid credentials.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260412095745.png)
+![](../Images/Pasted%20image%2020260412095745.png)
 
 ---
 

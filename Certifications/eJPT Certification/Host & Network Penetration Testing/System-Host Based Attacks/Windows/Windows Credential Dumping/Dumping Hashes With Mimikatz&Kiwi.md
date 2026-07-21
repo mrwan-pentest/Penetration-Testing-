@@ -134,7 +134,7 @@ Load the Kiwi extension into the current Meterpreter session.
 load kiwi
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520132134.png)
+![](../../../../../../Images/Pasted%20image%2020260520132134.png)
 
 ---
 
@@ -152,7 +152,7 @@ or:
 hashdump
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520132156.png)
+![](../../../../../../Images/Pasted%20image%2020260520132156.png)
 
 ---
 
@@ -164,7 +164,7 @@ To extract hashes stored inside the SAM database:
 lsa_dump_sam
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520132223.png)
+![](../../../../../../Images/Pasted%20image%2020260520132223.png)
 
 ---
 
@@ -243,7 +243,7 @@ samdump2
 secretsdump.py
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520132622.png)
+![](../../../../../../Images/Pasted%20image%2020260520132622.png)
 
 ---
 
@@ -257,7 +257,7 @@ Example:
 creds_all
 ```
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260520132759.png)
+![](../../../../../../Images/Pasted%20image%2020260520132759.png)
 
 ---
 

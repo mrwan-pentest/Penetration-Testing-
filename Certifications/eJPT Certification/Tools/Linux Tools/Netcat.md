@@ -234,7 +234,7 @@ To establish communication between Kali Linux and Windows:
 
 The Windows system uses the Kali Linux IP address to establish the connection.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260530151517.png)
+![](../../../../Images/Pasted%20image%2020260530151517.png)
 
 ---
 
@@ -242,7 +242,7 @@ The Windows system uses the Kali Linux IP address to establish the connection.
 
 On Kali Linux, configure the listener or connection depending on the required communication method.
 
-![](Penetration%20Testing/Images/Pasted%20image%2020260530151542.png)
+![](../../../../Images/Pasted%20image%2020260530151542.png)
 
 ---
 
