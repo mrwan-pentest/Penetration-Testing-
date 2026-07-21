@@ -10,8 +10,11 @@
 
 ![](Penetration%20Testing/Images/Pasted%20image%2020260627234319.png)
 
+![](../../Images/Pasted%20image%2020260721202303.png)
 
-![](Images/Pasted%20image%2020260721202129.png)
+
+![](../../Images/Pasted%20image%2020260721202339.png)
+
 # Service Enumeration
 
 ## Used Nmap NSE scripts to gather additional information about the discovered services.
