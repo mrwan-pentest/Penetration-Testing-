@@ -4,6 +4,7 @@ DNS is responsible for translating domain names into IP addresses.
 
 Example:
 
+
 ```text
 example.com -> 93.184.216.34
 ```

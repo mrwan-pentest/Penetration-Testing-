@@ -7,7 +7,11 @@
 
 ## Performed an Nmap scan to identify the services running on the target host.
 
+<<<<<<< HEAD
 ![](../Images/Pasted%20image%2020260403162704.png)
+=======
+![](Images/Pasted%20image%2020260403162704.png)
+>>>>>>> fd3d3df690a921a40a0c0069d3ac6669d3629caa
 
 # Vulnerability Research
 

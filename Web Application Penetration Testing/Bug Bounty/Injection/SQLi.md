@@ -281,16 +281,18 @@ order by 1000000000000
 
 ---
 
- 
-## Discovering Complex SQL Injection Vulnerabilities
+ # Discovering Complex SQL Injection Vulnerabilities
 
-حاولنا نفعل inject بكندشن صحيح عشان نعرف هل سيتم تنفيذ الأمر
-ولكن ظهر لنا هذا الخطأ
+We first attempted to perform a SQL injection using a **true condition** to verify whether the application was vulnerable.
+
+However, the application returned the following error.
 
 ![](../../../Images/Pasted%20image%2020260710210208.png)
 
-من الواضح انه الخطأ بسبب أننا كتبنا  كوتس ' 
-جربنا الأمر بدونها وتنفذ الأمر بشكل صحيح
+From the error message, it became clear that the issue was caused by using a **single quote (`'`)**.
+
+We then repeated the test **without** using the single quote.
+
+This time, the payload executed successfully, indicating that the input was processed correctly without triggering the previous error.
 
 ![](../../../Images/Pasted%20image%2020260710210416.png)
-
