@@ -680,3 +680,5 @@ We executed the recommended payload and successfully obtained a root shell.
 Finally, we located and read both flag files.
 
 ![](../Images/Pasted%20image%2020260712164647.png)
+
+
