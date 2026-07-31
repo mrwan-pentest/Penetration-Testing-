@@ -71,11 +71,3 @@ Successfully obtained a remote session on the target.
 ### Bolt CMS
 
 Bolt CMS is a lightweight Content Management System (CMS) used to build and manage websites through an administrative interface.
-
-### SearchSploit
-
-SearchSploit is an offline utility included with Kali Linux that allows searching the Exploit-DB database locally for publicly available exploits.
-
-### Metasploit
-
-Metasploit is an exploitation framework used to validate vulnerabilities and gain remote access through publicly available exploit modules.
