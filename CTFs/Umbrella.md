@@ -290,7 +290,7 @@ This frequently results in:
 
 - Arbitrary JavaScript execution
 - Command execution
-- Remote Code Execution (RCE)
+- Remote Code Execution (RCE)./;
 
 For this reason, using `eval()` on untrusted input is considered a serious security vulnerability.
 
