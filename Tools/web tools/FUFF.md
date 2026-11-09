@@ -1,424 +1,128 @@
-# FFUF
+# FFUF (Fuzz Faster U Fool)
 
-## What is FFUF?
+## Overview
 
-**FFUF (Fuzz Faster U Fool)** is a fast and flexible web fuzzing tool used during the:
+**FFUF** is a fast web fuzzer written in Go, commonly used in penetration testing to discover hidden directories, files, subdomains, virtual hosts, and parameters.
 
-```
-Information Gathering
-Enumeration
-```
-
-phases of a penetration test.
-
-Its primary purpose is to discover hidden resources on a web server by sending a large number of requests using a wordlist.
+It uses a Wordlist and replaces the `FUZZ` keyword with each entry.
 
 ---
 
-# What does FFUF do?
 
-FFUF can be used to discover:
-
-- Hidden directories
-- Hidden files
-- Virtual Hosts (VHosts)
-- Subdomains
-- API endpoints
-- Parameters
-- Backup files
-- Development pages
-
----
-
-# How does FFUF work?
-
-FFUF replaces the keyword:
+## 1. Directory & File Discovery
 
 ```
-FUZZ
+ffuf -u http://TARGET/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt
 ```
 
-with every entry from a wordlist.
+- `-u`: Target URL.
+    
+- `-w`: Wordlist path.
+    
+- `FUZZ`: Placeholder replaced by each wordlist entry.
+    
 
-For example:
-
-```
-http://target.com/FUZZ
-```
-
-If the wordlist contains:
-
-```
-admin
-login
-uploads
-backup
-```
-
-FFUF will automatically test:
+### Search for specific file extensions
 
 ```
-http://target.com/admin
-http://target.com/login
-http://target.com/uploads
-http://target.com/backup
+ffuf -u http://TARGET/FUZZ -w wordlist.txt -e .php,.txt,.html
 ```
 
-and display the valid responses.
+- `-e`: Extensions to append to each wordlist entry.
+    
 
----
-
-# Installation
-
-FFUF comes pre-installed on Kali Linux.
-
-To verify:
-
-```bash
-ffuf -V
-```
-
-If it is not installed:
-
-```bash
-sudo apt update
-sudo apt install ffuf
-```
-
----
-
-# Basic Syntax
-
-```bash
-ffuf -u URL -w WORDLIST
-```
-
-Example:
-
-```bash
-ffuf -u http://target.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt
-```
-
----
-
-# Common Use Cases
-
-## Directory Enumeration
-
-```bash
-ffuf -u http://target.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt
-```
-
-Searches for hidden directories and files.
-
----
-
-## File Enumeration
-
-```bash
-ffuf -u http://target.com/FUZZ.php -w wordlist.txt
-```
-
-Searches for PHP files.
-
-Example results:
+## 2. Subdomain Discovery
 
 ```
-login.php
-admin.php
-backup.php
+ffuf -u http://FUZZ.example.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
 ```
 
----
+Replace `FUZZ` with candidate subdomains.
 
-## Subdomain Enumeration
-
-```bash
-ffuf -u http://FUZZ.example.com -w subdomains.txt -H "Host: FUZZ.example.com"
-```
-
-Discovers subdomains.
-
-Example:
+## 3. Virtual Host Discovery (VHost)
 
 ```
-admin.example.com
-dev.example.com
-mail.example.com
+ffuf -u http://TARGET -H "Host: FUZZ.example.com" -w wordlist.txt
 ```
 
----
+Tests different virtual host names through the HTTP Host header.
 
-## Virtual Host Enumeration
-
-```bash
-ffuf -u http://192.168.1.10/ -H "Host: FUZZ.example.com" -w vhosts.txt
-```
-
-Discovers hidden Virtual Hosts hosted on the same server.
-
----
-
-## Parameter Fuzzing
-
-```bash
-ffuf -u "http://target.com/index.php?FUZZ=test" -w params.txt
-```
-
-Discovers hidden HTTP parameters.
-
-Example:
+## 4. Parameter Discovery
 
 ```
-id
-page
-user
-file
-debug
+ffuf -u "http://TARGET/page.php?FUZZ=test" -w wordlist.txt
 ```
 
----
+Discovers possible GET parameter names.
 
-# Useful Options
-
-## -u
-
-Specifies the target URL.
-
-Example:
-
-```bash
--u http://target.com/FUZZ
-```
-
----
-
-## -w
-
-Specifies the wordlist.
-
-Example:
-
-```bash
--w wordlist.txt
-```
-
----
-
-## -mc
-
-Match specific HTTP status codes.
-
-Example:
-
-```bash
--mc 200
-```
-
-Show only:
+### POST Parameter Discovery
 
 ```
-200 OK
+ffuf -u http://TARGET/login.php -X POST -d "FUZZ=test" -w wordlist.txt
 ```
 
-Multiple status codes:
+Tests possible POST parameter names.
 
-```bash
--mc 200,301,302,403
-```
+## 5. Important Options
 
----
+|Option|Description|
+|---|---|
+|`-u`|Target URL|
+|`-w`|Wordlist|
+|`-e`|File extensions|
+|`-H`|Custom HTTP header|
+|`-X`|HTTP method|
+|`-d`|POST request data|
+|`-mc`|Match HTTP status codes|
+|`-fc`|Filter HTTP status codes|
+|`-fs`|Filter responses by size|
+|`-fw`|Filter responses by word count|
+|`-ac`|Automatic calibration|
+|`-t`|Number of concurrent threads|
+|`-o`|Save results to a file|
+|`-of`|Output format|
 
-## -fc
+## 6. Filtering Results
 
-Filter specific HTTP status codes.
-
-Example:
-
-```bash
--fc 404
-```
-
-Hide:
-
-```
-404 Not Found
-```
-
----
-
-## -fs
-
-Filter responses by size.
-
-Example:
-
-```bash
--fs 4242
-```
-
-Useful when the server returns the same page for every request.
-
----
-
-## -fw
-
-Filter responses by word count.
-
-Example:
-
-```bash
--fw 120
-```
-
----
-
-## -fl
-
-Filter responses by line count.
-
-Example:
-
-```bash
--fl 45
-```
-
----
-
-## -t
-
-Number of concurrent threads.
-
-Example:
-
-```bash
--t 100
-```
-
-Higher values make scanning faster but increase the load on the server.
-
----
-
-## -e
-
-Specify file extensions.
-
-Example:
-
-```bash
--e .php,.txt,.bak
-```
-
-FFUF will test:
+Filter out 404 responses:
 
 ```
-admin.php
-admin.txt
-admin.bak
+ffuf -u http://TARGET/FUZZ -w wordlist.txt -fc 404
 ```
 
----
+Show only successful responses with status 200:
 
-## -H
-
-Add a custom HTTP header.
-
-Example:
-
-```bash
--H "Authorization: Bearer TOKEN"
+```
+ffuf -u http://TARGET/FUZZ -w wordlist.txt -mc 200
 ```
 
-or
+Filter responses with a specific size:
 
-```bash
--H "Cookie: PHPSESSID=abc123"
+```
+ffuf -u http://TARGET/FUZZ -w wordlist.txt -fs 1234
 ```
 
----
+## 7. Save Results
 
-## -X
-
-Specify the HTTP method.
-
-Example:
-
-```bash
--X POST
+```
+ffuf -u http://TARGET/FUZZ -w wordlist.txt -o results.json -of json
 ```
 
----
+Saves the results in JSON format.
 
-## -d
+## Common Wordlists
 
-Send POST data.
+From SecLists:
 
-Example:
+- Directory discovery: `Discovery/Web-Content/common.txt`
+    
+- Subdomain discovery: `Discovery/DNS/subdomains-top1million-5000.txt`
+    
+- Passwords: `Passwords/Common-Credentials/`
+    
 
-```bash
--d "username=admin&password=test"
+Default Kali path:
+
 ```
-
----
-
-## -o
-
-Save the output.
-
-Example:
-
-```bash
--o results.json
+/usr/share/seclists/
 ```
-
----
-
-# Typical Penetration Testing Workflow
-
-```text
-Nmap
-      ↓
-Identify Web Server
-      ↓
-WhatWeb
-      ↓
-Identify Technologies
-      ↓
-FFUF
-      ↓
-Discover Hidden Directories & Files
-      ↓
-Analyze Interesting Resources
-      ↓
-Exploit Vulnerabilities
-```
-
----
-
-# Advantages of FFUF
-
-- Extremely fast
-- Lightweight
-- Easy to use
-- Supports recursive scanning
-- Supports filtering by status code, size, words, and lines
-- Supports custom headers, cookies, and authentication
-- Supports GET and POST requests
-- Ideal for directory, file, parameter, subdomain, and VHost enumeration
-
----
-
-# Summary
-
-FFUF is a high-performance web fuzzing tool used to discover hidden web resources by replacing the `FUZZ` keyword with entries from a wordlist.
-
-It is commonly used to enumerate:
-
-- Directories
-- Files
-- Subdomains
-- Virtual Hosts
-- API Endpoints
-- HTTP Parameters
-
-making it one of the most important enumeration tools during Web Application Penetration Testing.

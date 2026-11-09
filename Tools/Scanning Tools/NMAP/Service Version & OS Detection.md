@@ -1,145 +1,99 @@
-# `-sV`
+# Service Version & OS Detection
 
-Service Version Detection.
+## `-sV` — Service Version Detection
 
-يكشف:
+Detects:
 
-- اسم الخدمة
-- إصدارها
+- Service name
+- Service version
 
-مثال:
+Example output:
 
 ```
-Apache 2.4.41OpenSSH 8.2
+Apache 2.4.41
+OpenSSH 8.2
 ```
+
+Usage:
 
 ```
 nmap -sV target
 ```
 
-# `--version-intensity`
+## `--version-intensity`
 
+Controls the intensity of Service Version Detection (`-sV`).
 
-هذا الخيار مرتبط بـ:
+It determines how many Probes Nmap uses to identify services and their versions.
 
-```
--sV
-```
+### Values
 
-أي:
+Range: `0–9`
 
-```
-Service Version Detection
-```
-
-# فكرته ببساطة
-
-يحدد:
-
-```
-مدى قوة/عدد المحاولات التي يستخدمها Nmap لمعرفة نسخة الخدمة
-```
-
-# القيم
-
-القيمة تكون من:
-
-```
-0 → 9
-```
-
-# ماذا تعني؟
-
-|القيمة|المعنى|
+|Value|Meaning|
 |---|---|
-|0|فحص خفيف جدًا|
-|9|فحص قوي جدًا|
+|`0`|Light detection|
+|`9`|Most intensive detection|
 
-# كلما زادت القيمة
+Higher intensity means:
 
-Nmap:
+- More Probes.
+- More Requests.
+- Potentially more accurate identification.
+- Longer scan time.
 
-- يجرب Probes أكثر
-- يرسل Requests أكثر
-- يحاول التعرف بدقة أكبر
-
-لكن:
-
-```
-يصبح أبطأ
-```
-
-
-# مثال
+Example:
 
 ```
 nmap -sV --version-intensity 9 192.168.1.10
 ```
 
+Nmap performs its most intensive version detection.
 
-# ماذا يحدث هنا؟
-
-Nmap:
-
-```
-يبذل أقصى محاولة لمعرفة النسخ والخدمات
-```
 ---
-# `-O`
 
-OS Detection.
+## `-O` — OS Detection
 
-يحاول معرفة:
+Attempts to identify the target's Operating System.
 
-```
-نظام التشغيل
-```
-
-مثل:
+Examples:
 
 - Linux
 - Windows
 
+Usage:
+
 ```
 nmap -O target
 ```
-# `--osscan-guess`
 
-هذا خيار إضافي لـ `-O`.
+## `--osscan-guess`
 
-# ماذا يفعل؟
+An additional option for OS Detection (`-O`).
 
-يجعل Nmap:
+Makes Nmap provide its best guess about the target's OS when identification is uncertain.
 
-```
-يخمن نظام التشغيل حتى لو لم يكن متأكدًا
-```
-
-# مثال
+Example:
 
 ```
 nmap -O --osscan-guess 192.168.1.10
 ```
 
-
 ---
-# `-A`
 
-Aggressive Scan.
+## `-A` — Aggressive Scan
 
-يشغل عدة أشياء معًا:
+Enables multiple detection features together:
 
 - OS Detection
-- Version Detection
-- NSE Scripts
+- Service Version Detection
+- NSE Default Scripts
 - Traceroute
 
-يعني تقريبًا:
-
-```
-Full Enumeration
-```
+Usage:
 
 ```
 nmap -A target
 ```
+
+**Note:** `-A` enables several enumeration features in one scan. It does not mean every possible Nmap scan is enabled.

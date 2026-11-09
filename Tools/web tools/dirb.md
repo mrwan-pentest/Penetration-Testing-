@@ -1,306 +1,106 @@
-# Dirb
+# DIRB
 
-`Dirb` is a **Web Content Scanner** used during the **Web Enumeration** phase of a penetration test to discover hidden resources on a web server.
+## Overview
 
-It performs automated requests against a target website using a predefined **Wordlist** to identify hidden content that is not directly linked from the main page.
+**DIRB** is a Web Content Scanner used to discover hidden directories and files on a web server by brute-forcing paths with a wordlist.
 
----
-
-# What is Dirb Used For?
-
-`Dirb` is commonly used to discover:
-
-- Hidden directories
-- Hidden files
-- Administrative panels
-- Backup files
-- Configuration files
-- Old versions of web applications
-- Sensitive resources accidentally exposed on the server
-
-For example, a website may only display:
-
-```
-http://target.com
-```
-
-However, the server may contain hidden paths such as:
-
-```
-http://target.com/admin
-http://target.com/backup
-http://target.com/config.php
-```
-
-These resources may reveal sensitive information or provide additional attack surfaces.
+It sends HTTP requests to the target using different paths and identifies accessible resources.
 
 ---
 
-# How Does Dirb Work?
+## Basic Usage
 
-`Dirb` works by performing **dictionary-based brute forcing** against a web server.
-
-The process:
-
-1. Dirb reads a Wordlist containing possible directory and file names.
-2. It sends HTTP requests to the target website using each word from the list.
-3. It analyzes the server responses.
-4. It reports discovered resources.
-
-Example:
-
-If the Wordlist contains:
+### 1. Basic Directory Scanning
 
 ```
-admin
-backup
-uploads
-login
+dirb http://TARGET
 ```
 
-Dirb will test:
+Uses DIRB's default wordlist.
+
+### 2. Specify a Wordlist
 
 ```
-http://target.com/admin
-http://target.com/backup
-http://target.com/uploads
-http://target.com/login
+dirb http://TARGET /path/to/wordlist.txt
 ```
 
-If one of these paths exists, Dirb will display it.
-
----
-
-# Basic Usage
-
-To perform a basic directory scan against a target website:
+### 3. Scan with File Extensions
 
 ```
-dirb http://target.com
+dirb http://TARGET -X .php,.txt,.html
 ```
 
-This uses the default Dirb Wordlist to search for common hidden directories and files.
-
----
-
-# Using a Custom Wordlist
-
-A custom Wordlist can be provided to improve the discovery process.
+### 4. Scan a Specific Directory
 
 ```
-dirb http://target.com wordlist.txt
+dirb http://TARGET/admin/
 ```
 
-Example:
+### 5. Scan HTTPS
 
 ```
-dirb http://demo.ine.local /usr/share/wordlists/dirb/common.txt
+dirb https://TARGET
 ```
 
-In this example:
-
-- `http://demo.ine.local` is the target website.
-- `/usr/share/wordlists/dirb/common.txt` contains common directory and file names.
-
-Using different Wordlists can reveal additional hidden content depending on the target technology.
-
----
-
-# Directory Enumeration with Authentication Credentials
-
-Some websites protect their hidden content behind authentication.
-
-Dirb allows scanning authenticated areas by providing valid credentials.
+### 6. Save Results to a File
 
 ```
-dirb http://target.com wordlist.txt -u username:password
+dirb http://TARGET -o results.txt
 ```
 
-Example:
+## Important Options
+
+|Option|Description|
+|---|---|
+|`-a`|Set a custom User-Agent|
+|`-c`|Add a custom Cookie|
+|`-H`|Add a custom HTTP Header|
+|`-p`|Use an HTTP proxy (`IP:PORT`)|
+|`-P`|Set proxy username and password|
+|`-z`|Set delay between requests in milliseconds|
+|`-r`|Do not search recursively|
+|`-S`|Silent mode|
+|`-v`|Verbose output|
+|`-o`|Save output to a file|
+|`-X`|Search for files with specific extensions|
+|`-N`|Ignore responses with a specific HTTP status code|
+|`-w`|Do not stop on warning messages|
+
+## Useful Examples
+
+### Custom Header
 
 ```
-dirb http://target.com wordlist.txt -u admin:password123
+dirb http://TARGET -H "Authorization: Bearer TOKEN"
 ```
 
-This sends requests using the provided credentials while performing enumeration.
-
----
-
-# Searching for Specific File Extensions
-
-Web applications often use specific technologies such as:
-
-- PHP
-- ASP
-- JSP
-- Backup files
-
-Dirb can search for files with specific extensions using the `-X` option.
-
----
-
-## Searching for PHP Files
+### Using a Proxy
 
 ```
-dirb http://target.com -X .php
+dirb http://TARGET -p 127.0.0.1:8080
 ```
 
-This will test files ending with:
+### Ignore 403 Responses
 
 ```
-.php
+dirb http://TARGET -N 403
 ```
 
-Example:
+### Scan Without Recursive Searches
 
 ```
-login.php
-config.php
-admin.php
+dirb http://TARGET -r
 ```
 
----
-
-## Searching for Multiple Extensions
-
-Multiple extensions can be specified by separating them with commas.
-
-```
-dirb http://target.com -X .php,.txt,.bak
-```
-
-This searches for:
-
-```
-.php
-.txt
-.bak
-```
-
-This is useful for discovering:
-
-- Source code backups
-- Configuration files
-- Temporary files
-
----
-
-# Saving Scan Results
-
-Dirb results can be saved into a file for later analysis.
-
-```
-dirb http://target.com -o results.txt
-```
-
-The output will be stored inside:
-
-```
-results.txt
-```
-
-This is useful for:
-
-- Creating penetration testing reports
-- Reviewing findings later
-- Comparing enumeration results
-
----
-
-# Common Dirb Wordlists
-
-Dirb includes several default Wordlists.
-
-## Default Wordlist
-
-Location:
+## Default Wordlist Location
 
 ```
 /usr/share/dirb/wordlists/common.txt
 ```
 
-This contains common directory and file names and is usually the first Wordlist used during enumeration.
-
----
-
-## Larger Wordlist
-
-Location:
+List available wordlists:
 
 ```
-/usr/share/dirb/wordlists/big.txt
+ls /usr/share/dirb/wordlists/
 ```
 
-This contains more entries and can discover additional hidden resources.
-
----
-
-## SecLists Wordlists
-
-If installed, SecLists provides a large collection of specialized Wordlists.
-
-Location:
-
-```
-/usr/share/seclists/
-```
-
-It contains Wordlists for:
-
-- Web directories
-- Files
-- Usernames
-- Passwords
-- Fuzzing
-- Various technologies
-
----
-
-# Practical Usage in Penetration Testing
-
-During a web penetration test, Dirb is usually used after identifying an HTTP/HTTPS service.
-
-Typical workflow:
-
-1. Identify the web server.
-
-```
-nmap -p 80,443 target.com
-```
-
-2. Perform directory enumeration.
-
-```
-dirb http://target.com
-```
-
-3. Analyze discovered resources.
-
-Examples:
-
-```
-/admin
-/uploads
-/backup
-/login.php
-```
-
-4. Test discovered paths for vulnerabilities.
-
----
-
-# Summary
-
-`Dirb` is a web content enumeration tool used to discover hidden files and directories on web servers.
-
-Key points:
-
-- Used during the Web Enumeration phase.
-- Performs dictionary-based scanning using Wordlists.
-- Can discover hidden directories, files, and administrative pages.
-- Supports custom Wordlists.
-- Supports authenticated scanning.
-- Can search for specific file extensions.
-- Results can be exported for documentation.
-
-Understanding how to use `Dirb` effectively helps penetration testers identify hidden attack surfaces that may not be visible through normal website browsing.
