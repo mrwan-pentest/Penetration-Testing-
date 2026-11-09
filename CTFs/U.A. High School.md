@@ -1,3 +1,10 @@
+# Overview
+
+U.A. High School is a CTF challenge that involves multiple stages of enumeration, exploitation, and privilege escalation. The challenge focuses on identifying web application vulnerabilities, analyzing hidden data through steganography, discovering credentials, and exploiting Linux misconfigurations to obtain root access.
+
+The challenge provides hands-on experience with several penetration testing techniques, from initial reconnaissance to complete system compromise.
+
+---
 
 ## 1. Enumeration
 
